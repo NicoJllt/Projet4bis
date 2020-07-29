@@ -1,6 +1,7 @@
 <?php
 require 'Database.php';
 require 'Episode.php';
+require 'Message.php';
 ?>
 
 <!DOCTYPE html>
@@ -53,6 +54,7 @@ require 'Episode.php';
             <?php } ?>
         </section>
 
+
         <?php
         if ($users->userId() === true) {
         ?>
@@ -66,15 +68,19 @@ require 'Episode.php';
                             </a>
 
                             <?php
-                            foreach ($message as $showMessage) {
+                            $message = new Message();
+                            $messages = $message->getMessagesFromEpisode($_GET['episodeId']);
+                            while ($message = $messages->fetch()) {
                             ?>
                                 <div class="comment-bloc">
-                                    <div class="message-user-name"><?= $showMessage->userName() ?></div>
-                                    <div class="message-date"><?= date_parse($showMessage->dateMessage()) ?></div>
-                                    <p class="message-content"><?= $showMessage->content() ?></p>
+                                    <div class="message-user-name"><?= htmlspecialchars($message->userName()) ?></div>
+                                    <div class="message-date"><?= htmlspecialchars(date_parse($message->dateMessage())) ?></div>
+                                    <p class="message-content"><?= htmlspecialchars($message->content()) ?></p>
                                 </div>
-                                </a>
-                            <?php } ?>
+                            <?php
+                            }
+                            $messages->closeCursor();
+                            ?>
                         </div>
 
                         <div id="add-comment-bloc">
