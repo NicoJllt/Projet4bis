@@ -1,6 +1,6 @@
 <?php
 
-class Database
+abstract class Database
 {
 
     // Nos constantes
@@ -13,7 +13,7 @@ class Database
     private function checkConnection()
     {
         //Vérifie si la connexion est nulle et fait appel à getConnection()
-        if($this->connection === null) {
+        if ($this->connection === null) {
             return $this->getConnection();
         }
         //Si la connexion existe, elle est renvoyée, inutile de refaire une connexion
@@ -38,14 +38,14 @@ class Database
 
     protected function createQuery($sql, $parameters = null)
     {
-        if($parameters)
-        {
-            $result = $this->getConnection()->prepare($sql);
+        if ($parameters) {
+            $result = $this->checkConnection()->prepare($sql);
+            $result->setFetchMode(PDO::FETCH_CLASS, static::class);
             $result->execute($parameters);
             return $result;
         }
-        $result = $this->getConnection()->query($sql);
+        $result = $this->checkConnection()->query($sql);
+        $result->setFetchMode(PDO::FETCH_CLASS, static::class);
         return $result;
     }
-}
 }
