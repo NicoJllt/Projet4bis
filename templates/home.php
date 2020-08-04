@@ -23,8 +23,8 @@ require '../src/DAO/EpisodeDAO.php';
         <section class="news-preview-bloc">
             <section class="row">
         <?php
-        $episode = new Episode();
-        $episodes = $episode->getEpisodes($nb, $offset, bool $asc);
+        $episode = new EpisodeDAO();
+        $episodes = $episode->getEpisodes(10, 0, true);
         while ($episode = $episodes->fetch()) {
         ?>
             <div class="col-md-6">

@@ -22,7 +22,7 @@ require '../src/DAO/MessageDAO.php';
         <?php include("templateHeader.php") ?>
 
         <?php
-        $episode = new Episode();
+        $episode = new EpisodeDAO();
         $episodes = $episode->getEpisode($_GET['episodeId']);
         $episode = $episodes->fetch()
         ?>

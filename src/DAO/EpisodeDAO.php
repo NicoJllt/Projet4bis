@@ -6,7 +6,7 @@ class EpisodeDAO extends DAO
     {
         // Requête de récupération des 10 épisodes suivants classées dans l'ordre ascendant
         $sql = 'SELECT * FROM episodes ORDER BY episodeId ' . ($asc ? 'ASC' : 'DESC') . ' LIMIT :offset, :nb';
-        return $this->createQuery($sql);
+        return $this->createQuery($sql, [$offset, $nb]);
     }
 
     public function getEpisode($episodeId)
