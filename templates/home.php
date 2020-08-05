@@ -28,11 +28,11 @@ require '../src/DAO/EpisodeDAO.php';
         while ($episode = $episodes->fetch()) {
         ?>
             <div class="col-md-6">
-                <a href="singleEpisode.php?episodeId=<?= htmlspecialchars($episode->episodeId()) ?>">
+                <a href="singleEpisode.php?episodeId=<?= htmlspecialchars($episode->episodeId) ?>">
                     <article class="news-preview">
                         <div class="news-preview-marge">
-                            <h1 class="news-title-preview"><?= htmlspecialchars($episode->title()) ?></h1>
-                            <p class="news-content-preview"><?= htmlspecialchars(substr($episode->content(), 0, 250)) . '...' ?></p>
+                            <h1 class="news-title-preview"><?= htmlspecialchars($episode->title) ?></h1>
+                            <p class="news-content-preview"><?= htmlspecialchars(substr($episode->content, 0, 250)) . '...' ?></p>
                         </div>
                     </article>
                 </a>
@@ -43,25 +43,6 @@ require '../src/DAO/EpisodeDAO.php';
         ?>
             </section>
         </section>
-                    
-        <footer>
-            <section class="row">
-                <div class="col-lg-12">
-                    <div id="change-page">
-                        <ul>
-                            <?php
-                            if ($offset >= $showNbNews) { ?>
-                                <li><a href="index.php?action=showNews&offset=<?= $offset - $showNbNews ?>"><button class="previous-episodes-button">Épisodes précédents</button></a></li>
-                            <?php } ?>
-                            <?php
-                            if (count($news) >= ($showNbNews + 1)) { ?>
-                                <li><a href="index.php?action=showNews&offset=<?= $offset + $showNbNews ?>"><button class="next-episodes-button">Épisodes suivants</button></a></li>
-                            <?php } ?>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-        </footer>
     </div>
 </body>
 
