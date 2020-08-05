@@ -4,9 +4,9 @@ abstract class DAO
 {
 
     // Nos constantes
-    const DB_HOST = 'mysql:host=db5000269963.hosting-data.io;dbname=dbs263509;charset=utf8';
-    const DB_USER = 'dbu427269';
-    const DB_PASS = 'nicoAsc159vhu753kom0@';
+    const DB_HOST = 'mysql:host=localhost;dbname=projet4;charset=utf8';
+    const DB_USER = 'Nico';
+    const DB_PASS = 'nico110990';
 
     private $connection;
 
@@ -25,7 +25,7 @@ abstract class DAO
     {
         //Tentative de connexion à la base de données
         try {
-            $this->connection = new PDO(self::DB_HOST, self::DB_PASS, self::DB_USER);
+            $this->connection = new PDO(self::DB_HOST, self::DB_USER, self::DB_PASS);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             //On renvoie un message avec le mot-clé return
             return $this->connection;
