@@ -68,7 +68,7 @@ require '../src/DAO/MessageDAO.php';
                             </a>
 
                             <?php
-                            $message = new Message();
+                            $message = new MessageDAO();
                             $messages = $message->getMessagesFromEpisode($_GET['episodeId']);
                             while ($message = $messages->fetch()) {
                             ?>
