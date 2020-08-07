@@ -1,7 +1,7 @@
 <?php
-require '../src/DAO/DAO.php';
-require '../src/DAO/EpisodeDAO.php';
-require '../src/DAO/MessageDAO.php';
+require '../config/Autoloader.php';
+use \App\config\Autoloader;
+Autoloader::register();
 
 use App\src\DAO\EpisodeDAO;
 use App\src\DAO\MessageDAO;
