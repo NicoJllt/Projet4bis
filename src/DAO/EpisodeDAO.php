@@ -1,5 +1,7 @@
 <?php
 
+namespace App\src\DAO;
+
 class EpisodeDAO extends DAO
 {
     public function getEpisodes($nb, $offset, bool $asc)

@@ -2,6 +2,9 @@
 require '../src/DAO/DAO.php';
 require '../src/DAO/EpisodeDAO.php';
 require '../src/DAO/MessageDAO.php';
+
+use App\src\DAO\EpisodeDAO;
+use App\src\DAO\MessageDAO;
 ?>
 
 <!DOCTYPE html>

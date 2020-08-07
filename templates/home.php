@@ -1,6 +1,9 @@
 <?php
 require '../src/DAO/DAO.php';
 require '../src/DAO/EpisodeDAO.php';
+
+use App\src\DAO\EpisodeDAO;
+
 ?>
 
 <!DOCTYPE html>

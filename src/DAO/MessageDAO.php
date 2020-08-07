@@ -1,5 +1,7 @@
 <?php
 
+namespace App\src\DAO;
+
 class MessageDAO extends DAO
 {
     public function getMessagesFromEpisode($episodeId)
