@@ -8,11 +8,6 @@ use Exception;
 abstract class DAO
 {
 
-    // Nos constantes
-    const DB_HOST = 'mysql:host=localhost;dbname=projet4;charset=utf8';
-    const DB_USER = 'Nico';
-    const DB_PASS = 'nico110990';
-
     private $connection;
 
     private function checkConnection()
@@ -30,7 +25,7 @@ abstract class DAO
     {
         //Tentative de connexion à la base de données
         try {
-            $this->connection = new PDO(self::DB_HOST, self::DB_USER, self::DB_PASS);
+            $this->connection = new PDO(DB_HOST, DB_USER, DB_PASS);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             //On renvoie un message avec le mot-clé return
             return $this->connection;

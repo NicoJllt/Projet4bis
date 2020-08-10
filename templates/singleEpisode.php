@@ -1,7 +1,5 @@
 <?php
 
-require '../vendor/autoload.php';
-
 use App\src\DAO\EpisodeDAO;
 use App\src\DAO\MessageDAO;
 

@@ -1,7 +1,5 @@
 <?php
 
-require '../vendor/autoload.php';
-
 use App\src\DAO\EpisodeDAO;
 
 ?>
@@ -31,7 +29,7 @@ use App\src\DAO\EpisodeDAO;
         while ($episode = $episodes->fetch()) {
         ?>
             <div class="col-md-6">
-                <a href="singleEpisode.php?episodeId=<?= htmlspecialchars($episode->episodeId) ?>">
+                <a href="../public/index.php?route=episode&episodeId=<?= htmlspecialchars($episode->episodeId) ?>">
                     <article class="news-preview">
                         <div class="news-preview-marge">
                             <h1 class="news-title-preview"><?= htmlspecialchars($episode->title) ?></h1>
