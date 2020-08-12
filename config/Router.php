@@ -1,6 +1,7 @@
 <?php
 
 namespace App\config;
+use App\src\controller\FrontController;
 use Exception;
 
 class Router
@@ -18,7 +19,8 @@ class Router
                 }
             }
             else{
-                require '../templates/home.php';
+                $frontController = new FrontController();
+                $frontController->home();
             }
         }
         catch (Exception $e)
