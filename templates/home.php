@@ -1,9 +1,3 @@
-<?php
-
-use App\src\DAO\EpisodeDAO;
-
-?>
-
 <!DOCTYPE html>
 <!-- PAGE D'ACCUEIL -->
 <html lang="fr">
@@ -24,8 +18,7 @@ use App\src\DAO\EpisodeDAO;
         <section class="news-preview-bloc">
             <section class="row">
         <?php
-        $episode = new EpisodeDAO();
-        $episodes = $episode->getEpisodes(10, 0, true);
+        
         while ($episode = $episodes->fetch()) {
         ?>
             <div class="col-md-6">

@@ -14,6 +14,6 @@ class EpisodeDAO extends DAO
     public function getEpisode($episodeId)
     {
         $sql = 'SELECT * FROM episodes WHERE episodeId = :episodeId';
-        return $this->createQuery($sql, [$episodeId]);
+        return $this->createQuery($sql, ["episodeId" => $episodeId]);
     }
 }
