@@ -1,31 +1,38 @@
 <?php
 
 namespace App\config;
+
 use App\src\controller\FrontController;
+use App\src\controller\ErrorController;
+
 use Exception;
 
 class Router
 {
+    private $frontController;
+    private $errorController;
+
+    public function __construct()
+    {
+        $this->frontController = new FrontController();
+        $this->errorController = new ErrorController();
+    }
+
     public function run()
     {
-        try{
-            if(isset($_GET['route']))
-            {
-                if($_GET['route'] === 'episode'){
+        try {
+            if (isset($_GET['route'])) {
+                if ($_GET['route'] === 'episode') {
+                    $this->frontController->episode($_GET['episodeId']);
                     require '../templates/singleEpisode.php';
+                } else {
+                    $this->errorController->errorNotFound();
                 }
-                else{
-                    echo 'page inconnue';
-                }
+            } else {
+                $this->frontController->home();
             }
-            else{
-                $frontController = new FrontController();
-                $frontController->home();
-            }
-        }
-        catch (Exception $e)
-        {
-            echo 'Erreur';
+        } catch (Exception $e) {
+            $this->errorController->errorServer();
         }
     }
 }
