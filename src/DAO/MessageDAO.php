@@ -10,15 +10,15 @@ class MessageDAO extends DAO
     {
         $message = new Message();
         $message->setId($row['id']);
-        $message->setPseudo($row['pseudo']);
+        $message->setUsername($row['username']);
         $message->setContent($row['content']);
-        $message->setCreatedAt($row['createdAt']);
+        $message->setDateMessage($row['dateMessage']);
         return $message;
     }
 
     public function getMessagesFromEpisode($episodeId)
     {
-        $sql = 'SELECT id, pseudo, content, createdAt FROM comment WHERE article_id = ? ORDER BY createdAt DESC';
+        $sql = 'SELECT id, username, content, dateMessage FROM message WHERE episode_id = ? ORDER BY dateMessage DESC';
         $result = $this->createQuery($sql, [$episodeId]);
         $messages = [];
         foreach ($result as $row) {
