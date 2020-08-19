@@ -24,7 +24,6 @@ class Router
             if (isset($_GET['route'])) {
                 if ($_GET['route'] === 'episode') {
                     $this->frontController->episode($_GET['episodeId']);
-                    require '../templates/singleEpisode.php';
                 } else {
                     $this->errorController->errorNotFound();
                 }

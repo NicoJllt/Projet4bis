@@ -2,18 +2,38 @@
 
 namespace App\src\DAO;
 
+use App\src\model\Episode;
+
 class EpisodeDAO extends DAO
 {
-    public function getEpisodes($nb, $offset, bool $asc)
+    private function buildObject($row)
     {
-        // Requête de récupération des 10 épisodes suivants classées dans l'ordre ascendant
-        $sql = 'SELECT * FROM episodes ORDER BY episodeId ' . ($asc ? 'ASC' : 'DESC');
-        return $this->createQuery($sql);
+        $episode = new Episode();
+        $episode->setId($row['id']);
+        $episode->setTitle($row['title']);
+        $episode->setContent($row['content']);
+        return $episode;
+    }
+
+    public function getEpisodes()
+    {
+        $sql = 'SELECT id, title, content FROM episode ORDER BY id DESC';
+        $result = $this->createQuery($sql);
+        $episodes = [];
+        foreach ($result as $row) {
+            $episodeId = $row['id'];
+            $episodes[$episodeId] = $this->buildObject($row);
+        }
+        $result->closeCursor();
+        return $episodes;
     }
 
     public function getEpisode($episodeId)
     {
-        $sql = 'SELECT * FROM episodes WHERE episodeId = :episodeId';
-        return $this->createQuery($sql, ["episodeId" => $episodeId]);
+        $sql = 'SELECT id, title, content FROM episode WHERE id = ?';
+        $result = $this->createQuery($sql, [$episodeId]);
+        $article = $result->fetch();
+        $result->closeCursor();
+        return $this->buildObject($article);
     }
 }

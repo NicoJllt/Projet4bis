@@ -28,8 +28,8 @@ use App\src\DAO\MessageDAO;
         <section class="row">
             <div class="col-lg-12">
                 <article id="episode-page-bloc">
-                    <h1 class="news-title"><?= htmlspecialchars($episode->title) ?></h1>
-                    <div class="news-content"><?= htmlspecialchars($episode->content) ?></div>
+                    <h1 class="news-title"><?= htmlspecialchars($episode->getTitle()) ?></h1>
+                    <div class="news-content"><?= htmlspecialchars($episode->getContent()) ?></div>
                 </article>
             </div>
         </section>
@@ -47,12 +47,12 @@ use App\src\DAO\MessageDAO;
                             </a>
 
                             <?php
-                            while ($message = $messages->fetch()) {
+                            foreach ($messages as $message) {
                             ?>
                                 <div class="comment-bloc">
-                                    <div class="message-user-name"><?= htmlspecialchars($message->userName) ?></div>
-                                    <div class="message-date"><?= htmlspecialchars(date_parse($message->dateMessage)) ?></div>
-                                    <p class="message-content"><?= htmlspecialchars($message->content) ?></p>
+                                    <div class="message-user-name"><?= htmlspecialchars($message->getUsername()) ?></div>
+                                    <div class="message-date"><?= htmlspecialchars(date_parse($message->getDateMessage())) ?></div>
+                                    <p class="message-content"><?= htmlspecialchars($message->getContent()) ?></p>
                                 </div>
                             <?php
                             }

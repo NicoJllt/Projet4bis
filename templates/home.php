@@ -17,24 +17,23 @@
 
         <section class="news-preview-bloc">
             <section class="row">
-        <?php
-        
-        while ($episode = $episodes->fetch()) {
-        ?>
-            <div class="col-md-6">
-                <a href="../public/index.php?route=episode&episodeId=<?= htmlspecialchars($episode->episodeId) ?>">
-                    <article class="news-preview">
-                        <div class="news-preview-marge">
-                            <h1 class="news-title-preview"><?= htmlspecialchars($episode->title) ?></h1>
-                            <p class="news-content-preview"><?= htmlspecialchars(substr($episode->content, 0, 250)) . '...' ?></p>
-                        </div>
-                    </article>
-                </a>
-            </div>
-        <?php
-        }
-        $episodes->closeCursor();
-        ?>
+                <?php
+
+                foreach ($episodes as $episode) {
+                ?>
+                    <div class="col-md-6">
+                        <a href="../public/index.php?route=episode&episodeId=<?= htmlspecialchars($episode->getId()) ?>">
+                            <article class="news-preview">
+                                <div class="news-preview-marge">
+                                    <h1 class="news-title-preview"><?= htmlspecialchars($episode->getTitle()) ?></h1>
+                                    <p class="news-content-preview"><?= htmlspecialchars(substr($episode->getContent(), 0, 250)) . '...' ?></p>
+                                </div>
+                            </article>
+                        </a>
+                    </div>
+                <?php
+                }
+                ?>
             </section>
         </section>
     </div>

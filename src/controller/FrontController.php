@@ -19,14 +19,14 @@ class FrontController
 
     public function home()
     {
-        $episodes = $this->episode->getEpisodes(10, 0, true);
+        $episodes = $this->episodeDAO->getEpisodes(10, 0, true);
         require '../templates/home.php';
     }
 
     public function episode($episodeId)
     {
-        $episodes = $this->episode->getepisode($episodeId);
-        $messages = $this->message->getMessagesFromEpisode($episodeId);
+        $episode = $this->episodeDAO->getepisode($episodeId);
+        $messages = $this->messageDAO->getMessagesFromEpisode($episodeId);
         require '../templates/singleEpisode.php';
     }
 }
