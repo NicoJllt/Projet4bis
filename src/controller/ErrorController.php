@@ -2,15 +2,24 @@
 
 namespace App\src\controller;
 
+use App\src\model\View;
+
 class ErrorController
 {
+    private $view;
+
+    public function __construct()
+    {
+        $this->view = new View();
+    }
+
     public function errorNotFound()
     {
-        require '../templates/error_404.php';
+        $this->view->render('error_404');
     }
 
     public function errorServer()
     {
-        require '../templates/error_500.php';
+        $this->view->render('error_500');
     }
 }

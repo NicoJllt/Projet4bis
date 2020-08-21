@@ -1,3 +1,10 @@
+<?php 
+ 
+use App\src\DAO\EpisodeDAO; 
+ 
+$this->title = "Accueil"; 
+?>
+
 <!DOCTYPE html>
 <!-- PAGE D'ACCUEIL -->
 <html lang="fr">
@@ -14,6 +21,8 @@
     <div class="blocpage">
 
         <?php include("templateHeader.php") ?>
+
+        <?php $this->title = "Accueil"; ?>
 
         <section class="news-preview-bloc">
             <section class="row">

@@ -3,6 +3,7 @@
 use App\src\DAO\EpisodeDAO;
 use App\src\DAO\MessageDAO;
 
+$this->title = 'Episode';
 ?>
 
 <!DOCTYPE html>
@@ -22,9 +23,8 @@ use App\src\DAO\MessageDAO;
 
         <?php include("templateHeader.php") ?>
 
-        <?php
-        $episode = $episodes->fetch();
-        ?>
+        <?php $this->title = "Episode"; ?>
+
         <section class="row">
             <div class="col-lg-12">
                 <article id="episode-page-bloc">
@@ -34,36 +34,31 @@ use App\src\DAO\MessageDAO;
             </div>
         </section>
 
-        <?php
-        $episodes->closeCursor();
-        ?>
+        <section class="row">
+            <div class="col-lg-12">
+                <div id="comment-page-bloc">
+                    <div class="show-comments">
+                        <a href="home.php?action=showMessages&id=idMessage">
+                            <button id="show-comments-button">Afficher les commentaires</button>
+                        </a>
 
-            <section class="row">
-                <div class="col-lg-12">
-                    <div id="comment-page-bloc">
-                        <div class="show-comments">
-                            <a href="home.php?action=showMessages&id=idMessage">
-                                <button id="show-comments-button">Afficher les commentaires</button>
-                            </a>
-
-                            <?php
-                            foreach ($messages as $message) {
-                            ?>
-                                <div class="comment-bloc">
-                                    <div class="message-user-name"><?= htmlspecialchars($message->getUsername()) ?></div>
-                                    <div class="message-date"><?= htmlspecialchars(date_parse($message->getDateMessage())) ?></div>
-                                    <p class="message-content"><?= htmlspecialchars($message->getContent()) ?></p>
-                                </div>
-                            <?php
-                            }
-                            $messages->closeCursor();
-                            ?>
-                        </div>
-
-                        
+                        <?php
+                        foreach ($messages as $message) {
+                        ?>
+                            <div class="comment-bloc">
+                                <div class="message-user-name"><?= htmlspecialchars($message->getUsername()) ?></div>
+                                <div class="message-date"><?= htmlspecialchars(date_parse($message->getDateMessage())) ?></div>
+                                <p class="message-content"><?= htmlspecialchars($message->getContent()) ?></p>
+                            </div>
+                        <?php
+                        }
+                        ?>
                     </div>
+
+
                 </div>
-            </section>
+            </div>
+        </section>
 
     </div>
 </body>
