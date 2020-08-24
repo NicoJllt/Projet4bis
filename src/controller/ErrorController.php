@@ -18,8 +18,8 @@ class ErrorController
         $this->view->render('error_404');
     }
 
-    public function errorServer()
+    public function errorServer($e)
     {
-        $this->view->render('error_500');
+        $this->view->render('error_500', ['error' => $e]); 
     }
 }

@@ -1,8 +1,7 @@
-<?php 
- 
-use App\src\DAO\EpisodeDAO; 
- 
-$this->title = "Accueil"; 
+<?php
+
+use App\src\DAO\EpisodeDAO;
+
 ?>
 
 <!DOCTYPE html>
