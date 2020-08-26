@@ -8,11 +8,11 @@ class EpisodeDAO extends DAO
 {
     private function buildObject($row)
     {
-        $episodes = new Episode();
-        $episodes->setEpisodeId($row['episodeId']);
-        $episodes->setTitle($row['title']);
-        $episodes->setContent($row['content']);
-        return $episodes;
+        $episode = new Episode();
+        $episode->setEpisodeId($row['episodeId']);
+        $episode->setTitle($row['title']);
+        $episode->setContent($row['content']);
+        return $episode;
     }
 
     public function getEpisodes()

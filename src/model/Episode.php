@@ -66,4 +66,20 @@ class Episode
     {
         $this->content = $content;
     }
+
+        /**
+     * @return \DateTime
+     */
+    public function getDateEpisode()
+    {
+        return $this->dateEpisode;
+    }
+
+    /**
+     * @param \DateTime $dateEpisode
+     */
+    public function setDateEpisode($dateEpisode)
+    {
+        $this->dateEpisode = $dateEpisode;
+    }
 }
