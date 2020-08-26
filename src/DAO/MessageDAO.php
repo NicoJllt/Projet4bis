@@ -9,7 +9,7 @@ class MessageDAO extends DAO
     private function buildObject($row)
     {
         $message = new Message();
-        $message->setId($row['id']);
+        $message->setMessageId($row['messageId']);
         $message->setUsername($row['username']);
         $message->setContent($row['content']);
         $message->setDateMessage($row['dateMessage']);
@@ -18,11 +18,11 @@ class MessageDAO extends DAO
 
     public function getMessagesFromEpisode($episodeId)
     {
-        $sql = 'SELECT id, username, content, dateMessage FROM message WHERE episode_id = ? ORDER BY dateMessage DESC';
+        $sql = 'SELECT messageId, username, content, dateMessage FROM message WHERE episode_id = ? ORDER BY dateMessage DESC';
         $result = $this->createQuery($sql, [$episodeId]);
         $messages = [];
         foreach ($result as $row) {
-            $messageId = $row['id'];
+            $messageId = $row['messageId'];
             $messages[$messageId] = $this->buildObject($row);
         }
         $result->closeCursor();

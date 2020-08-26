@@ -7,7 +7,7 @@ class Episode
     /**
      * @var int
      */
-    private $id;
+    private $episodeId;
 
     /**
      * @var string
@@ -22,17 +22,17 @@ class Episode
     /**
      * @return int
      */
-    public function getId()
+    public function getEpisodeId()
     {
-        return $this->id;
+        return $this->episodeId;
     }
 
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setEpisodeId($episodeId)
     {
-        $this->id = $id;
+        $this->episodeId = $episodeId;
     }
 
     /**

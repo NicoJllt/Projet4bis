@@ -7,7 +7,7 @@ class Message
     /**
      * @var int
      */
-    private $id;
+    private $messageId;
 
     /**
      * @var string
@@ -27,17 +27,17 @@ class Message
     /**
      * @return int
      */
-    public function getId()
+    public function getMessageId()
     {
-        return $this->id;
+        return $this->messageId;
     }
 
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setMessageId($messageId)
     {
-        $this->id = $id;
+        $this->messageId = $messageId;
     }
 
     /**
