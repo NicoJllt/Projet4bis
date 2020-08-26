@@ -32,8 +32,16 @@ class EpisodeDAO extends DAO
     {
         $sql = 'SELECT id, title, content FROM episode WHERE id = ?';
         $result = $this->createQuery($sql, [$episodeId]);
-        $article = $result->fetch();
+        $episode = $result->fetch();
         $result->closeCursor();
-        return $this->buildObject($article);
+        return $this->buildObject($episode);
+    }
+
+    public function addEpisode($episode)
+    {
+        //Permet de récupérer les variables $title, $content et $author
+        extract($episode);
+        $sql = 'INSERT INTO episode (title, content, dateMessage) VALUES (?, ?, ?, NOW())';
+        $this->createQuery($sql, [$title, $content]);
     }
 }
