@@ -3,6 +3,7 @@
 namespace App\src\DAO;
 
 use App\src\model\Episode;
+use App\config\Parameter;
 
 class EpisodeDAO extends DAO
 {
@@ -38,11 +39,11 @@ class EpisodeDAO extends DAO
         return $this->buildObject($episode);
     }
 
-    public function addEpisode($episode)
+    public function addEpisode(Parameter $post)
     {
         //Permet de récupérer les variables $title, $content et $author
         extract($episode);
         $sql = 'INSERT INTO episodes (title, content, dateMessage) VALUES (?, ?, ?, NOW())';
-        $this->createQuery($sql, [$title, $content]);
+        $this->createQuery($sql, [$post->get('title'), $post->get('content'), $post->get('author')]);
     }
 }

@@ -2,12 +2,14 @@
 
 namespace App\src\controller;
 
+use App\config\Parameter;
+
 class BackController extends Controller
 {
 
-    public function addEpisode($post)
+    public function addEpisode(Parameter $post)
     {
-        if(isset($post['submit'])) {
+        if($post->get('submit')) {
             $this->episodeDAO->addEpisode($post);
             header('Location: ../public/index.php');
         }

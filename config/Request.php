@@ -10,8 +10,8 @@ class Request
 
     public function __construct()
     {
-        $this->get = $_GET;
-        $this->post = $_POST;
+        $this->get = new Parameter($_GET);
+        $this->post = new Parameter($_POST);
         $this->session = $_SESSION;
     }
 
