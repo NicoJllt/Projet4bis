@@ -18,7 +18,7 @@ class MessageDAO extends DAO
 
     public function getMessagesFromEpisode($episodeId)
     {
-        $sql = 'SELECT messageId, username, content, dateMessage FROM message WHERE episode_id = ? ORDER BY dateMessage DESC';
+        $sql = 'SELECT messageId, username, content, dateMessage FROM messages WHERE idNews = ? ORDER BY dateMessage DESC';
         $result = $this->createQuery($sql, [$episodeId]);
         $messages = [];
         foreach ($result as $row) {

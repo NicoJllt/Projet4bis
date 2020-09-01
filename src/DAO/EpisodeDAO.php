@@ -12,12 +12,13 @@ class EpisodeDAO extends DAO
         $episode->setEpisodeId($row['episodeId']);
         $episode->setTitle($row['title']);
         $episode->setContent($row['content']);
+        $episode->setDateEpisode($row['dateEpisode']);
         return $episode;
     }
 
     public function getEpisodes()
     {
-        $sql = 'SELECT episodeId, title, content FROM episodes ORDER BY episodeId DESC';
+        $sql = 'SELECT episodeId, title, content, dateEpisode FROM episodes ORDER BY episodeId DESC';
         $result = $this->createQuery($sql);
         $episodes = [];
         foreach ($result as $row) {
@@ -30,7 +31,7 @@ class EpisodeDAO extends DAO
 
     public function getEpisode($episodeId)
     {
-        $sql = 'SELECT episodeId, title, content FROM episodes WHERE episodeId = ?';
+        $sql = 'SELECT episodeId, title, content, dateEpisode FROM episodes WHERE episodeId = ?';
         $result = $this->createQuery($sql, [$episodeId]);
         $episode = $result->fetch();
         $result->closeCursor();
