@@ -26,22 +26,7 @@
 
         <section class="row">
             <div class="col-lg-12">
-                <form method="post" action="../public/index.php?route=addEpisode">
-                    <div id="create-news-form-bloc">
-                        <h1 id="header-form-create">Ajout d'un nouvel épisode</h1>
-
-                        <label for="title">Titre</label><br>
-                        <input type="text" id="title" name="title" placeholder="Titre de l'épisode" /><br>
-
-                        <label for="content">Contenu</label><br>
-                        <textarea id="content" name="content" rows="8" cols="30" placeholder="Contenu de l'épisode"></textarea><br>
-
-                        <div id="create-form-buttons">
-                            <button type="reset" value="Annuler">Annuler</button>
-                            <input type="submit" value="Ajouter l'épisode" id="submit" name="submit">
-                        </div>
-                    </div>
-                </form>
+                <?php include('form_article.php'); ?>
                 <a href="../public/index.php">Retour à l'accueil</a>
             </div>
         </section>

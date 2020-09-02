@@ -51,8 +51,8 @@ $this->title = 'Episode';
                         foreach ($messages as $message) {
                         ?>
                             <div class="comment-bloc">
-                                <div class="message-user-name"><?= htmlspecialchars($message->getUsername()) ?></div>
-                                <div class="message-date"><?= date_parse($message->getDateMessage()) ?></div>
+                                <div class="message-user-name">Rédigé par : <?= htmlspecialchars($message->getUsername()) ?></div>
+                                <div class="message-date">Le : <?= htmlspecialchars($message->getDateMessage()) ?></div>
                                 <p class="message-content"><?= htmlspecialchars($message->getContent()) ?></p>
                             </div>
                         <?php
