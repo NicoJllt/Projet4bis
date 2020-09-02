@@ -32,6 +32,11 @@ $this->title = 'Episode';
                     <div class="news-content"><?= htmlspecialchars($episode->getContent()) ?></div>
                 </article>
             </div>
+
+            <div class="actions">
+                <a href="../public/index.php?route=editEpisode&episodeId=<?= htmlspecialchars($episode->getepisodeId()) ?>">Modifier</a>
+            </div>
+
         </section>
 
         <section class="row">

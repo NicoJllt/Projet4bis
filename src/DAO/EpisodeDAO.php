@@ -46,4 +46,14 @@ class EpisodeDAO extends DAO
         $sql = 'INSERT INTO episodes (title, content, dateMessage) VALUES (?, ?, ?, NOW())';
         $this->createQuery($sql, [$post->get('title'), $post->get('content'), $post->get('author')]);
     }
+
+    public function editEpisode(Parameter $post, $episodeId)
+    {
+        $sql = 'UPDATE episode SET title=:title, content=:content WHERE episodeId=:episodeId';
+        $this->createQuery($sql, [
+            'title' => $post->get('title'),
+            'content' => $post->get('content'),
+            'episodeId' => $episodeId
+        ]);
+    }
 }

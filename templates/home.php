@@ -24,6 +24,7 @@ use App\src\DAO\EpisodeDAO;
         <?php $this->title = "Accueil"; ?>
 
         <p><?= $this->session->show('addEpisode') ?></p>
+        <p><?= $this->session->show('editEpisode') ?></p>
         <a href="../public/index.php?route=addEpisode">Nouvel épisode</a>
 
         <section class="news-preview-bloc">

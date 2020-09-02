@@ -18,4 +18,17 @@ class BackController extends Controller
             'post' => $post
         ]);
     }
+
+    public function editEpisode(Parameter $post, $episodeId)
+    {
+        if ($post->get('submit')) {
+            $this->episodeDAO->editEpisode($post, $episodeId);
+            $this->session->set('editEpisode', 'L\'épisode a bien été mis à jour');
+            header('Location: ../public/index.php');
+        }
+        $episode = $this->episodeDAO->getEpisode($episodeId);
+        $this->view->render('editEpisode', [
+            'episode' => $episode
+        ]);
+    }
 }
