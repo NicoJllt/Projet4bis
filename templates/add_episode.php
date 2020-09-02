@@ -20,7 +20,7 @@
 <body>
     <div class="blocpage">
 
-        <?php include("../template/templateHeader.php") ?>
+        <?php include("templateHeader.php") ?>
 
         <?php $this->title = "Nouvel épisode"; ?>
 

@@ -23,6 +23,7 @@ use App\src\DAO\EpisodeDAO;
 
         <?php $this->title = "Accueil"; ?>
 
+        <p><?= $this->session->show('addEpisode') ?></p>
         <a href="../public/index.php?route=addEpisode">Nouvel épisode</a>
 
         <section class="news-preview-bloc">
@@ -37,7 +38,7 @@ use App\src\DAO\EpisodeDAO;
                                 <div class="news-preview-marge">
                                     <h1 class="news-title-preview"><?= htmlspecialchars($episode->getTitle()) ?></h1>
                                     <p class="news-content-preview"><?= htmlspecialchars(substr($episode->getContent(), 0, 250)) . '...' ?></p>
-                                    <p>Créé le : <?= htmlspecialchars($episode->getDateEpisode());?></p>
+                                    <p>Créé le : <?= htmlspecialchars($episode->getDateEpisode()); ?></p>
                                 </div>
                             </article>
                         </a>
