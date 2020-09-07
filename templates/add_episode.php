@@ -26,7 +26,7 @@
 
         <section class="row">
             <div class="col-lg-12">
-                <?php include('form_article.php'); ?>
+                <?php include('form_episode.php'); ?>
                 <a href="../public/index.php">Retour à l'accueil</a>
             </div>
         </section>
