@@ -34,7 +34,8 @@ $this->title = 'Episode';
             </div>
 
             <div class="actions">
-                <a href="../public/index.php?route=editEpisode&episodeId=<?= htmlspecialchars($episode->getepisodeId()) ?>">Modifier</a>
+                <a href="../public/index.php?route=editEpisode&episodeId=<?= $episode->getEpisodeId() ?>">Modifier</a>
+                <a href="../public/index.php?route=deleteEpisode&episodeId=<?= $episode->getEpisodeId(); ?>">Supprimer</a>
             </div>
 
         </section>

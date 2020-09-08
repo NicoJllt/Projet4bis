@@ -35,6 +35,8 @@ class Router
                     $this->backController->addEpisode($this->request->getPost());
                 } elseif ($route === 'editEpisode') {
                     $this->backController->editEpisode($this->request->getPost(), $this->request->getGet()->get('episodeId'));
+                } elseif ($route === 'deleteEpisode') {
+                    $this->backController->deleteEpisode($this->request->getGet()->get('episodeId'));
                 } else {
                     $this->errorController->errorNotFound();
                 }

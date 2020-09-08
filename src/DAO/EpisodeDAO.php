@@ -56,4 +56,12 @@ class EpisodeDAO extends DAO
             'episodeId' => $episodeId
         ]);
     }
+
+    public function deleteEpisode($episodeId)
+    {
+        $sql = 'DELETE FROM messages WHERE idNews = ?';
+        $this->createQuery($sql, [$episodeId]);
+        $sql = 'DELETE FROM episodes WHERE episodeId = ?';
+        $this->createQuery($sql, [$episodeId]);
+    }
 }

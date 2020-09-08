@@ -46,4 +46,11 @@ class BackController extends Controller
             'post' => $post
         ]);
     }
+
+    public function deleteEpisode($episodeId)
+    {
+        $this->episodeDAO->deleteEpisode($episodeId);
+        $this->session->set('deleteEpisode', 'L\'épisode a bien été supprimé');
+        header('Location: ../public/index.php');
+    }
 }
