@@ -10,7 +10,7 @@ class BackController extends Controller
     public function addEpisode(Parameter $post)
     {
         if ($post->get('submit')) {
-            $errors = $this->validation->validate($post, 'Article');
+            $errors = $this->validation->validate($post, 'Episode');
             if (!$errors) {
                 $this->episodeDAO->addEpisode($post);
                 $this->session->set('add_episode', 'Le nouvel épisode a bien été ajouté.');
@@ -30,10 +30,10 @@ class BackController extends Controller
             $errors = $this->validation->validate($post, 'Episode');
             if (!$errors) {
                 $this->episodeDAO->editEpisode($post, $episodeId);
-                $this->session->set('editEpisode', 'L\'épisode a bien été mis à jour');
+                $this->session->set('edit_episode', 'L\'épisode a bien été mis à jour');
                 header('Location: ../public/index.php');
             }
-            return $this->view->render('editEpisode', [
+            return $this->view->render('edit_episode', [
                 'post' => $post,
                 'errors' => $errors
             ]);
@@ -42,7 +42,7 @@ class BackController extends Controller
         $post->set('episodeId', $episode->getEpisodeId());
         $post->set('title', $episode->getTitle());
         $post->set('content', $episode->getContent());
-        $this->view->render('editEpisode', [
+        $this->view->render('edit_episode', [
             'post' => $post
         ]);
     }
@@ -50,7 +50,7 @@ class BackController extends Controller
     public function deleteEpisode($episodeId)
     {
         $this->episodeDAO->deleteEpisode($episodeId);
-        $this->session->set('deleteEpisode', 'L\'épisode a bien été supprimé');
+        $this->session->set('delete_episode', 'L\'épisode a bien été supprimé');
         header('Location: ../public/index.php');
     }
 }

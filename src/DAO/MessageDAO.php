@@ -34,7 +34,7 @@ class MessageDAO extends DAO
 
     public function addMessage(Parameter $post, $episodeId)
     {
-        $sql = 'INSERT INTO messages (username, content, dateMessage, idNews) VALUES (?, ?, NOW(), ?)';
+        $sql = 'INSERT INTO messages (username, content, dateMessage, idEpisode) VALUES (?, ?, NOW(), ?)';
         $this->createQuery($sql, [$post->get('username'), $post->get('content'), $episodeId]);
     }
 }

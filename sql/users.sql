@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: db5000269963.hosting-data.io
--- Generation Time: Jul 31, 2020 at 02:11 PM
--- Server version: 5.7.30-log
--- PHP Version: 7.0.33-0+deb9u8
+-- Host: 127.0.0.1
+-- Generation Time: Sep 09, 2020 at 05:39 PM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dbs263509`
+-- Database: `projet4`
 --
 
 -- --------------------------------------------------------
@@ -33,7 +32,7 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL COMMENT 'Identifiant de l''utilisateur',
   `mail` varchar(50) NOT NULL COMMENT 'Mail de l''utilisateur',
   `password` varchar(256) NOT NULL COMMENT 'mot de passe de l''utilisateur',
-  `registrationDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Date d''inscription'
+  `registrationDate` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Date d''inscription'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

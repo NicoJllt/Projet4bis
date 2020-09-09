@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: db5000269963.hosting-data.io
--- Generation Time: Aug 04, 2020 at 12:23 PM
--- Server version: 5.7.30-log
--- PHP Version: 7.0.33-0+deb9u8
+-- Host: 127.0.0.1
+-- Generation Time: Sep 09, 2020 at 05:40 PM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dbs263509`
+-- Database: `projet4`
 --
 
 -- --------------------------------------------------------
@@ -32,7 +31,7 @@ CREATE TABLE `episodes` (
   `episodeId` int(11) NOT NULL,
   `title` varchar(150) NOT NULL COMMENT 'Titre de la news',
   `content` text NOT NULL COMMENT 'Contenu de la news',
-  `dateNews` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Date de dernière modification',
+  `dateEpisode` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Date de dernière modification',
   `previous` int(11) DEFAULT NULL COMMENT 'Episode précédent',
   `next` int(11) DEFAULT NULL COMMENT 'Episode Suivant'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -41,7 +40,7 @@ CREATE TABLE `episodes` (
 -- Dumping data for table `episodes`
 --
 
-INSERT INTO `episodes` (`episodeId`, `title`, `content`, `dateNews`, `previous`, `next`) VALUES
+INSERT INTO `episodes` (`episodeId`, `title`, `content`, `dateEpisode`, `previous`, `next`) VALUES
 (1, 'Épisode 1', 'Contenu épisode 1', '2020-06-09 13:24:42', NULL, 2),
 (2, 'Épisode 2', 'Contenu épisode 2', '2020-05-18 16:43:56', 1, 3),
 (3, 'Épisode 3', 'Contenu épisode 3', '2020-05-18 16:44:08', 2, 4),
@@ -54,8 +53,7 @@ INSERT INTO `episodes` (`episodeId`, `title`, `content`, `dateNews`, `previous`,
 (10, 'Épisode 10', 'Contenu épisode 10', '2020-06-09 13:38:10', 9, 11),
 (11, 'Épisode 11', 'Contenu épisode 11', '2020-06-09 13:38:40', 10, 12),
 (12, 'Épisode 12', 'Contenu épisode 12', '2020-06-09 13:38:50', 11, NULL),
-(13, 'essai', '<p>test</p>', '2020-07-21 17:26:08', NULL, 14),
-(14, 'jh xcuvhj', '<p>udvhisduvhesihvos</p>', '2020-07-21 17:26:08', NULL, NULL);
+(13, 'essai', '<p>test</p>', '2020-07-21 17:26:08', NULL, 14);
 
 -- --------------------------------------------------------
 
@@ -65,22 +63,22 @@ INSERT INTO `episodes` (`episodeId`, `title`, `content`, `dateNews`, `previous`,
 
 CREATE TABLE `messages` (
   `messageId` int(11) NOT NULL,
-  `dateMessage` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Date de dernière modification du message',
+  `dateMessage` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Date de dernière modification du message',
   `idUser` int(11) NOT NULL COMMENT 'Identifiant de l''utilisateur auteur du message',
-  `idNews` int(11) NOT NULL COMMENT 'identifiant de la news commentée',
+  `idEpisode` int(11) NOT NULL COMMENT 'identifiant de la news commentée',
   `idMessage` int(11) DEFAULT NULL COMMENT 'identifiant du message auquel ce message répond. NULL pour un message ''racine''',
   `content` text NOT NULL COMMENT 'Contenu du message',
-  `markedMessage` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'signaler un commentaire'
+  `markedMessage` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'signaler un commentaire'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `messages`
 --
 
-INSERT INTO `messages` (`messageId`, `dateMessage`, `idUser`, `idNews`, `idMessage`, `content`, `markedMessage`) VALUES
-(6, '2020-01-22 14:49:53', 1, 1, NULL, 'comment 1', 0),
-(7, '2020-01-22 14:50:11', 2, 1, 6, 'comment reponse', 0),
-(8, '2020-01-22 14:50:22', 2, 2, NULL, 'comment source\r\n', 0);
+INSERT INTO `messages` (`messageId`, `dateMessage`, `idUser`, `idEpisode`, `idMessage`, `content`, `markedMessage`) VALUES
+(6, '2020-09-01 10:24:29', 1, 1, NULL, 'comment 1', 0),
+(7, '2020-09-01 10:24:41', 2, 1, 6, 'comment reponse', 0),
+(8, '2020-09-01 10:24:51', 2, 2, NULL, 'comment source\r\n', 0);
 
 -- --------------------------------------------------------
 
@@ -93,7 +91,7 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL COMMENT 'Identifiant de l''utilisateur',
   `mail` varchar(50) NOT NULL COMMENT 'Mail de l''utilisateur',
   `password` varchar(256) NOT NULL COMMENT 'mot de passe de l''utilisateur',
-  `registrationDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Date d''inscription'
+  `registrationDate` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Date d''inscription'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -122,9 +120,9 @@ ALTER TABLE `episodes`
 --
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`messageId`),
-  ADD KEY `id_user` (`idUser`,`idNews`),
+  ADD KEY `id_user` (`idUser`,`idEpisode`),
   ADD KEY `id_message_2` (`idMessage`),
-  ADD KEY `id_news` (`idNews`);
+  ADD KEY `id_news` (`idEpisode`);
 
 --
 -- Indexes for table `users`
@@ -167,7 +165,7 @@ ALTER TABLE `users`
 ALTER TABLE `messages`
   ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `users` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`idMessage`) REFERENCES `messages` (`messageId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `messages_ibfk_3` FOREIGN KEY (`idNews`) REFERENCES `episodes` (`episodeId`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `messages_ibfk_3` FOREIGN KEY (`idEpisode`) REFERENCES `episodes` (`episodeId`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

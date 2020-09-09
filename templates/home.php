@@ -23,10 +23,10 @@ use App\src\DAO\EpisodeDAO;
 
         <?php $this->title = "Accueil"; ?>
 
-        <p><?= $this->session->show('addEpisode') ?></p>
-        <p><?= $this->session->show('editEpisode') ?></p>
-        <p><?= $this->session->show('deleteEpisode'); ?></p>
-        <p><?= $this->session->show('addMessage'); ?></p>
+        <p><?= $this->session->show('add_episode') ?></p>
+        <p><?= $this->session->show('edit_episode') ?></p>
+        <p><?= $this->session->show('delete_episode'); ?></p>
+        <p><?= $this->session->show('add_message'); ?></p>
 
         <a href="../public/index.php?route=addEpisode">Nouvel épisode</a>
 
