@@ -48,6 +48,10 @@ $this->title = 'Episode';
                             <button id="show-comments-button">Afficher les commentaires</button>
                         </a>
 
+                        <h3>Ajouter un commentaire</h3>
+                        <?php include('form_message.php'); ?>
+                        <h3>Commentaires</h3>
+
                         <?php
                         foreach ($messages as $message) {
                         ?>

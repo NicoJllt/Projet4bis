@@ -26,6 +26,7 @@ use App\src\DAO\EpisodeDAO;
         <p><?= $this->session->show('addEpisode') ?></p>
         <p><?= $this->session->show('editEpisode') ?></p>
         <p><?= $this->session->show('deleteEpisode'); ?></p>
+        <p><?= $this->session->show('addMessage'); ?></p>
 
         <a href="../public/index.php?route=addEpisode">Nouvel épisode</a>
 

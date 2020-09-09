@@ -10,6 +10,10 @@ class Validation
             $episodeValidation = new EpisodeValidation();
             $errors = $episodeValidation->check($data);
             return $errors;
+        } elseif ($name === 'Message') {
+            $messageValidation = new MessageValidation();
+            $errors = $messageValidation->check($data);
+            return $errors;
         }
     }
 }
