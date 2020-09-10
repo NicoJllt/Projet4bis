@@ -21,7 +21,7 @@ $this->title = 'Episode';
 <body>
     <div class="blocpage">
 
-        <?php include("templateHeader.php") ?>
+        <?php include("template_header.php") ?>
 
         <?php $this->title = "Episode"; ?>
 
@@ -59,13 +59,23 @@ $this->title = 'Episode';
                                 <div class="message-user-name">Rédigé par : <?= htmlspecialchars($message->getUsername()) ?></div>
                                 <div class="message-date">Le : <?= htmlspecialchars($message->getDateMessage()) ?></div>
                                 <p class="message-content"><?= htmlspecialchars($message->getContent()) ?></p>
+                                <?php
+                                if ($message->isFlag()) {
+                                ?>
+                                    <p>Ce commentaire a déjà été signalé.</p>
+                                <?php
+                                } else {
+                                ?>
+                                    <p><a href="../public/index.php?route=flagComment&messageId=<?= $message->getMessageId(); ?>">Signaler le commentaire</a></p>
+                                <?php
+                                }
+                                ?>
                             </div>
+                            </br>
                         <?php
                         }
                         ?>
                     </div>
-
-
                 </div>
             </div>
         </section>

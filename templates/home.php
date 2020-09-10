@@ -19,16 +19,17 @@ use App\src\DAO\EpisodeDAO;
 <body>
     <div class="blocpage">
 
-        <?php include("templateHeader.php") ?>
+        <?php include("template_header.php") ?>
 
         <?php $this->title = "Accueil"; ?>
 
-        <p><?= $this->session->show('add_episode') ?></p>
-        <p><?= $this->session->show('edit_episode') ?></p>
-        <p><?= $this->session->show('delete_episode'); ?></p>
-        <p><?= $this->session->show('add_message'); ?></p>
+        <?= $this->session->show('add_episode') ?>
+        <?= $this->session->show('edit_episode') ?>
+        <?= $this->session->show('delete_episode'); ?>
+        <?= $this->session->show('add_message'); ?>
+        <?= $this->session->show('flag_comment'); ?>
 
-        <a href="../public/index.php?route=addEpisode">Nouvel épisode</a>
+        <a href="../public/index.php?route=addEpisode">Ajouter un nouveau chapitre</a>
 
         <section class="news-preview-bloc">
             <section class="row">

@@ -1,0 +1,1 @@
+ALTER TABLE `messages` ADD `flag` BOOLEAN NOT NULL AFTER `dateMessage`;

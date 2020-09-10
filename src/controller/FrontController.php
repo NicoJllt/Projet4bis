@@ -19,7 +19,7 @@ class FrontController extends Controller
     {
         $episode = $this->episodeDAO->getepisode($episodeId);
         $messages = $this->messageDAO->getMessagesFromEpisode($episodeId);
-        return $this->view->render('singleEpisode', [
+        return $this->view->render('single_episode', [
             'episode' => $episode,
             'messages' => $messages
         ]);
@@ -31,17 +31,24 @@ class FrontController extends Controller
             $errors = $this->validation->validate($post, 'Message');
             if (!$errors) {
                 $this->messageDAO->addMessage($post, $episodeId);
-                $this->session->set('addMessage', 'Le nouveau commentaire a bien été ajouté.');
+                $this->session->set('add_message', 'Le nouveau commentaire a bien été ajouté.');
                 header('Location: ../public/index.php');
             }
             $episode = $this->episodeDAO->getEpisode($episodeId);
             $messages = $this->messageDAO->getMessagesFromEpisode($episodeId);
-            return $this->view->render('singleEpisode', [
+            return $this->view->render('single_episode', [
                 'episode' => $episode,
                 'messages' => $messages,
                 'post' => $post,
                 'errors' => $errors
             ]);
         }
+    }
+
+    public function flagComment($messageId)
+    {
+        $this->messageDAO->flagComment($messageId);
+        $this->session->set('flag_comment', 'Le commentaire a bien été signalé.');
+        header('Location: ../public/index.php');
     }
 }

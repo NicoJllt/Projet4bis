@@ -14,6 +14,7 @@ class MessageDAO extends DAO
         $message->setUsername($row['username']);
         $message->setContent($row['content']);
         $message->setDateMessage($row['dateMessage']);
+        $message->setFlag($row['flag']);
         return $message;
     }
 
@@ -34,7 +35,19 @@ class MessageDAO extends DAO
 
     public function addMessage(Parameter $post, $episodeId)
     {
-        $sql = 'INSERT INTO messages (username, content, dateMessage, idEpisode) VALUES (?, ?, NOW(), ?)';
-        $this->createQuery($sql, [$post->get('username'), $post->get('content'), $episodeId]);
+        $sql = 'INSERT INTO messages (username, content, dateMessage, flag, idEpisode) VALUES (?, ?, NOW(), ?)';
+        $this->createQuery($sql, [$post->get('username'), $post->get('content'), 0, $episodeId]);
+    }
+
+    public function flagComment($messageId)
+    {
+        $sql = 'UPDATE messages SET flag = ? WHERE messageId = ?';
+        $this->createQuery($sql, [1, $messageId]);
+    }
+
+    public function deleteMessage($messageId)
+    {
+        $sql = 'DELETE FROM messages WHERE messageId = ?';
+        $this->createQuery($sql, [$messageId]);
     }
 }
