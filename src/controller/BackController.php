@@ -53,4 +53,11 @@ class BackController extends Controller
         $this->session->set('delete_episode', 'L\'épisode a bien été supprimé');
         header('Location: ../public/index.php');
     }
+
+    public function deleteMessage($messageId)
+    {
+        $this->messageDAO->deleteMessage($messageId);
+        $this->session->set('delete_message', 'Le commentaire a bien été supprimé.');
+        header('Location: ../public/index.php');
+    }
 }

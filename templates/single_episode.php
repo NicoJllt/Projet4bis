@@ -70,6 +70,7 @@ $this->title = 'Episode';
                                 <?php
                                 }
                                 ?>
+                                <p><a href="../public/index.php?route=deleteMessage&messageId=<?= $message->getMessageId(); ?>">Supprimer le commentaire</a></p>
                             </div>
                             </br>
                         <?php

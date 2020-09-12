@@ -28,6 +28,7 @@ use App\src\DAO\EpisodeDAO;
         <?= $this->session->show('delete_episode'); ?>
         <?= $this->session->show('add_message'); ?>
         <?= $this->session->show('flag_comment'); ?>
+        <?= $this->session->show('delete_message'); ?>
 
         <a href="../public/index.php?route=addEpisode">Ajouter un nouveau chapitre</a>
 

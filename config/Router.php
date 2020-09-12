@@ -41,6 +41,8 @@ class Router
                     $this->frontController->addMessage($this->request->getPost(), $this->request->getGet()->get('episodeId'));
                 } elseif ($route === 'flagComment') {
                     $this->frontController->flagComment($this->request->getGet()->get('messageId'));
+                } elseif ($route === 'deleteMessage') {
+                    $this->backController->deleteMessage($this->request->getGet()->get('messageId'));
                 } else {
                     $this->errorController->errorNotFound();
                 }
