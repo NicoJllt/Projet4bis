@@ -14,6 +14,10 @@ class Validation
             $messageValidation = new MessageValidation();
             $errors = $messageValidation->check($data);
             return $errors;
+        } elseif ($name === 'User') {
+            $userValidation = new UserValidation();
+            $errors = $userValidation->check($data);
+            return $errors;
         }
     }
 }

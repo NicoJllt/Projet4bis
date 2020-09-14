@@ -43,6 +43,8 @@ class Router
                     $this->frontController->flagComment($this->request->getGet()->get('messageId'));
                 } elseif ($route === 'deleteMessage') {
                     $this->backController->deleteMessage($this->request->getGet()->get('messageId'));
+                } elseif ($route === 'register') {
+                    $this->frontController->register($this->request->getPost());
                 } else {
                     $this->errorController->errorNotFound();
                 }
@@ -50,7 +52,7 @@ class Router
                 $this->frontController->home();
             }
         } catch (Exception $e) {
-            $this->errorController->errorServer($e);
+            $this->errorController->errorServer();
         }
     }
 }

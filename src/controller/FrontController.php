@@ -51,4 +51,24 @@ class FrontController extends Controller
         $this->session->set('flag_comment', 'Le commentaire a bien été signalé.');
         header('Location: ../public/index.php');
     }
+
+    public function register(Parameter $post)
+    {
+        if ($post->get('submit')) {
+            $errors = $this->validation->validate($post, 'User');
+            if ($this->userDAO->checkUser($post)) {
+                $errors['username'] = $this->userDAO->checkUser($post);
+            }
+            if (!$errors) {
+                $this->userDAO->register($post);
+                $this->session->set('register', 'Votre inscription a bien été effectuée.');
+                header('Location: ../public/index.php');
+            }
+            return $this->view->render('register', [
+                'post' => $post,
+                'errors' => $errors
+            ]);
+        }
+        return $this->view->render('register');
+    }
 }
