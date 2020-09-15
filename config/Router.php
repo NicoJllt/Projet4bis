@@ -45,6 +45,12 @@ class Router
                     $this->backController->deleteMessage($this->request->getGet()->get('messageId'));
                 } elseif ($route === 'register') {
                     $this->frontController->register($this->request->getPost());
+                } elseif ($route === 'login') {
+                    $this->frontController->login($this->request->getPost());
+                } elseif ($route === 'profile') {
+                    $this->backController->profile();
+                } elseif ($route === 'logout') {
+                    $this->backController->logout();
                 } else {
                     $this->errorController->errorNotFound();
                 }

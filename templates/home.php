@@ -30,16 +30,27 @@ use App\src\DAO\EpisodeDAO;
         <?= $this->session->show('flag_comment'); ?>
         <?= $this->session->show('delete_message'); ?>
         <?= $this->session->show('register'); ?>
+        <?= $this->session->show('login'); ?>
+        <?= $this->session->show('logout'); ?>
 
-        <a href="../public/index.php?route=register">Inscription</a>
-        <a href="../public/index.php?route=login">Connexion</a>
-
-        <a href="../public/index.php?route=addEpisode">Ajouter un nouveau chapitre</a>
+        <?php
+        if ($this->session->get('username')) {
+        ?>
+            <a href="../public/index.php?route=logout">Déconnexion</a>
+            <a href="../public/index.php?route=profile">Profil</a>
+            <a href="../public/index.php?route=addEpisode">Ajouter un nouveau chapitre</a>
+        <?php
+        } else {
+        ?>
+            <a href="../public/index.php?route=register">Inscription</a>
+            <a href="../public/index.php?route=login">Connexion</a>
+        <?php
+        }
+        ?>
 
         <section class="news-preview-bloc">
             <section class="row">
                 <?php
-
                 foreach ($episodes as $episode) {
                 ?>
                     <div class="col-md-6">
