@@ -9,8 +9,8 @@ class UserDAO extends DAO
     public function register(Parameter $post)
     {
         $this->checkUser($post);
-        $sql = 'INSERT INTO users (username, password, registrationDate) VALUES (?, ?, ?, NOW())';
-        $this->createQuery($sql, [$post->get('username'), password_hash($post->get('password'), PASSWORD_BCRYPT)]);
+        $sql = 'INSERT INTO users (username, password, registrationDate, idRole) VALUES (?, ?, NOW(), ?)';
+        $this->createQuery($sql, [$post->get('username'), password_hash($post->get('password'), PASSWORD_BCRYPT), 2]);
     }
 
     public function checkUser(Parameter $post)
@@ -25,7 +25,7 @@ class UserDAO extends DAO
 
     public function login(Parameter $post)
     {
-        $sql = 'SELECT userId, password FROM users WHERE username = ?';
+        $sql = 'SELECT users.userId, users.idRole, users.password, role.name FROM users INNER JOIN role ON role.roleId = users.idRole WHERE username = ?';
         $data = $this->createQuery($sql, [$post->get('username')]);
         $result = $data->fetch();
         $isPasswordValid = password_verify($post->get('password'), $result['password']);
@@ -39,5 +39,11 @@ class UserDAO extends DAO
     {
         $sql = 'UPDATE users SET password = ? WHERE username = ?';
         $this->createQuery($sql, [password_hash($post->get('password'), PASSWORD_BCRYPT), $username]);
+    }
+
+    public function deleteAccount($username)
+    {
+        $sql = 'DELETE FROM users WHERE username = ?';
+        $this->createQuery($sql, [$username]);
     }
 }

@@ -32,12 +32,16 @@ use App\src\DAO\EpisodeDAO;
         <?= $this->session->show('register'); ?>
         <?= $this->session->show('login'); ?>
         <?= $this->session->show('logout'); ?>
+        <?= $this->session->show('delete_account'); ?>
 
         <?php
         if ($this->session->get('username')) {
         ?>
             <a href="../public/index.php?route=logout">Déconnexion</a>
             <a href="../public/index.php?route=profile">Profil</a>
+            <?php if ($this->session->get('role') === 'admin') { ?>
+                <a href="../public/index.php?route=administration">Administration</a>
+            <?php } ?>
             <a href="../public/index.php?route=addEpisode">Ajouter un nouveau chapitre</a>
         <?php
         } else {
