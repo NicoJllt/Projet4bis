@@ -25,26 +25,6 @@ class FrontController extends Controller
         ]);
     }
 
-    public function addMessage(Parameter $post, $episodeId)
-    {
-        if ($post->get('submit')) {
-            $errors = $this->validation->validate($post, 'Message');
-            if (!$errors) {
-                $this->messageDAO->addMessage($post, $episodeId);
-                $this->session->set('add_message', 'Le nouveau commentaire a bien été ajouté.');
-                header('Location: ../public/index.php');
-            }
-            $episode = $this->episodeDAO->getEpisode($episodeId);
-            $messages = $this->messageDAO->getMessagesFromEpisode($episodeId);
-            return $this->view->render('single_episode', [
-                'episode' => $episode,
-                'messages' => $messages,
-                'post' => $post,
-                'errors' => $errors
-            ]);
-        }
-    }
-
     public function flagComment($messageId)
     {
         $this->messageDAO->flagComment($messageId);

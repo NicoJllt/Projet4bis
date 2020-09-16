@@ -39,12 +39,10 @@ class EpisodeDAO extends DAO
         return $this->buildObject($episode);
     }
 
-    public function addEpisode(Parameter $post)
+    public function addEpisode(Parameter $post, $userId)
     {
-        //Permet de récupérer les variables $title, $content et $author
-        extract($episode);
-        $sql = 'INSERT INTO episodes (title, content, dateMessage) VALUES (?, ?, ?, NOW())';
-        $this->createQuery($sql, [$post->get('title'), $post->get('content'), $post->get('author')]);
+        $sql = 'INSERT INTO episodes (title, content, dateMessage, idUser) VALUES (?, ?, NOW(), ?)';
+        $this->createQuery($sql, [$post->get('title'), $post->get('content'), $userId]);
     }
 
     public function editEpisode(Parameter $post, $episodeId)

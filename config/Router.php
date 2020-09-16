@@ -38,7 +38,7 @@ class Router
                 } elseif ($route === 'deleteEpisode') {
                     $this->backController->deleteEpisode($this->request->getGet()->get('episodeId'));
                 } elseif ($route === 'addMessage') {
-                    $this->frontController->addMessage($this->request->getPost(), $this->request->getGet()->get('episodeId'));
+                    $this->backController->addMessage($this->request->getPost(), $this->request->getGet()->get('episodeId'));
                 } elseif ($route === 'flagComment') {
                     $this->frontController->flagComment($this->request->getGet()->get('messageId'));
                 } elseif ($route === 'deleteMessage') {
@@ -62,7 +62,7 @@ class Router
                 $this->frontController->home();
             }
         } catch (Exception $e) {
-            $this->errorController->errorServer();
+            $this->errorController->errorServer($e);
         }
     }
 }
