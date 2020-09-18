@@ -5,6 +5,7 @@
 <?= $this->session->show('add_episode'); ?>
 <?= $this->session->show('edit_episode'); ?>
 <?= $this->session->show('delete_episode'); ?>
+<?= $this->session->show('unflag_comment'); ?>
 <h2>Chapitres</h2>
 <a href="../public/index.php?route=addEpisode">Ajouter un nouveau chapitre</a>
 <table>
@@ -34,5 +35,32 @@
 </table>
 
 <h2>Commentaires signalés</h2>
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Pseudo</td>
+        <td>Message</td>
+        <td>Date</td>
+        <td>Actions</td>
+    </tr>
+    <?php
+    foreach ($messages as $message) {
+    ?>
+        <tr>
+            <td><?= htmlspecialchars($message->getMessageId()); ?></td>
+            <td><?= substr(htmlspecialchars($message->getUsername()), 0, 50); ?></td>
+            <td><?= substr(htmlspecialchars($message->getContent()), 0, 150); ?></td>
+            <td>Créé le : <?= htmlspecialchars($message->getDateMessage()); ?></td>
+            <td>En construction</td>
+            <td>
+                <a href="../public/index.php?route=unflagComment&messageId=<?= $message->getMessageId(); ?>">Désignaler le commentaire</a>
+                <a href="../public/index.php?route=deleteMessage&messageId=<?= $message->getMessageId(); ?>">Supprimer le commentaire</a>
+            </td>
+        </tr>
+    <?php
+    }
+    ?>
+</table>
+
 
 <h2>Utilisateurs</h2>

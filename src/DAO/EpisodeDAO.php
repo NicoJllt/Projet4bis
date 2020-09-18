@@ -19,7 +19,7 @@ class EpisodeDAO extends DAO
 
     public function getEpisodes()
     {
-        $sql = 'SELECT episodes.episodeId, episodes.title, episodes.content, users.username, episodes.dateMessage FROM episodes INNER JOIN users ON episodes.user_id = users.userId ORDER BY episodes.episodeId DESC';
+        $sql = 'SELECT episodes.episodeId, episodes.title, episodes.content, users.username, episodes.dateEpisode FROM episodes INNER JOIN users ON episodes.user_id = users.userId ORDER BY episodes.episodeId DESC';
         $result = $this->createQuery($sql);
         $episodes = [];
         foreach ($result as $row) {
@@ -32,7 +32,7 @@ class EpisodeDAO extends DAO
 
     public function getEpisode($episodeId)
     {
-        $sql = 'SELECT episodes.episodeId, episodes.title, episodes.content, users.username, episodes.dateMessage FROM episodes INNER JOIN users ON episodes.user_id = users.userId WHERE episodes.episodeId = ?';
+        $sql = 'SELECT episodes.episodeId, episodes.title, episodes.content, users.username, episodes.dateEpisode FROM episodes INNER JOIN users ON episodes.user_id = users.userId WHERE episodes.episodeId = ?';
         $result = $this->createQuery($sql, [$episodeId]);
         $episode = $result->fetch();
         $result->closeCursor();
@@ -41,7 +41,7 @@ class EpisodeDAO extends DAO
 
     public function addEpisode(Parameter $post, $userId)
     {
-        $sql = 'INSERT INTO episodes (title, content, dateMessage, idUser) VALUES (?, ?, NOW(), ?)';
+        $sql = 'INSERT INTO episodes (title, content, dateEpisode, idUser) VALUES (?, ?, NOW(), ?)';
         $this->createQuery($sql, [
             $post->get('title'),
             $post->get('content'),

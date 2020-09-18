@@ -10,8 +10,10 @@ class BackController extends Controller
     public function administration()
     {
         $episodes = $this->episodeDAO->getEpisodes();
+        $messages = $this->messageDAO->getFlagComments();
         return $this->view->render('administration', [
-            'episodes' => $episodes
+            'episodes' => $episodes,
+            'messages' => $messages
         ]);
     }
 
@@ -63,6 +65,13 @@ class BackController extends Controller
         header('Location: ../public/index.php?route=administration');
     }
 
+    public function unflagComment($messageId)
+    {
+        $this->messageDAO->unflagComment($messageId);
+        $this->session->set('unflag_comment', 'Le commentaire a bien été désignalé.');
+        header('Location: ../public/index.php?route=administration');
+    }
+
     public function addMessage(Parameter $post, $episodeId)
     {
         if ($post->get('submit')) {
@@ -87,7 +96,7 @@ class BackController extends Controller
     {
         $this->messageDAO->deleteMessage($messageId);
         $this->session->set('delete_message', 'Le commentaire a bien été supprimé.');
-        header('Location: ../public/index.php');
+        header('Location: ../public/index.php?route=administration');
     }
 
     public function profile()

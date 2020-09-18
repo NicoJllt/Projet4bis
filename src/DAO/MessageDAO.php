@@ -45,9 +45,28 @@ class MessageDAO extends DAO
         $this->createQuery($sql, [1, $messageId]);
     }
 
+    public function unflagComment($messageId)
+    {
+        $sql = 'UPDATE messages SET flag = ? WHERE messageId = ?';
+        $this->createQuery($sql, [0, $messageId]);
+    }
+
     public function deleteMessage($messageId)
     {
         $sql = 'DELETE FROM messages WHERE messageId = ?';
         $this->createQuery($sql, [$messageId]);
+    }
+
+    public function getFlagComments()
+    {
+        $sql = 'SELECT messageId, content, dateMessage, flag FROM messages WHERE flag = ? ORDER BY dateMessage DESC';
+        $result = $this->createQuery($sql, [1]);
+        $messages = [];
+        foreach ($result as $row) {
+            $messageId = $row['messageId'];
+            $messages[$messageId] = $this->buildObject($row);
+        }
+        $result->closeCursor();
+        return $messages;
     }
 }
