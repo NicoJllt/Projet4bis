@@ -19,7 +19,7 @@ class EpisodeDAO extends DAO
 
     public function getEpisodes()
     {
-        $sql = 'SELECT episodeId, title, content, dateEpisode FROM episodes ORDER BY episodeId DESC';
+        $sql = 'SELECT episodes.episodeId, episodes.title, episodes.content, users.username, episodes.dateMessage FROM episodes INNER JOIN users ON episodes.user_id = users.userId ORDER BY episodes.episodeId DESC';
         $result = $this->createQuery($sql);
         $episodes = [];
         foreach ($result as $row) {
@@ -32,7 +32,7 @@ class EpisodeDAO extends DAO
 
     public function getEpisode($episodeId)
     {
-        $sql = 'SELECT episodeId, title, content, dateEpisode FROM episodes WHERE episodeId = ?';
+        $sql = 'SELECT episodes.episodeId, episodes.title, episodes.content, users.username, episodes.dateMessage FROM episodes INNER JOIN users ON episodes.user_id = users.userId WHERE episodes.episodeId = ?';
         $result = $this->createQuery($sql, [$episodeId]);
         $episode = $result->fetch();
         $result->closeCursor();
@@ -42,15 +42,20 @@ class EpisodeDAO extends DAO
     public function addEpisode(Parameter $post, $userId)
     {
         $sql = 'INSERT INTO episodes (title, content, dateMessage, idUser) VALUES (?, ?, NOW(), ?)';
-        $this->createQuery($sql, [$post->get('title'), $post->get('content'), $userId]);
+        $this->createQuery($sql, [
+            $post->get('title'),
+            $post->get('content'),
+            $userId
+        ]);
     }
 
-    public function editEpisode(Parameter $post, $episodeId)
+    public function editEpisode(Parameter $post, $episodeId, $userId)
     {
-        $sql = 'UPDATE episode SET title=:title, content=:content WHERE episodeId=:episodeId';
+        $sql = 'UPDATE episode SET title=:title, content=:content, idUser=:idUser  WHERE episodeId=:episodeId';
         $this->createQuery($sql, [
             'title' => $post->get('title'),
             'content' => $post->get('content'),
+            'idUser' => $userId,
             'episodeId' => $episodeId
         ]);
     }

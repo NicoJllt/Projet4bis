@@ -9,7 +9,10 @@ class BackController extends Controller
 
     public function administration()
     {
-        return $this->view->render('administration');
+        $episodes = $this->episodeDAO->getEpisodes();
+        return $this->view->render('administration', [
+            'episodes' => $episodes
+        ]);
     }
 
     public function addEpisode(Parameter $post)
@@ -18,7 +21,7 @@ class BackController extends Controller
             $errors = $this->validation->validate($post, 'Episode');
             if (!$errors) {
                 $this->episodeDAO->addEpisode($post, $this->session->get('user_id'));
-                $this->session->set('add_episode', 'Le nouvel épisode a bien été ajouté.');
+                $this->session->set('add_episode', 'Le nouveau chapitre a bien été ajouté.');
                 header('Location: ../public/index.php?route=administration');
             }
             return $this->view->render('add_episode', [
@@ -31,12 +34,13 @@ class BackController extends Controller
 
     public function editEpisode(Parameter $post, $episodeId)
     {
+        $episode = $this->episodeDAO->getEpisode($episodeId);
         if ($post->get('submit')) {
             $errors = $this->validation->validate($post, 'Episode');
             if (!$errors) {
-                $this->episodeDAO->editEpisode($post, $episodeId);
-                $this->session->set('edit_episode', 'L\'épisode a bien été mis à jour');
-                header('Location: ../public/index.php');
+                $this->episodeDAO->editEpisode($post, $episodeId, $this->session->get('user_id'));
+                $this->session->set('edit_episode', 'Le chapitre a bien été mis à jour');
+                header('Location: ../public/index.php?route=administration');
             }
             return $this->view->render('edit_episode', [
                 'post' => $post,
@@ -55,8 +59,8 @@ class BackController extends Controller
     public function deleteEpisode($episodeId)
     {
         $this->episodeDAO->deleteEpisode($episodeId);
-        $this->session->set('delete_episode', 'L\'épisode a bien été supprimé');
-        header('Location: ../public/index.php');
+        $this->session->set('delete_episode', 'Le chapitre a bien été supprimé');
+        header('Location: ../public/index.php?route=administration');
     }
 
     public function addMessage(Parameter $post, $episodeId)
