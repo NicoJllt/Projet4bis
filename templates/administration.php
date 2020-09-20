@@ -6,6 +6,9 @@
 <?= $this->session->show('edit_episode'); ?>
 <?= $this->session->show('delete_episode'); ?>
 <?= $this->session->show('unflag_comment'); ?>
+<?= $this->session->show('delete_comment'); ?>
+<?= $this->session->show('delete_user'); ?>
+
 <h2>Chapitres</h2>
 <a href="../public/index.php?route=addEpisode">Ajouter un nouveau chapitre</a>
 <table>
@@ -62,5 +65,37 @@
     ?>
 </table>
 
-
 <h2>Utilisateurs</h2>
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Pseudo</td>
+        <td>Date</td>
+        <td>Rôle</td>
+        <td>Actions</td>
+    </tr>
+    <?php
+    foreach ($users as $user) {
+    ?>
+        <tr>
+            <td><?= htmlspecialchars($user->getUserId()); ?></td>
+            <td><?= htmlspecialchars($user->getUsername()); ?></td>
+            <td>Créé le : <?= htmlspecialchars($user->getDateRegistration()); ?></td>
+            <td><?= htmlspecialchars($user->getRole()); ?></td>
+            <td>
+                <?php
+                if ($user->getRole() != 'admin') {
+                ?>
+                    <a href="../public/index.php?route=deleteUser&userId=<?= $user->getUserId(); ?>">Supprimer</a>
+                <?php } else {
+                ?>
+                    Suppression impossible
+                <?php
+                }
+                ?>
+            </td>
+        </tr>
+    <?php
+    }
+    ?>
+</table>
