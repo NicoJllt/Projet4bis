@@ -7,132 +7,177 @@ use App\config\Parameter;
 class BackController extends Controller
 {
 
+    private function checkLoggedIn()
+    {
+        if (!$this->session->get('username')) {
+            $this->session->set('need_login', 'Vous devez vous connecter pour accéder à cette section.');
+            header('Location: ../public/index.php?route=login');
+        } else {
+            return true;
+        }
+    }
+
+    private function checkAdmin()
+    {
+        $this->checkLoggedIn();
+        if (!($this->session->get('role') === 'admin')) {
+            $this->session->set('not_admin', 'Vous n\'êtes pas autorisé à accéder à cette page.');
+            header('Location: ../public/index.php?route=profile');
+        } else {
+            return true;
+        }
+    }
+
     public function administration()
     {
-        $episodes = $this->episodeDAO->getEpisodes();
-        $messages = $this->messageDAO->getFlagComments();
-        $users = $this->userDAO->getUsers();
+        if ($this->checkAdmin()) {
+            $episodes = $this->episodeDAO->getEpisodes();
+            $messages = $this->messageDAO->getFlagComments();
+            $users = $this->userDAO->getUsers();
 
-        return $this->view->render('administration', [
-            'episodes' => $episodes,
-            'messages' => $messages,
-            'users' => $users
-        ]);
+            return $this->view->render('administration', [
+                'episodes' => $episodes,
+                'messages' => $messages,
+                'users' => $users
+            ]);
+        }
     }
 
     public function addEpisode(Parameter $post)
     {
-        if ($post->get('submit')) {
-            $errors = $this->validation->validate($post, 'Episode');
-            if (!$errors) {
-                $this->episodeDAO->addEpisode($post, $this->session->get('user_id'));
-                $this->session->set('add_episode', 'Le nouveau chapitre a bien été ajouté.');
-                header('Location: ../public/index.php?route=administration');
+        if ($this->checkAdmin()) {
+            if ($post->get('submit')) {
+                $errors = $this->validation->validate($post, 'Episode');
+                if (!$errors) {
+                    $this->episodeDAO->addEpisode($post, $this->session->get('user_id'));
+                    $this->session->set('add_episode', 'Le nouveau chapitre a bien été ajouté.');
+                    header('Location: ../public/index.php?route=administration');
+                }
+                return $this->view->render('add_episode', [
+                    'post' => $post,
+                    'errors' => $errors
+                ]);
             }
-            return $this->view->render('add_episode', [
-                'post' => $post,
-                'errors' => $errors
-            ]);
+            return $this->view->render('add_episode');
         }
-        return $this->view->render('add_episode');
     }
 
     public function editEpisode(Parameter $post, $episodeId)
     {
-        $episode = $this->episodeDAO->getEpisode($episodeId);
-        if ($post->get('submit')) {
-            $errors = $this->validation->validate($post, 'Episode');
-            if (!$errors) {
-                $this->episodeDAO->editEpisode($post, $episodeId, $this->session->get('user_id'));
-                $this->session->set('edit_episode', 'Le chapitre a bien été mis à jour');
-                header('Location: ../public/index.php?route=administration');
+        if ($this->checkAdmin()) {
+            $episode = $this->episodeDAO->getEpisode($episodeId);
+            if ($post->get('submit')) {
+                $errors = $this->validation->validate($post, 'Episode');
+                if (!$errors) {
+                    $this->episodeDAO->editEpisode($post, $episodeId, $this->session->get('user_id'));
+                    $this->session->set('edit_episode', 'Le chapitre a bien été mis à jour');
+                    header('Location: ../public/index.php?route=administration');
+                }
+                return $this->view->render('edit_episode', [
+                    'post' => $post,
+                    'errors' => $errors
+                ]);
             }
-            return $this->view->render('edit_episode', [
-                'post' => $post,
-                'errors' => $errors
+            $episode = $this->episodeDAO->getEpisode($episodeId);
+            $post->set('episodeId', $episode->getEpisodeId());
+            $post->set('title', $episode->getTitle());
+            $post->set('content', $episode->getContent());
+            $this->view->render('edit_episode', [
+                'post' => $post
             ]);
         }
-        $episode = $this->episodeDAO->getEpisode($episodeId);
-        $post->set('episodeId', $episode->getEpisodeId());
-        $post->set('title', $episode->getTitle());
-        $post->set('content', $episode->getContent());
-        $this->view->render('edit_episode', [
-            'post' => $post
-        ]);
     }
 
     public function deleteEpisode($episodeId)
     {
-        $this->episodeDAO->deleteEpisode($episodeId);
-        $this->session->set('delete_episode', 'Le chapitre a bien été supprimé');
-        header('Location: ../public/index.php?route=administration');
+        if ($this->checkAdmin()) {
+            $this->episodeDAO->deleteEpisode($episodeId);
+            $this->session->set('delete_episode', 'Le chapitre a bien été supprimé');
+            header('Location: ../public/index.php?route=administration');
+        }
     }
 
     public function unflagComment($messageId)
     {
-        $this->messageDAO->unflagComment($messageId);
-        $this->session->set('unflag_comment', 'Le commentaire a bien été désignalé.');
-        header('Location: ../public/index.php?route=administration');
+        if ($this->checkAdmin()) {
+            $this->messageDAO->unflagComment($messageId);
+            $this->session->set('unflag_comment', 'Le commentaire a bien été désignalé.');
+            header('Location: ../public/index.php?route=administration');
+        }
     }
 
     public function addMessage(Parameter $post, $episodeId)
     {
-        if ($post->get('submit')) {
-            $errors = $this->validation->validate($post, 'Message');
-            if (!$errors) {
-                $this->messageDAO->addMessage($post, $episodeId, $this->session->get('user_id'));
-                $this->session->set('add_message', 'Le nouveau commentaire a bien été ajouté.');
-                header('Location: ../public/index.php');
+        if ($this->checkLoggedIn()) {
+            if ($post->get('submit')) {
+                $errors = $this->validation->validate($post, 'Message');
+                if (!$errors) {
+                    $this->messageDAO->addMessage($post, $episodeId, $this->session->get('user_id'));
+                    $this->session->set('add_message', 'Le nouveau commentaire a bien été ajouté.');
+                    header('Location: ../public/index.php');
+                }
+                $episode = $this->episodeDAO->getEpisode($episodeId);
+                $messages = $this->messageDAO->getMessagesFromEpisode($episodeId);
+                return $this->view->render('single_episode', [
+                    'episode' => $episode,
+                    'messages' => $messages,
+                    'post' => $post,
+                    'errors' => $errors
+                ]);
             }
-            $episode = $this->episodeDAO->getEpisode($episodeId);
-            $messages = $this->messageDAO->getMessagesFromEpisode($episodeId);
-            return $this->view->render('single_episode', [
-                'episode' => $episode,
-                'messages' => $messages,
-                'post' => $post,
-                'errors' => $errors
-            ]);
         }
     }
 
     public function deleteMessage($messageId)
     {
-        $this->messageDAO->deleteMessage($messageId);
-        $this->session->set('delete_message', 'Le commentaire a bien été supprimé.');
-        header('Location: ../public/index.php?route=administration');
+        if ($this->checkAdmin()) {
+            $this->messageDAO->deleteMessage($messageId);
+            $this->session->set('delete_message', 'Le commentaire a bien été supprimé.');
+            header('Location: ../public/index.php?route=administration');
+        }
     }
 
     public function profile()
     {
-        return $this->view->render('profile');
+        if ($this->checkLoggedIn()) {
+            return $this->view->render('profile');
+        }
     }
 
     public function updatePassword(Parameter $post)
     {
-        if ($post->get('submit')) {
-            $this->userDAO->updatePassword($post, $this->session->get('username'));
-            $this->session->set('update_password', 'Le mot de passe a été mis à jour.');
-            header('Location: ../public/index.php?route=profile');
+        if ($this->checkLoggedIn()) {
+            if ($post->get('submit')) {
+                $this->userDAO->updatePassword($post, $this->session->get('username'));
+                $this->session->set('update_password', 'Le mot de passe a été mis à jour.');
+                header('Location: ../public/index.php?route=profile');
+            }
+            return $this->view->render('update_password');
         }
-        return $this->view->render('update_password');
     }
 
     public function logout()
     {
-        $this->logoutOrDelete('logout');
+        if ($this->checkLoggedIn()) {
+            $this->logoutOrDelete('logout');
+        }
     }
 
     public function deleteAccount()
     {
-        $this->userDAO->deleteAccount($this->session->get('username'));
-        $this->logoutOrDelete('delete_account');
+        if ($this->checkLoggedIn()) {
+            $this->userDAO->deleteAccount($this->session->get('username'));
+            $this->logoutOrDelete('delete_account');
+        }
     }
 
     public function deleteUser($userId)
     {
-        $this->userDAO->deleteUser($userId);
-        $this->session->set('delete_user', 'L\'utilisateur a bien été supprimé.');
-        header('Location: ../public/index.php?route=administration');
+        if ($this->checkAdmin()) {
+            $this->userDAO->deleteUser($userId);
+            $this->session->set('delete_user', 'L\'utilisateur a bien été supprimé.');
+            header('Location: ../public/index.php?route=administration');
+        }
     }
 
     private function logoutOrDelete($param)
