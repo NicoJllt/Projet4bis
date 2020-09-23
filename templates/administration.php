@@ -26,7 +26,7 @@
             <td><?= htmlspecialchars($episode->getEpisodeId()); ?></td>
             <td><a href="../public/index.php?route=episode&episodeId=<?= htmlspecialchars($episode->getEpisodeId()); ?>"><?= substr(htmlspecialchars($episode->getTitle()), 0, 100); ?></a></td>
             <td><?= htmlspecialchars($episode->getContent()); ?></td>
-            <td>Créé le : <?= htmlspecialchars($episode->getdateMessage()); ?></td>
+            <td>Créé le : <?= htmlspecialchars($episode->getDateMessage()); ?></td>
             <td>
                 <a href="../public/index.php?route=editEpisode&episodeId=<?= $episode->getEpisodeId(); ?>">Modifier</a>
                 <a href="../public/index.php?route=deleteEpisode&episodeId=<?= $episode->getEpisodeId(); ?>">Supprimer</a>
