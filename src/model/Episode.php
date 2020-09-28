@@ -20,6 +20,16 @@ class Episode
     private $content;
 
     /**
+     * @var \DateTime
+     */
+    private $dateEpisode;
+
+    /**
+     * @var int
+     */
+    private $authorId;
+
+    /**
      * @return int
      */
     public function getEpisodeId()
@@ -28,7 +38,7 @@ class Episode
     }
 
     /**
-     * @param int $id
+     * @param int $episodeId
      */
     public function setEpisodeId($episodeId)
     {
@@ -67,7 +77,7 @@ class Episode
         $this->content = $content;
     }
 
-        /**
+    /**
      * @return \DateTime
      */
     public function getDateEpisode()
@@ -81,5 +91,21 @@ class Episode
     public function setDateEpisode($dateEpisode)
     {
         $this->dateEpisode = $dateEpisode;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAuthorId()
+    {
+        return $this->authorId;
+    }
+
+    /**
+     * @param int $authorId
+     */
+    public function setAuthorId($authorId)
+    {
+        $this->authorId = $authorId;
     }
 }

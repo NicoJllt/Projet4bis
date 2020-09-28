@@ -12,11 +12,6 @@ class Message
     /**
      * @var string
      */
-    private $username;
-
-    /**
-     * @var string
-     */
     private $content;
 
     /**
@@ -30,6 +25,16 @@ class Message
     private $flag;
 
     /**
+     * @var int
+     */
+    private $idEpisode;
+
+    /**
+     * @var int
+     */
+    private $authorId;
+
+    /**
      * @return int
      */
     public function getMessageId()
@@ -38,27 +43,11 @@ class Message
     }
 
     /**
-     * @param int $id
+     * @param int $messageId
      */
     public function setMessageId($messageId)
     {
         $this->messageId = $messageId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * @param string $username
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
     }
 
     /**
@@ -107,5 +96,37 @@ class Message
     public function setFlag($flag)
     {
         $this->flag = $flag;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdEpisode()
+    {
+        return $this->idEpisode;
+    }
+
+    /**
+     * @param int $idEpisode
+     */
+    public function setIdEpisode($idEpisode)
+    {
+        $this->idEpisode = $idEpisode;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAuthorId()
+    {
+        return $this->authorId;
+    }
+
+    /**
+     * @param int $authorId
+     */
+    public function setAuthorId($authorId)
+    {
+        $this->authorId = $authorId;
     }
 }

@@ -1,6 +1,5 @@
 <?php $this->title = 'Modifier mot mot de passe'; ?>
-<h1>Mon blog</h1>
-<p>En construction</p>
+<?php include("template_header.php") ?>
 <div>
     <p>Le mot de passe de <?= $this->session->get('username'); ?> sera modifié.</p>
     <form method="post" action="../public/index.php?route=updatePassword">
@@ -9,5 +8,3 @@
         <input type="submit" value="Mettre à jour" id="submit" name="submit">
     </form>
 </div>
-<br>
-<a href="../public/index.php">Retour à l'accueil</a>

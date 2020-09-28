@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2020 at 02:23 PM
+-- Generation Time: Sep 28, 2020 at 10:51 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -24,60 +24,57 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `episodes`
+-- Table structure for table `episode`
 --
 
-CREATE TABLE `episodes` (
+CREATE TABLE `episode` (
   `episodeId` int(11) NOT NULL,
   `title` varchar(150) NOT NULL COMMENT 'Titre de la news',
   `content` text NOT NULL COMMENT 'Contenu de la news',
   `dateEpisode` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Date de dernière modification',
-  `previous` int(11) DEFAULT NULL COMMENT 'Episode précédent',
-  `next` int(11) DEFAULT NULL COMMENT 'Episode Suivant',
-  `user_id` int(11) NOT NULL COMMENT 'id auteur'
+  `authorId` int(11) NOT NULL COMMENT 'id auteur'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `episodes`
+-- Dumping data for table `episode`
 --
 
-INSERT INTO `episodes` (`episodeId`, `title`, `content`, `dateEpisode`, `previous`, `next`, `user_id`) VALUES
-(1, 'Épisode 1', 'Contenu épisode 1', '2020-06-09 13:24:42', NULL, 2, 1),
-(2, 'Épisode 2', 'Contenu épisode 2', '2020-05-18 16:43:56', 1, 3, 1),
-(3, 'Épisode 3', 'Contenu épisode 3', '2020-05-18 16:44:08', 2, 4, 1),
-(4, 'Épisode 4', 'Contenu épisode 4', '2020-05-18 16:44:24', 3, 5, 1),
-(5, 'Épisode 5', 'Contenu épisode 5', '2020-05-18 16:45:05', 4, 6, 1),
-(6, 'Épisode 6', 'Contenu épisode 6', '2020-05-18 16:45:19', 5, 7, 1),
-(7, 'Épisode 7', 'Contenu épisode 7', '2020-05-18 16:45:31', 6, 8, 1),
-(8, 'Épisode 8', 'Contenu épisode 8', '2020-06-09 13:37:53', 7, 9, 1),
-(9, 'Épisode 9', 'Contenu épisode 9', '2020-06-09 13:38:00', 8, 10, 1),
-(10, 'Épisode 10', 'Contenu épisode 10', '2020-06-09 13:38:10', 9, 11, 1),
-(11, 'Épisode 11', 'Contenu épisode 11', '2020-06-09 13:38:40', 10, 12, 1),
-(12, 'Épisode 12', 'Contenu épisode 12', '2020-06-09 13:38:50', 11, NULL, 1),
-(13, 'essai', '<p>test</p>', '2020-07-21 17:26:08', NULL, 14, 1);
+INSERT INTO `episode` (`episodeId`, `title`, `content`, `dateEpisode`, `authorId`) VALUES
+(1, 'Épisode 1', 'Contenu épisode 1', '2020-06-09 13:24:42', 1),
+(2, 'Épisode 2', 'Contenu épisode 2', '2020-05-18 16:43:56', 1),
+(3, 'Épisode 3', 'Contenu épisode 3', '2020-05-18 16:44:08', 1),
+(4, 'Épisode 4', 'Contenu épisode 4', '2020-05-18 16:44:24', 1),
+(5, 'Épisode 5', 'Contenu épisode 5', '2020-05-18 16:45:05', 1),
+(6, 'Épisode 6', 'Contenu épisode 6', '2020-05-18 16:45:19', 1),
+(7, 'Épisode 7', 'Contenu épisode 7', '2020-05-18 16:45:31', 1),
+(8, 'Épisode 8', 'Contenu épisode 8', '2020-06-09 13:37:53', 1),
+(9, 'Épisode 9', 'Contenu épisode 9', '2020-06-09 13:38:00', 1),
+(10, 'Épisode 10', 'Contenu épisode 10', '2020-06-09 13:38:10', 1),
+(11, 'Épisode 11', 'Contenu épisode 11', '2020-06-09 13:38:40', 1),
+(12, 'Épisode 12', 'Contenu épisode 12', '2020-06-09 13:38:50', 1),
+(15, 'Episode TEST 2', 'TEST 2', '2020-09-25 22:42:29', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `messages`
+-- Table structure for table `message`
 --
 
-CREATE TABLE `messages` (
+CREATE TABLE `message` (
   `messageId` int(11) NOT NULL,
-  `dateMessage` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Date de dernière modification du message',
-  `idUser` int(11) NOT NULL COMMENT 'Identifiant de l''utilisateur auteur du message',
-  `idEpisode` int(11) NOT NULL COMMENT 'identifiant de la news commentée',
-  `idMessage` int(11) DEFAULT NULL COMMENT 'identifiant du message auquel ce message répond. NULL pour un message ''racine''',
   `content` text NOT NULL COMMENT 'Contenu du message',
-  `flag` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'signaler un commentaire'
+  `dateMessage` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Date de dernière modification du message',
+  `flag` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'signaler un commentaire',
+  `idEpisode` int(11) NOT NULL COMMENT 'id de l''épisode concerné',
+  `authorId` int(11) NOT NULL COMMENT 'Identifiant de l''utilisateur auteur du message'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `messages`
+-- Dumping data for table `message`
 --
 
-INSERT INTO `messages` (`messageId`, `dateMessage`, `idUser`, `idEpisode`, `idMessage`, `content`, `flag`) VALUES
-(9, '2020-09-16 12:39:54', 1, 1, NULL, 'Salut', 0);
+INSERT INTO `message` (`messageId`, `content`, `dateMessage`, `flag`, `idEpisode`, `authorId`) VALUES
+(9, 'Salut', '2020-09-25 23:29:31', 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -101,10 +98,10 @@ INSERT INTO `role` (`roleId`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `user`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `user` (
   `userId` int(11) NOT NULL,
   `username` varchar(50) NOT NULL COMMENT 'Identifiant de l''utilisateur',
   `mail` varchar(50) NOT NULL COMMENT 'Mail de l''utilisateur',
@@ -114,32 +111,31 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `users` (`userId`, `username`, `mail`, `password`, `registrationDate`, `idRole`) VALUES
-(1, 'Nico', 'juillet.n@hotmail.fr', '$2y$10$.YRxZWbKONRE89Iz4eQouOIjlBUiz74XiYpEwJHB8H5eNO7qf7PsG', '2020-09-16 11:05:27', 1),
-(6, 'NicoJ', '', '$2y$10$.YRxZWbKONRE89Iz4eQouOIjlBUiz74XiYpEwJHB8H5eNO7qf7PsG', '2020-09-16 14:37:41', 2);
+INSERT INTO `user` (`userId`, `username`, `mail`, `password`, `registrationDate`, `idRole`) VALUES
+(1, 'Nico', 'juillet.n@hotmail.fr', '$2y$10$ug5WRSnB4X9jideQIdyIA.yUsT6ccbTJi8azb0xjucn20ZlKaG31W', '2020-09-16 11:05:27', 1),
+(10, 'NicoJ', '', '$2y$10$7LuixTonxhIIR5GLVCEdRO7CZ515dmWIe.Hi0EltjBpVGWrEYJsmO', '2020-09-26 00:45:44', 2);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `episodes`
+-- Indexes for table `episode`
 --
-ALTER TABLE `episodes`
+ALTER TABLE `episode`
   ADD PRIMARY KEY (`episodeId`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `authorId` (`authorId`);
 
 --
--- Indexes for table `messages`
+-- Indexes for table `message`
 --
-ALTER TABLE `messages`
+ALTER TABLE `message`
   ADD PRIMARY KEY (`messageId`),
-  ADD KEY `id_user` (`idUser`,`idEpisode`),
-  ADD KEY `id_message_2` (`idMessage`),
-  ADD KEY `id_news` (`idEpisode`);
+  ADD KEY `idEpisode` (`idEpisode`),
+  ADD KEY `authorId` (`authorId`) USING BTREE;
 
 --
 -- Indexes for table `role`
@@ -148,9 +144,9 @@ ALTER TABLE `role`
   ADD PRIMARY KEY (`roleId`);
 
 --
--- Indexes for table `users`
+-- Indexes for table `user`
 --
-ALTER TABLE `users`
+ALTER TABLE `user`
   ADD PRIMARY KEY (`userId`),
   ADD UNIQUE KEY `login` (`username`),
   ADD UNIQUE KEY `mail_2` (`mail`),
@@ -162,16 +158,16 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `episodes`
+-- AUTO_INCREMENT for table `episode`
 --
-ALTER TABLE `episodes`
-  MODIFY `episodeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+ALTER TABLE `episode`
+  MODIFY `episodeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `messages`
+-- AUTO_INCREMENT for table `message`
 --
-ALTER TABLE `messages`
-  MODIFY `messageId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+ALTER TABLE `message`
+  MODIFY `messageId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -180,33 +176,32 @@ ALTER TABLE `role`
   MODIFY `roleId` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id role', AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT for table `user`
 --
-ALTER TABLE `users`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `user`
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `episodes`
+-- Constraints for table `episode`
 --
-ALTER TABLE `episodes`
-  ADD CONSTRAINT `episodes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`userId`) ON DELETE NO ACTION ON UPDATE CASCADE;
+ALTER TABLE `episode`
+  ADD CONSTRAINT `episode_ibfk_1` FOREIGN KEY (`authorId`) REFERENCES `user` (`userId`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `messages`
+-- Constraints for table `message`
 --
-ALTER TABLE `messages`
-  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `users` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`idMessage`) REFERENCES `messages` (`messageId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `messages_ibfk_3` FOREIGN KEY (`idEpisode`) REFERENCES `episodes` (`episodeId`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `message`
+  ADD CONSTRAINT `message_ibfk_6` FOREIGN KEY (`authorId`) REFERENCES `user` (`userId`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `message_ibfk_7` FOREIGN KEY (`idEpisode`) REFERENCES `episode` (`episodeId`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
--- Constraints for table `users`
+-- Constraints for table `user`
 --
-ALTER TABLE `users`
+ALTER TABLE `user`
   ADD CONSTRAINT `fk_role_id` FOREIGN KEY (`idRole`) REFERENCES `role` (`roleId`);
 COMMIT;
 

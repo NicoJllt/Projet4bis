@@ -1,7 +1,6 @@
 <?php $this->title = 'Administration'; ?>
+<?php include("template_header.php") ?>
 
-<h1>Mon blog</h1>
-<p>En construction</p>
 <?= $this->session->show('add_episode'); ?>
 <?= $this->session->show('edit_episode'); ?>
 <?= $this->session->show('delete_episode'); ?>
@@ -26,7 +25,7 @@
             <td><?= htmlspecialchars($episode->getEpisodeId()); ?></td>
             <td><a href="../public/index.php?route=episode&episodeId=<?= htmlspecialchars($episode->getEpisodeId()); ?>"><?= substr(htmlspecialchars($episode->getTitle()), 0, 100); ?></a></td>
             <td><?= htmlspecialchars($episode->getContent()); ?></td>
-            <td>Créé le : <?= htmlspecialchars($episode->getDateMessage()); ?></td>
+            <td>Créé le : <?= htmlspecialchars($episode->getDateEpisode()); ?></td>
             <td>
                 <a href="../public/index.php?route=editEpisode&episodeId=<?= $episode->getEpisodeId(); ?>">Modifier</a>
                 <a href="../public/index.php?route=deleteEpisode&episodeId=<?= $episode->getEpisodeId(); ?>">Supprimer</a>
@@ -51,7 +50,7 @@
     ?>
         <tr>
             <td><?= htmlspecialchars($message->getMessageId()); ?></td>
-            <td><?= substr(htmlspecialchars($message->getUsername()), 0, 50); ?></td>
+            <td><?= htmlspecialchars($message->getAuthorId()); ?></td>
             <td><?= substr(htmlspecialchars($message->getContent()), 0, 150); ?></td>
             <td>Créé le : <?= htmlspecialchars($message->getDateMessage()); ?></td>
             <td>En construction</td>
@@ -80,11 +79,11 @@
         <tr>
             <td><?= htmlspecialchars($user->getUserId()); ?></td>
             <td><?= htmlspecialchars($user->getUsername()); ?></td>
-            <td>Créé le : <?= htmlspecialchars($user->getDateRegistration()); ?></td>
-            <td><?= htmlspecialchars($user->getRole()); ?></td>
+            <td>Créé le : <?= htmlspecialchars($user->getRegistrationDate()); ?></td>
+            <td><?= htmlspecialchars($user->getIdRole()); ?></td>
             <td>
                 <?php
-                if ($user->getRole() != 'admin') {
+                if ($user->getIdRole() != 'admin') {
                 ?>
                     <a href="../public/index.php?route=deleteUser&userId=<?= $user->getUserId(); ?>">Supprimer</a>
                 <?php } else {

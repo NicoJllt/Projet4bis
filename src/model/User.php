@@ -30,9 +30,9 @@ class User
     private $registrationDate;
 
     /**
-     * @var string
+     * @var int
      */
-    private $role;
+    private $idRole;
 
 
     /**
@@ -70,6 +70,22 @@ class User
     /**
      * @return string
      */
+    public function getMail()
+    {
+        return $this->mail;
+    }
+
+    /**
+     * @param string $mail
+     */
+    public function setMail($mail)
+    {
+        $this->mail = $mail;
+    }
+
+    /**
+     * @return string
+     */
     public function getPassword()
     {
         return $this->password;
@@ -100,18 +116,18 @@ class User
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getRole()
+    public function getIdRole()
     {
-        return $this->role;
+        return $this->idRole;
     }
 
     /**
-     * @param string $role
+     * @param int $idRole
      */
-    public function setRole($role)
+    public function setIdRole($idRole)
     {
-        $this->role = $role;
+        $this->idRole = $idRole;
     }
 }

@@ -11,7 +11,7 @@ class MessageDAO extends DAO
     {
         $message = new Message();
         $message->setMessageId($row['messageId']);
-        $message->setUsername($row['username']);
+        $message->setAuthorId($row['authorId']);
         $message->setContent($row['content']);
         $message->setDateMessage($row['dateMessage']);
         $message->setFlag($row['flag']);
@@ -20,8 +20,8 @@ class MessageDAO extends DAO
 
     public function getMessagesFromEpisode($episodeId)
     {
-        $sql = 'SELECT * FROM episodes, messages
-        INNER JOIN users on messages.idUser = users.userId
+        $sql = 'SELECT * FROM episode, message
+        INNER JOIN user on message.authorId = user.userId
         WHERE episodeId = ? ORDER BY dateMessage DESC';
         $result = $this->createQuery($sql, [$episodeId]);
         $messages = [];
@@ -33,33 +33,33 @@ class MessageDAO extends DAO
         return $messages;
     }
 
-    public function addMessage(Parameter $post, $episodeId, $userId)
+    public function addMessage(Parameter $post, $authorId, $idEpisode)
     {
-        $sql = 'INSERT INTO messages (idUser, content, dateMessage, flag, idEpisode) VALUES (?, ?, NOW(), ?, ?)';
-        $this->createQuery($sql, [$userId, $post->get('content'), 0, $episodeId]);
+        $sql = 'INSERT INTO message (authorId, content, dateMessage, flag, idEpisode) VALUES (?, ?, NOW(), ?, ?)';
+        $this->createQuery($sql, [$authorId, $post->get('content'), 0, $idEpisode]);
     }
 
     public function flagComment($messageId)
     {
-        $sql = 'UPDATE messages SET flag = ? WHERE messageId = ?';
+        $sql = 'UPDATE message SET flag = ? WHERE messageId = ?';
         $this->createQuery($sql, [1, $messageId]);
     }
 
     public function unflagComment($messageId)
     {
-        $sql = 'UPDATE messages SET flag = ? WHERE messageId = ?';
+        $sql = 'UPDATE message SET flag = ? WHERE messageId = ?';
         $this->createQuery($sql, [0, $messageId]);
     }
 
     public function deleteMessage($messageId)
     {
-        $sql = 'DELETE FROM messages WHERE messageId = ?';
+        $sql = 'DELETE FROM message WHERE messageId = ?';
         $this->createQuery($sql, [$messageId]);
     }
 
     public function getFlagComments()
     {
-        $sql = 'SELECT messageId, content, dateMessage, flag FROM messages WHERE flag = ? ORDER BY dateMessage DESC';
+        $sql = 'SELECT messageId, content, dateMessage, flag FROM message WHERE flag = ? ORDER BY dateMessage DESC';
         $result = $this->createQuery($sql, [1]);
         $messages = [];
         foreach ($result as $row) {

@@ -1,3 +1,5 @@
+<?php include("template_header.php") ?>
+
 <?php
 $route = (isset($post) && $post->get('episodeId')) ? 'editEpisode&episodeId=' . $post->get('episodeId') : 'addEpisode';
 $submit = ($route === 'addEpisode') ? 'Envoyer' : 'Mettre à jour';

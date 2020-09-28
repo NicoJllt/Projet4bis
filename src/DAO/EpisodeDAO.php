@@ -19,7 +19,7 @@ class EpisodeDAO extends DAO
 
     public function getEpisodes()
     {
-        $sql = 'SELECT episodes.episodeId, episodes.title, episodes.content, users.username, episodes.dateEpisode FROM episodes INNER JOIN users ON episodes.user_id = users.userId ORDER BY episodes.episodeId DESC';
+        $sql = 'SELECT episode.episodeId, episode.title, episode.content, user.username, episode.dateEpisode FROM episode INNER JOIN user ON episode.authorId = user.userId ORDER BY episode.episodeId DESC';
         $result = $this->createQuery($sql);
         $episodes = [];
         foreach ($result as $row) {
@@ -32,7 +32,7 @@ class EpisodeDAO extends DAO
 
     public function getEpisode($episodeId)
     {
-        $sql = 'SELECT episodes.episodeId, episodes.title, episodes.content, users.username, episodes.dateEpisode FROM episodes INNER JOIN users ON episodes.user_id = users.userId WHERE episodes.episodeId = ?';
+        $sql = 'SELECT episode.episodeId, episode.title, episode.content, user.username, episode.dateEpisode FROM episode INNER JOIN user ON episode.authorId = user.userId WHERE episode.episodeId = ?';
         $result = $this->createQuery($sql, [$episodeId]);
         $episode = $result->fetch();
         $result->closeCursor();
@@ -41,7 +41,7 @@ class EpisodeDAO extends DAO
 
     public function addEpisode(Parameter $post, $userId)
     {
-        $sql = 'INSERT INTO episodes (title, content, dateEpisode, idUser) VALUES (?, ?, NOW(), ?)';
+        $sql = 'INSERT INTO episode (title, content, dateEpisode, authorId) VALUES (?, ?, NOW(), ?)';
         $this->createQuery($sql, [
             $post->get('title'),
             $post->get('content'),
@@ -49,22 +49,22 @@ class EpisodeDAO extends DAO
         ]);
     }
 
-    public function editEpisode(Parameter $post, $episodeId, $userId)
+    public function editEpisode(Parameter $post, $episodeId, $authorId)
     {
-        $sql = 'UPDATE episode SET title=:title, content=:content, idUser=:idUser  WHERE episodeId=:episodeId';
+        $sql = 'UPDATE episode SET title=:title, content=:content, authorId=:authorId  WHERE episodeId=:episodeId';
         $this->createQuery($sql, [
             'title' => $post->get('title'),
             'content' => $post->get('content'),
-            'idUser' => $userId,
+            'authorId' => $authorId,
             'episodeId' => $episodeId
         ]);
     }
 
     public function deleteEpisode($episodeId)
     {
-        $sql = 'DELETE FROM messages WHERE idEpisode = ?';
+        $sql = 'DELETE FROM message WHERE idEpisode = ?';
         $this->createQuery($sql, [$episodeId]);
-        $sql = 'DELETE FROM episodes WHERE episodeId = ?';
+        $sql = 'DELETE FROM episode WHERE episodeId = ?';
         $this->createQuery($sql, [$episodeId]);
     }
 }
