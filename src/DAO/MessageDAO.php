@@ -39,6 +39,17 @@ class MessageDAO extends DAO
         $this->createQuery($sql, [$authorId, $post->get('content'), 0, $idEpisode]);
     }
 
+    public function editMessage(Parameter $post, $episodeId, $messageId, $authorId)
+    {
+        $sql = 'UPDATE message SET content=:content, messageId=:messageId, authorId=:authorId  WHERE episodeId=:episodeId';
+        $this->createQuery($sql, [
+            'content' => $post->get('content'),
+            'messageId' => $messageId,
+            'authorId' => $authorId,
+            'episodeId' => $episodeId
+        ]);
+    }
+
     public function flagComment($messageId)
     {
         $sql = 'UPDATE message SET flag = ? WHERE messageId = ?';
