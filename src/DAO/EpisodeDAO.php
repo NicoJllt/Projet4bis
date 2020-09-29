@@ -19,7 +19,7 @@ class EpisodeDAO extends DAO
 
     public function getEpisodes()
     {
-        $sql = 'SELECT episode.episodeId, episode.title, episode.content, user.username, episode.dateEpisode FROM episode INNER JOIN user ON episode.authorId = user.userId ORDER BY episode.episodeId DESC';
+        $sql = 'SELECT episode.episodeId, episode.title, episode.content, user.username, episode.dateEpisode FROM episode INNER JOIN user ON episode.idAuthor = user.userId ORDER BY episode.episodeId DESC';
         $result = $this->createQuery($sql);
         $episodes = [];
         foreach ($result as $row) {
@@ -32,7 +32,7 @@ class EpisodeDAO extends DAO
 
     public function getEpisode($episodeId)
     {
-        $sql = 'SELECT episode.episodeId, episode.title, episode.content, user.username, episode.dateEpisode FROM episode INNER JOIN user ON episode.authorId = user.userId WHERE episode.episodeId = ?';
+        $sql = 'SELECT episode.episodeId, episode.title, episode.content, user.username, episode.dateEpisode FROM episode INNER JOIN user ON episode.idAuthor = user.userId WHERE episode.episodeId = ?';
         $result = $this->createQuery($sql, [$episodeId]);
         $episode = $result->fetch();
         $result->closeCursor();
@@ -41,7 +41,7 @@ class EpisodeDAO extends DAO
 
     public function addEpisode(Parameter $post, $userId)
     {
-        $sql = 'INSERT INTO episode (title, content, dateEpisode, authorId) VALUES (?, ?, NOW(), ?)';
+        $sql = 'INSERT INTO episode (title, content, dateEpisode, idAuthor) VALUES (?, ?, NOW(), ?)';
         $this->createQuery($sql, [
             $post->get('title'),
             $post->get('content'),
@@ -49,13 +49,13 @@ class EpisodeDAO extends DAO
         ]);
     }
 
-    public function editEpisode(Parameter $post, $episodeId, $authorId)
+    public function editEpisode(Parameter $post, $episodeId, $idAuthor)
     {
-        $sql = 'UPDATE episode SET title=:title, content=:content, authorId=:authorId  WHERE episodeId=:episodeId';
+        $sql = 'UPDATE episode SET title=:title, content=:content, idAuthor=:idAuthor  WHERE episodeId=:episodeId';
         $this->createQuery($sql, [
             'title' => $post->get('title'),
             'content' => $post->get('content'),
-            'authorId' => $authorId,
+            'idAuthor' => $idAuthor,
             'episodeId' => $episodeId
         ]);
     }

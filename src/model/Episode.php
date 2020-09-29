@@ -27,7 +27,7 @@ class Episode
     /**
      * @var int
      */
-    private $authorId;
+    private $idAuthor;
 
     /**
      * @return int
@@ -96,16 +96,16 @@ class Episode
     /**
      * @return int
      */
-    public function getAuthorId()
+    public function getIdAuthor()
     {
-        return $this->authorId;
+        return $this->idAuthor;
     }
 
     /**
-     * @param int $authorId
+     * @param int $idAuthor
      */
-    public function setAuthorId($authorId)
+    public function setIdAuthor($idAuthor)
     {
-        $this->authorId = $authorId;
+        $this->idAuthor = $idAuthor;
     }
 }

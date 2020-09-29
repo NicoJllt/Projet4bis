@@ -11,7 +11,7 @@ class MessageDAO extends DAO
     {
         $message = new Message();
         $message->setMessageId($row['messageId']);
-        $message->setAuthorId($row['authorId']);
+        $message->setIdAuthor($row['idAuthor']);
         $message->setContent($row['content']);
         $message->setDateMessage($row['dateMessage']);
         $message->setFlag($row['flag']);
@@ -21,7 +21,7 @@ class MessageDAO extends DAO
     public function getMessagesFromEpisode($episodeId)
     {
         $sql = 'SELECT * FROM episode, message
-        INNER JOIN user on message.authorId = user.userId
+        INNER JOIN user on message.idAuthor = user.userId
         WHERE episodeId = ? ORDER BY dateMessage DESC';
         $result = $this->createQuery($sql, [$episodeId]);
         $messages = [];
@@ -33,19 +33,32 @@ class MessageDAO extends DAO
         return $messages;
     }
 
-    public function addMessage(Parameter $post, $authorId, $idEpisode)
+    public function getMessage($messageId)
     {
-        $sql = 'INSERT INTO message (authorId, content, dateMessage, flag, idEpisode) VALUES (?, ?, NOW(), ?, ?)';
-        $this->createQuery($sql, [$authorId, $post->get('content'), 0, $idEpisode]);
+        $sql = 'SELECT * FROM message WHERE messageId = ?';
+        $result = $this->createQuery($sql, [$messageId]);
+        $message = [];
+        foreach ($result as $row) {
+            $messageId = $row['messageId'];
+            $message[$messageId] = $this->buildObject($row);
+        }
+        $result->closeCursor();
+        return $message;
     }
 
-    public function editMessage(Parameter $post, $episodeId, $messageId, $authorId)
+    public function addMessage(Parameter $post, $idEpisode, $idAuthor)
     {
-        $sql = 'UPDATE message SET content=:content, messageId=:messageId, authorId=:authorId  WHERE episodeId=:episodeId';
+        $sql = 'INSERT INTO message (idAuthor, content, dateMessage, flag, idEpisode) VALUES (?, ?, NOW(), ?, ?)';
+        $this->createQuery($sql, [$idAuthor, $post->get('content'), 0, $idEpisode]);
+    }
+
+    public function editMessage(Parameter $post, $episodeId, $messageId, $idAuthor)
+    {
+        $sql = 'UPDATE message SET content=:content, messageId=:messageId, idAuthor=:idAuthor  WHERE episodeId=:episodeId';
         $this->createQuery($sql, [
             'content' => $post->get('content'),
             'messageId' => $messageId,
-            'authorId' => $authorId,
+            'idAuthor' => $idAuthor,
             'episodeId' => $episodeId
         ]);
     }

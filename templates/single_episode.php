@@ -56,7 +56,7 @@ $this->title = 'Episode';
                         foreach ($messages as $message) {
                         ?>
                             <div class="comment-bloc">
-                                <div class="message-user-name">Rédigé par : <?= htmlspecialchars($message->getAuthorId()) ?></div>
+                                <div class="message-user-name">Rédigé par : <?= htmlspecialchars($message->getIdAuthor()) ?></div>
                                 <div class="message-date">Le : <?= htmlspecialchars($message->getDateMessage()) ?></div>
                                 <p class="message-content"><?= htmlspecialchars($message->getContent()) ?></p>
                                 <?php
@@ -70,6 +70,7 @@ $this->title = 'Episode';
                                 <?php
                                 }
                                 ?>
+                                <p><a href="../public/index.php?route=editMessage&messageId=<?= $message->getMessageId(); ?>&episodeId=<?= $episode->getEpisodeId(); ?>">Modifier le commentaire</a></p>
                                 <p><a href="../public/index.php?route=deleteMessage&messageId=<?= $message->getMessageId(); ?>">Supprimer le commentaire</a></p>
                             </div>
                             </br>

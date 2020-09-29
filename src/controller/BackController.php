@@ -131,7 +131,6 @@ class BackController extends Controller
     public function editMessage(Parameter $post, $episodeId, $messageId)
     {
         if ($this->checkLoggedIn()) {
-            $message = $this->messageDAO->getMessagesFromEpisode($episodeId);
             if ($post->get('submit')) {
                 $errors = $this->validation->validate($post, 'Message');
                 if (!$errors) {
@@ -141,15 +140,16 @@ class BackController extends Controller
                 }
                 return $this->view->render('edit_message', [
                     'post' => $post,
-                    'errors' => $errors
+                    'errors' => $errors,
                 ]);
             }
-            $message = $this->messageDAO->getMessagesFromEpisode($episodeId);
+            $message = $this->messageDAO->getMessage($messageId);
             $post->set('messageId', $message->getMessageId());
             $post->set('title', $message->getTitle());
             $post->set('content', $message->getContent());
             $this->view->render('edit_message', [
-                'post' => $post
+                'post' => $post,
+                'episodeId' => $episodeId
             ]);
         }
     }
