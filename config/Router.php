@@ -40,7 +40,7 @@ class Router
                 } elseif ($route === 'addMessage') {
                     $this->backController->addMessage($this->request->getPost(), $this->request->getGet()->get('episodeId'));
                 } elseif ($route === 'editMessage') {
-                    $this->backController->editMessage($this->request->getPost(), $this->request->getGet()->get('episodeId'), $this->request->getGet('messageId'));
+                    $this->backController->editMessage($this->request->getPost(), $this->request->getGet()->get('messageId'));
                 } elseif ($route === 'flagComment') {
                     $this->frontController->flagComment($this->request->getGet()->get('messageId'));
                 } elseif ($route === 'unflagComment') {

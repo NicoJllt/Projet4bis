@@ -35,15 +35,11 @@ class MessageDAO extends DAO
 
     public function getMessage($messageId)
     {
-        $sql = 'SELECT * FROM message WHERE messageId = ?';
+        $sql = 'SELECT message.messageId, message.content, user.username, message.dateMessage FROM message INNER JOIN user ON message.idAuthor = user.userId WHERE message.messageId = ?';
         $result = $this->createQuery($sql, [$messageId]);
-        $message = [];
-        foreach ($result as $row) {
-            $messageId = $row['messageId'];
-            $message[$messageId] = $this->buildObject($row);
-        }
+        $message = $result->fetch();
         $result->closeCursor();
-        return $message;
+        return $this->buildObject($message);
     }
 
     public function addMessage(Parameter $post, $idEpisode, $idAuthor)
@@ -52,14 +48,13 @@ class MessageDAO extends DAO
         $this->createQuery($sql, [$idAuthor, $post->get('content'), 0, $idEpisode]);
     }
 
-    public function editMessage(Parameter $post, $episodeId, $messageId, $idAuthor)
+    public function editMessage(Parameter $post, $messageId, $idAuthor)
     {
-        $sql = 'UPDATE message SET content=:content, messageId=:messageId, idAuthor=:idAuthor  WHERE episodeId=:episodeId';
+        $sql = 'UPDATE message SET content=:content, idAuthor=:idAuthor WHERE messageId=:messageId';
         $this->createQuery($sql, [
             'content' => $post->get('content'),
-            'messageId' => $messageId,
             'idAuthor' => $idAuthor,
-            'episodeId' => $episodeId
+            'messageId' => $messageId
         ]);
     }
 

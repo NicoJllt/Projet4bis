@@ -2,6 +2,7 @@
 
 use App\src\DAO\EpisodeDAO;
 use App\src\DAO\MessageDAO;
+use App\src\DAO\UserDAO;
 
 $this->title = 'Episode';
 ?>
@@ -56,7 +57,7 @@ $this->title = 'Episode';
                         foreach ($messages as $message) {
                         ?>
                             <div class="comment-bloc">
-                                <div class="message-user-name">Rédigé par : <?= htmlspecialchars($message->getIdAuthor()) ?></div>
+                                <div class="message-user-name">Rédigé par : <?= htmlspecialchars($user->getUsername()) ?></div>
                                 <div class="message-date">Le : <?= htmlspecialchars($message->getDateMessage()) ?></div>
                                 <p class="message-content"><?= htmlspecialchars($message->getContent()) ?></p>
                                 <?php

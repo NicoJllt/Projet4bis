@@ -1,0 +1,38 @@
+.blocpage {
+    /* border: 2px solid red; */
+}
+
+#create-news-form-bloc {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin: -50px 200px 40px 200px;
+    border: 1px solid red;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+}
+
+#header-form-create {
+    text-align: center;
+    justify-content: center;
+}
+
+.elements-form {
+    text-align: left;
+    justify-content: left;
+}
+
+#create-form-buttons {
+    text-align: center;
+}
+
+#create-form-buttons button {
+    border: none;
+    padding: 5px;
+    color: white;
+    background-color: #3577b4;
+}
+
+#create-form-buttons button:hover {
+    background-color: #5f9bd4;
+}

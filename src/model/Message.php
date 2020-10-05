@@ -32,7 +32,7 @@ class Message
     /**
      * @var int
      */
-    private $IdAuthor;
+    private $idAuthor;
 
     /**
      * @return int
@@ -119,14 +119,14 @@ class Message
      */
     public function getIdAuthor()
     {
-        return $this->IdAuthor;
+        return $this->idAuthor;
     }
 
     /**
-     * @param int $IdAuthor
+     * @param int $idAuthor
      */
-    public function setIdAuthor($IdAuthor)
+    public function setIdAuthor($idAuthor)
     {
-        $this->IdAuthor = $IdAuthor;
+        $this->idAuthor = $idAuthor;
     }
 }
