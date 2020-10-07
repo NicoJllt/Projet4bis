@@ -11,7 +11,7 @@ class MessageDAO extends DAO
     {
         $message = new Message();
         $message->setMessageId($row['messageId']);
-        $message->setIdAuthor($row['idAuthor']);
+        $message->setUsername($row['username']);
         $message->setContent($row['content']);
         $message->setDateMessage($row['dateMessage']);
         $message->setFlag($row['flag']);
@@ -35,7 +35,7 @@ class MessageDAO extends DAO
 
     public function getMessage($messageId)
     {
-        $sql = 'SELECT message.messageId, message.content, user.username, message.dateMessage FROM message INNER JOIN user ON message.idAuthor = user.userId WHERE message.messageId = ?';
+        $sql = 'SELECT message.messageId, message.content, user.username, message.dateMessage, message.flag FROM message INNER JOIN user ON message.idAuthor = user.userId WHERE message.messageId = ?';
         $result = $this->createQuery($sql, [$messageId]);
         $message = $result->fetch();
         $result->closeCursor();

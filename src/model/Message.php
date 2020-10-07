@@ -30,9 +30,9 @@ class Message
     private $idEpisode;
 
     /**
-     * @var int
+     * @var string
      */
-    private $idAuthor;
+    private $username;
 
     /**
      * @return int
@@ -115,18 +115,18 @@ class Message
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getIdAuthor()
+    public function getUsername()
     {
-        return $this->idAuthor;
+        return $this->username;
     }
 
     /**
-     * @param int $idAuthor
+     * @param string $username
      */
-    public function setIdAuthor($idAuthor)
+    public function setUsername($username)
     {
-        $this->idAuthor = $idAuthor;
+        $this->username = $username;
     }
 }
