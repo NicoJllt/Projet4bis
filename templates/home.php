@@ -10,16 +10,17 @@ use App\src\DAO\EpisodeDAO;
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Les derniers épisodes</title>
-    <link rel="stylesheet" href="../../CSS/frontend/frontend.css" />
+    <link rel="stylesheet" href="../public/CSS/frontend.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
+<?php $this->title = "Billet simple pour l'Alaska"; ?>
 
 <body>
     <div class="blocpage">
 
-        <?php $this->title = "Accueil"; ?>
+        <?php include("template_header.php") ?>
 
         <?= $this->session->show('add_episode') ?>
         <?= $this->session->show('edit_episode') ?>
@@ -31,8 +32,6 @@ use App\src\DAO\EpisodeDAO;
         <?= $this->session->show('login'); ?>
         <?= $this->session->show('logout'); ?>
         <?= $this->session->show('delete_account'); ?>
-
-        <?php include("template_header.php") ?>
 
         <section class="news-preview-bloc">
             <section class="row">

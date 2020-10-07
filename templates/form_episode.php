@@ -1,8 +1,6 @@
-<?php include("template_header.php") ?>
-
 <?php
 $route = (isset($post) && $post->get('episodeId')) ? 'editEpisode&episodeId=' . $post->get('episodeId') : 'addEpisode';
-$submit = ($route === 'addEpisode') ? 'Envoyer' : 'Mettre à jour';
+$submit = ($route === 'addEpisode') ? 'Enregistrer' : 'Mettre à jour';
 ?>
 
 <form method="post" action="../public/index.php?route=<?= $route; ?>">
@@ -12,5 +10,5 @@ $submit = ($route === 'addEpisode') ? 'Envoyer' : 'Mettre à jour';
     <label for="content">Contenu</label><br>
     <textarea id="content" name="content"><?= isset($post) ? htmlspecialchars(($post->get('content'))) : '' ?></textarea><br>
     <?= isset($errors['content']) ? $errors['content'] : '' ?>
-    <input type="submit" value="Envoyer" id="submit" name="submit">
+    <input type="submit" value="<?= $submit; ?>" id="submit" name="submit">
 </form>

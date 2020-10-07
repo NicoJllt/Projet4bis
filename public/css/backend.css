@@ -36,3 +36,23 @@
 #create-form-buttons button:hover {
     background-color: #5f9bd4;
 }
+
+#profile-section {
+    padding-bottom: 250px;
+}
+
+/* PAGE ADMINISTRATION */
+
+#bloc-admin {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    border: 1px solid red;
+}
+
+#bloc-admin table {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle;
+    text-align: center;
+}

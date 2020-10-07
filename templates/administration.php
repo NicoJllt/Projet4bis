@@ -1,100 +1,123 @@
+<!DOCTYPE html>
+<!-- PAGE D'ACCUEIL -->
+<html lang="fr">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../public/CSS/frontend.css" />
+    <link rel="stylesheet" href="../public/CSS/backend.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
 <?php $this->title = 'Administration'; ?>
-<?php include("template_header.php") ?>
 
-<?= $this->session->show('add_episode'); ?>
-<?= $this->session->show('edit_episode'); ?>
-<?= $this->session->show('delete_episode'); ?>
-<?= $this->session->show('unflag_comment'); ?>
-<?= $this->session->show('delete_comment'); ?>
-<?= $this->session->show('delete_user'); ?>
+<body>
+    <div class="blocpage">
 
-<h2>Chapitres</h2>
-<a href="../public/index.php?route=addEpisode">Ajouter un nouveau chapitre</a>
-<table>
-    <tr>
-        <td>Id</td>
-        <td>Titre</td>
-        <td>Contenu</td>
-        <td>Date</td>
-        <td>Actions</td>
-    </tr>
-    <?php
-    foreach ($episodes as $episode) {
-    ?>
-        <tr>
-            <td><?= htmlspecialchars($episode->getEpisodeId()); ?></td>
-            <td><a href="../public/index.php?route=episode&episodeId=<?= htmlspecialchars($episode->getEpisodeId()); ?>"><?= substr(htmlspecialchars($episode->getTitle()), 0, 100); ?></a></td>
-            <td><?= htmlspecialchars($episode->getContent()); ?></td>
-            <td>Créé le : <?= htmlspecialchars($episode->getDateEpisode()); ?></td>
-            <td>
-                <a href="../public/index.php?route=editEpisode&episodeId=<?= $episode->getEpisodeId(); ?>">Modifier</a>
-                <a href="../public/index.php?route=deleteEpisode&episodeId=<?= $episode->getEpisodeId(); ?>">Supprimer</a>
-            </td>
-        </tr>
-    <?php
-    }
-    ?>
-</table>
+        <?php include("template_header.php") ?>
 
-<h2>Commentaires signalés</h2>
-<table>
-    <tr>
-        <td>Id</td>
-        <td>Pseudo</td>
-        <td>Message</td>
-        <td>Date</td>
-        <td>Actions</td>
-    </tr>
-    <?php
-    foreach ($messages as $message) {
-    ?>
-        <tr>
-            <td><?= htmlspecialchars($message->getMessageId()); ?></td>
-            <td><?= htmlspecialchars($message->getIdAuthor()); ?></td>
-            <td><?= substr(htmlspecialchars($message->getContent()), 0, 150); ?></td>
-            <td>Créé le : <?= htmlspecialchars($message->getDateMessage()); ?></td>
-            <td>En construction</td>
-            <td>
-                <a href="../public/index.php?route=unflagComment&messageId=<?= $message->getMessageId(); ?>">Désignaler le commentaire</a>
-                <a href="../public/index.php?route=deleteMessage&messageId=<?= $message->getMessageId(); ?>">Supprimer le commentaire</a>
-            </td>
-        </tr>
-    <?php
-    }
-    ?>
-</table>
+        <section id="bloc-admin">
+            <?= $this->session->show('add_episode'); ?>
+            <?= $this->session->show('edit_episode'); ?>
+            <?= $this->session->show('delete_episode'); ?>
+            <?= $this->session->show('unflag_comment'); ?>
+            <?= $this->session->show('delete_comment'); ?>
+            <?= $this->session->show('delete_user'); ?>
 
-<h2>Utilisateurs</h2>
-<table>
-    <tr>
-        <td>Id</td>
-        <td>Pseudo</td>
-        <td>Date</td>
-        <td>Rôle</td>
-        <td>Actions</td>
-    </tr>
-    <?php
-    foreach ($users as $user) {
-    ?>
-        <tr>
-            <td><?= htmlspecialchars($user->getUserId()); ?></td>
-            <td><?= htmlspecialchars($user->getUsername()); ?></td>
-            <td>Créé le : <?= htmlspecialchars($user->getRegistrationDate()); ?></td>
-            <td><?= htmlspecialchars($user->getIdRole()); ?></td>
-            <td>
+            <h1>PAGE ADMINISTRATION</h1>
+            <h2>Chapitres</h2>
+            <a href="../public/index.php?route=addEpisode">Ajouter un nouveau chapitre</a>
+            <table>
+                <tr>
+                    <td>Id</td>
+                    <td>Titre</td>
+                    <td>Contenu</td>
+                    <td>Date</td>
+                    <td>Actions</td>
+                </tr>
                 <?php
-                if ($user->getIdRole() != 'admin') {
+                foreach ($episodes as $episode) {
                 ?>
-                    <a href="../public/index.php?route=deleteUser&userId=<?= $user->getUserId(); ?>">Supprimer</a>
-                <?php } else {
-                ?>
-                    Suppression impossible
+                    <tr>
+                        <td><?= htmlspecialchars($episode->getEpisodeId()); ?></td>
+                        <td><a href="../public/index.php?route=episode&episodeId=<?= htmlspecialchars($episode->getEpisodeId()); ?>"><?= substr(htmlspecialchars($episode->getTitle()), 0, 100); ?></a></td>
+                        <td><?= htmlspecialchars($episode->getContent()); ?></td>
+                        <td>Créé le : <?= htmlspecialchars($episode->getDateEpisode()); ?></td>
+                        <td>
+                            <a href="../public/index.php?route=editEpisode&episodeId=<?= $episode->getEpisodeId(); ?>">Modifier</a>
+                            <a href="../public/index.php?route=deleteEpisode&episodeId=<?= $episode->getEpisodeId(); ?>">Supprimer</a>
+                        </td>
+                    </tr>
                 <?php
                 }
                 ?>
-            </td>
-        </tr>
-    <?php
-    }
-    ?>
-</table>
+            </table>
+
+            <h2>Commentaires signalés</h2>
+            <table>
+                <tr>
+                    <td>Id</td>
+                    <td>Pseudo</td>
+                    <td>Message</td>
+                    <td>Date</td>
+                    <td>Actions</td>
+                </tr>
+                <?php
+                foreach ($messages as $message) {
+                ?>
+                    <tr>
+                        <td><?= htmlspecialchars($message->getMessageId()); ?></td>
+                        <td><?= htmlspecialchars($message->getIdAuthor()); ?></td>
+                        <td><?= substr(htmlspecialchars($message->getContent()), 0, 150); ?></td>
+                        <td>Créé le : <?= htmlspecialchars($message->getDateMessage()); ?></td>
+                        <td>En construction</td>
+                        <td>
+                            <a href="../public/index.php?route=unflagComment&messageId=<?= $message->getMessageId(); ?>">Désignaler le commentaire</a>
+                            <a href="../public/index.php?route=deleteMessage&messageId=<?= $message->getMessageId(); ?>">Supprimer le commentaire</a>
+                        </td>
+                    </tr>
+                <?php
+                }
+                ?>
+            </table>
+
+            <h2>Utilisateurs</h2>
+            <table>
+                <tr>
+                    <td>Id</td>
+                    <td>Pseudo</td>
+                    <td>Date</td>
+                    <td>Rôle</td>
+                    <td>Actions</td>
+                </tr>
+                <?php
+                foreach ($users as $user) {
+                ?>
+                    <tr>
+                        <td><?= htmlspecialchars($user->getUserId()); ?></td>
+                        <td><?= htmlspecialchars($user->getUsername()); ?></td>
+                        <td>Créé le : <?= htmlspecialchars($user->getRegistrationDate()); ?></td>
+                        <td><?= htmlspecialchars($user->getIdRole()); ?></td>
+                        <td>
+                            <?php
+                            if ($user->getIdRole() != 'admin') {
+                            ?>
+                                <a href="../public/index.php?route=deleteUser&userId=<?= $user->getUserId(); ?>">Supprimer</a>
+                            <?php } else {
+                            ?>
+                                Suppression impossible
+                            <?php
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                <?php
+                }
+                ?>
+            </table>
+        </section>
+    </div>
+</body>
+
+</html>

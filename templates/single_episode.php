@@ -13,18 +13,17 @@ $this->title = 'Episode';
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Billet simple pour l'Alaska</title>
-    <link rel="stylesheet" href="../../CSS/frontend/frontend.css" />
+    <link rel="stylesheet" href="../public/CSS/frontend.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
+<?php $this->title = "L'épisode"; ?>
 
 <body>
     <div class="blocpage">
 
         <?php include("template_header.php") ?>
-
-        <?php $this->title = "Episode"; ?>
 
         <section class="row">
             <div class="col-lg-12">
@@ -45,9 +44,9 @@ $this->title = 'Episode';
             <div class="col-lg-12">
                 <div id="comment-page-bloc">
                     <div class="show-comments">
-                        <a href="home.php?action=showMessages&id=idMessage">
+                        <!-- <a href="home.php?action=showMessages&id=idMessage">
                             <button id="show-comments-button">Afficher les commentaires</button>
-                        </a>
+                        </a> -->
 
                         <h3>Ajouter un commentaire</h3>
                         <?php include('form_message.php'); ?>
