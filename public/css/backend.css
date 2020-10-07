@@ -46,7 +46,7 @@
 #bloc-admin {
     background-color: rgba(255, 255, 255, 0.8);
     text-align: center;
-    border: 1px solid red;
+    border: 2px solid red;
 }
 
 #bloc-admin table {

@@ -24,7 +24,6 @@
             <div class="col-lg-12">
                 <?php include("template_header.php") ?>
                 <?php include('form_episode.php'); ?>
-                <a href="../public/index.php">Retour à l'accueil</a>
             </div>
         </section>
     </div>
