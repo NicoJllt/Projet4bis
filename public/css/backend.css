@@ -56,3 +56,38 @@
     vertical-align: middle;
     text-align: center;
 }
+
+/* PAGE AJOUT EPISODE */
+#form-episode {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    margin: 0 20px 20px 20px;
+}
+
+#form-episode h1 {
+    text-align: center;
+}
+
+#form-episode label {
+    font-weight: bold;
+}
+
+#content-form-episode {
+    margin: 0 100px;
+}
+
+#submit-form-episode {
+    display: block;
+    position: relative;
+    right: 0;
+}
+
+/* PAGE PROFIL */
+#profile-section {
+    display: block;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 50%;
+}
