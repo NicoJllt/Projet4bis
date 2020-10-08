@@ -27,8 +27,10 @@
 
             <h1>PAGE ADMINISTRATION</h1>
             <h2>Chapitres</h2>
-            <a href="../public/index.php?route=addEpisode">Ajouter un nouveau chapitre</a>
-            <table>
+            <div id="add-episode-button">
+                <a href="../public/index.php?route=addEpisode">Ajouter un nouveau chapitre</a>
+            </div>
+            <table id="chapter-table-admin">
                 <tr>
                     <td>Id</td>
                     <td>Titre</td>
@@ -41,8 +43,8 @@
                 ?>
                     <tr>
                         <td><?= htmlspecialchars($episode->getEpisodeId()); ?></td>
-                        <td><a href="../public/index.php?route=episode&episodeId=<?= htmlspecialchars($episode->getEpisodeId()); ?>"><?= substr(htmlspecialchars($episode->getTitle()), 0, 100); ?></a></td>
-                        <td><?= htmlspecialchars($episode->getContent()); ?></td>
+                        <td><a href="../public/index.php?route=episode&episodeId=<?= htmlspecialchars($episode->getEpisodeId()); ?>" id="title-table-admin"><?= substr(htmlspecialchars($episode->getTitle()), 0, 50); ?></a></td>
+                        <td><?= substr(htmlspecialchars($episode->getContent()), 0, 50); ?></td>
                         <td>Créé le : <?= htmlspecialchars($episode->getDateEpisode()); ?></td>
                         <td>
                             <a href="../public/index.php?route=editEpisode&episodeId=<?= $episode->getEpisodeId(); ?>">Modifier</a>
@@ -55,7 +57,7 @@
             </table>
 
             <h2>Commentaires signalés</h2>
-            <table>
+            <table id="flag-table-admin">
                 <tr>
                     <td>Id</td>
                     <td>Pseudo</td>
@@ -83,7 +85,7 @@
             </table>
 
             <h2>Utilisateurs</h2>
-            <table>
+            <table id="user-table-admin">
                 <tr>
                     <td>Id</td>
                     <td>Pseudo</td>

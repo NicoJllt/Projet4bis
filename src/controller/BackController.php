@@ -128,26 +128,28 @@ class BackController extends Controller
         }
     }
 
-    public function editMessage(Parameter $post, $messageId)
+    public function editMessage(Parameter $post, $messageId, $idEpisode)
     {
         if ($this->checkLoggedIn()) {
             if ($post->get('submit')) {
                 $errors = $this->validation->validate($post, 'Message');
                 if (!$errors) {
-                    $this->messageDAO->editMessage($post, $messageId, $this->session->get('user_id'));
+                    $this->messageDAO->editMessage($post, $messageId, $idEpisode, $this->session->get('user_id'));
                     $this->session->set('edit_message', 'Le commentaire a bien été mis à jour.');
                     header('Location: ../public/index.php');
                 }
                 return $this->view->render('edit_message', [
                     'post' => $post,
-                    'errors' => $errors,
+                    'errors' => $errors
                 ]);
             }
             $message = $this->messageDAO->getMessage($messageId);
+            $episode = $this->episodeDAO->getEpisode($message->getIdEpisode());
             $post->set('messageId', $message->getMessageId());
             $post->set('content', $message->getContent());
             $this->view->render('edit_message', [
                 'post' => $post,
+                'episode' => $episode
             ]);
         }
     }

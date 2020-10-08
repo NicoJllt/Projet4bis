@@ -2,7 +2,114 @@
     /* border: 2px solid red; */
 }
 
-#create-news-form-bloc {
+/* PAGE PROFIL */
+#profile-section {
+    display: block;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 50%;
+    padding-bottom: 250px;
+}
+
+/* PAGE ADMINISTRATION */
+
+#bloc-admin {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    border: 2px solid red;
+    margin: 0 20px 20px 20px;
+}
+
+#bloc-admin table {
+    border: 1px solid black;
+    position: relative;
+    margin: 20px auto;
+    align-items: center;
+    text-align: center;
+    line-height: 2.5em;
+}
+
+#bloc-admin h1 {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 2px solid black;
+    margin: 20px auto;
+    width: 600px;
+    user-select: none;
+}
+
+#bloc-admin h2 {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid black;
+    margin: 20px auto;
+    width: 400px;
+    list-style-type: none;
+    user-select: none;
+}
+
+#chapter-table-admin a:not(#title-table-admin), #user-table-admin a, #flag-table-admin a, #add-episode-button a {
+    text-decoration: none;
+    border: 1px solid black;
+	padding: 6px;
+	border-radius: 2px;
+	box-shadow: 1px 1px 3px #aaa;
+	font: bold 13px Arial;
+	color: #555;
+}
+
+#chapter-table-admin a:hover:not(#title-table-admin), #user-table-admin a:hover, #flag-table-admin a:hover, #add-episode-button a:hover {
+    background-color: lightgray;
+}
+
+#add-episode-button {
+    width: 315px;
+}
+
+#title-table-admin {
+    text-decoration: none;
+    color: #555;
+}
+
+/* 
+#bloc-admin td {
+    background-color: gray;
+} */
+
+#bloc-admin tr, #bloc-admin td {
+    border: 1px solid black;
+}
+
+#bloc-admin td {
+    padding: 0 60px;
+}
+
+/* PAGE AJOUT EPISODE */
+#form-episode {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    margin: 0 20px 20px 20px;
+}
+
+#form-episode h1 {
+    text-align: center;
+}
+
+#form-episode label {
+    font-weight: bold;
+}
+
+#content-form-episode {
+    margin: 0 100px;
+}
+
+#submit-form-episode {
+    display: block;
+    position: relative;
+    right: 0;
+}
+
+/* #create-news-form-bloc {
     display: flex;
     flex-direction: column;
     align-self: center;
@@ -35,59 +142,4 @@
 
 #create-form-buttons button:hover {
     background-color: #5f9bd4;
-}
-
-#profile-section {
-    padding-bottom: 250px;
-}
-
-/* PAGE ADMINISTRATION */
-
-#bloc-admin {
-    background-color: rgba(255, 255, 255, 0.8);
-    text-align: center;
-    border: 2px solid red;
-}
-
-#bloc-admin table {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    vertical-align: middle;
-    text-align: center;
-}
-
-/* PAGE AJOUT EPISODE */
-#form-episode {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    margin: 0 20px 20px 20px;
-}
-
-#form-episode h1 {
-    text-align: center;
-}
-
-#form-episode label {
-    font-weight: bold;
-}
-
-#content-form-episode {
-    margin: 0 100px;
-}
-
-#submit-form-episode {
-    display: block;
-    position: relative;
-    right: 0;
-}
-
-/* PAGE PROFIL */
-#profile-section {
-    display: block;
-    margin: 0 auto;
-    align-items: center;
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    width: 50%;
-}
+} */

@@ -28,56 +28,65 @@ $this->title = 'Episode';
         <section class="row">
             <div class="col-lg-12">
                 <article id="episode-page-bloc">
-                    <h1 class="news-title"><?= htmlspecialchars($episode->getTitle()) ?></h1>
-                    <div class="news-content"><?= htmlspecialchars($episode->getContent()) ?></div>
+                    <h1 class="episode-title"><?= htmlspecialchars($episode->getTitle()) ?></h1>
+                    <div class="episode-content"><?= htmlspecialchars($episode->getContent()) ?></div>
                 </article>
             </div>
 
-            <div class="actions">
-                <a href="../public/index.php?route=editEpisode&episodeId=<?= $episode->getEpisodeId() ?>">Modifier</a>
-                <a href="../public/index.php?route=deleteEpisode&episodeId=<?= $episode->getEpisodeId(); ?>">Supprimer</a>
-            </div>
+            <?php if ($this->session->get('role') === 'admin') { ?>
+                <div id="edit-delete-episode">
+                    <a href="../public/index.php?route=editEpisode&episodeId=<?= $episode->getEpisodeId() ?>">Modifier</a>
+                    <a href="../public/index.php?route=deleteEpisode&episodeId=<?= $episode->getEpisodeId(); ?>">Supprimer</a>
+                </div>
+            <?php } ?>
 
         </section>
 
         <section class="row">
             <div class="col-lg-12">
-                <div id="comment-page-bloc">
-                    <div class="show-comments">
-                        <!-- <a href="home.php?action=showMessages&id=idMessage">
+                <div id="comment-bloc">
+                    <!-- <a href="home.php?action=showMessages&id=idMessage">
                             <button id="show-comments-button">Afficher les commentaires</button>
                         </a> -->
 
-                        <h3>Ajouter un commentaire</h3>
-                        <?php include('form_message.php'); ?>
-                        <h3>Commentaires</h3>
+                    <h3>Ajouter un commentaire</h3>
+                    <?php
+                    if ($this->session->get('username')) {
+                        include('form_message.php');
+                    } else {
+                    ?>
+                        <p>Vous devez vous connecter afin de pouvoir ajouter un commentaire.</p>
+                    <?php
+                    }
+                    ?>
 
-                        <?php
-                        foreach ($messages as $message) {
-                        ?>
-                            <div class="comment-bloc">
-                                <div class="message-user-name">Rédigé par : <?= htmlspecialchars($message->getUsername()) ?></div>
-                                <div class="message-date">Le : <?= htmlspecialchars($message->getDateMessage()) ?></div>
-                                <p class="message-content"><?= htmlspecialchars($message->getContent()) ?></p>
-                                <?php
-                                if ($message->isFlag()) {
-                                ?>
-                                    <p>Ce commentaire a déjà été signalé.</p>
-                                <?php
-                                } else {
-                                ?>
-                                    <p><a href="../public/index.php?route=flagComment&messageId=<?= $message->getMessageId(); ?>">Signaler le commentaire</a></p>
-                                <?php
-                                }
-                                ?>
-                                <p><a href="../public/index.php?route=editMessage&messageId=<?= $message->getMessageId(); ?>&episodeId=<?= $episode->getEpisodeId(); ?>">Modifier le commentaire</a></p>
-                                <p><a href="../public/index.php?route=deleteMessage&messageId=<?= $message->getMessageId(); ?>">Supprimer le commentaire</a></p>
-                            </div>
-                            </br>
-                        <?php
-                        }
-                        ?>
-                    </div>
+                    <h3>Commentaires</h3>
+
+                    <?php
+                    foreach ($messages as $message) {
+                    ?>
+                        <div class="all-comments">
+                            <div class="message-user-name">Rédigé par : <?= htmlspecialchars($message->getUsername()) ?></div>
+                            <div class="message-date">Le : <?= htmlspecialchars($message->getDateMessage()) ?></div>
+                            <p class="message-content"><?= htmlspecialchars($message->getContent()) ?></p>
+                            <?php
+                            if ($message->isFlag()) {
+                            ?>
+                                <p>Ce commentaire a déjà été signalé.</p>
+                            <?php
+                            } else {
+                            ?>
+                                <p><a href="../public/index.php?route=flagComment&messageId=<?= $message->getMessageId(); ?>">Signaler le commentaire</a></p>
+                            <?php
+                            }
+                            ?>
+                            <p><a href="../public/index.php?route=editMessage&messageId=<?= $message->getMessageId(); ?>&episodeId=<?= $episode->getEpisodeId(); ?>">Modifier le commentaire</a></p>
+                            <p><a href="../public/index.php?route=deleteMessage&messageId=<?= $message->getMessageId(); ?>">Supprimer le commentaire</a></p>
+                        </div>
+                        </br>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </section>

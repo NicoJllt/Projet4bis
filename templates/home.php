@@ -33,17 +33,17 @@ use App\src\DAO\EpisodeDAO;
         <?= $this->session->show('logout'); ?>
         <?= $this->session->show('delete_account'); ?>
 
-        <section class="news-preview-bloc">
+        <section class="episode-preview-bloc">
             <section class="row">
                 <?php
                 foreach ($episodes as $episode) {
                 ?>
                     <div class="col-md-6">
                         <a href="../public/index.php?route=episode&episodeId=<?= htmlspecialchars($episode->getEpisodeId()) ?>">
-                            <article class="news-preview">
-                                <div class="news-preview-marge">
-                                    <h1 class="news-title-preview"><?= htmlspecialchars($episode->getTitle()) ?></h1>
-                                    <p class="news-content-preview"><?= htmlspecialchars(substr($episode->getContent(), 0, 250)) . '...' ?></p>
+                            <article class="episode-preview">
+                                <div class="episode-preview-marge">
+                                    <h1 class="episode-title-preview"><?= htmlspecialchars($episode->getTitle()) ?></h1>
+                                    <p class="episode-content-preview"><?= htmlspecialchars(substr($episode->getContent(), 0, 250)) . '...' ?></p>
                                     <p>Créé le : <?= htmlspecialchars($episode->getDateEpisode()); ?></p>
                                 </div>
                             </article>

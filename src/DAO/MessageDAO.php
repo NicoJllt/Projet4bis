@@ -15,6 +15,7 @@ class MessageDAO extends DAO
         $message->setContent($row['content']);
         $message->setDateMessage($row['dateMessage']);
         $message->setFlag($row['flag']);
+        $message->setIdEpisode($row['idEpisode']);
         return $message;
     }
 
@@ -48,11 +49,12 @@ class MessageDAO extends DAO
         $this->createQuery($sql, [$idAuthor, $post->get('content'), 0, $idEpisode]);
     }
 
-    public function editMessage(Parameter $post, $messageId, $idAuthor)
+    public function editMessage(Parameter $post, $messageId, $idEpisode, $idAuthor)
     {
-        $sql = 'UPDATE message SET content=:content, idAuthor=:idAuthor WHERE messageId=:messageId';
+        $sql = 'UPDATE message SET content=:content, idEpisode=:idEpisode, idAuthor=:idAuthor WHERE messageId=:messageId';
         $this->createQuery($sql, [
             'content' => $post->get('content'),
+            'idEpisode' => $idEpisode,
             'idAuthor' => $idAuthor,
             'messageId' => $messageId
         ]);
