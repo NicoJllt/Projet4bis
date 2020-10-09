@@ -70,21 +70,29 @@ $this->title = 'Episode';
                         <p class="comment-content"><?= htmlspecialchars($message->getContent()) ?></p>
                     </div>
 
-                    <div class="comment-options">
-                        <?php
-                        if ($message->isFlag()) {
-                        ?>
-                            <p>Ce commentaire a déjà été signalé.</p>
-                        <?php
-                        } else {
-                        ?>
-                            <p><a href="../public/index.php?route=flagComment&messageId=<?= $message->getMessageId(); ?>">Signaler le commentaire</a></p>
-                        <?php
-                        }
-                        ?>
-                        <p><a href="../public/index.php?route=editMessage&messageId=<?= $message->getMessageId(); ?>&episodeId=<?= $episode->getEpisodeId(); ?>">Modifier le commentaire</a></p>
-                        <p><a href="../public/index.php?route=deleteMessage&messageId=<?= $message->getMessageId(); ?>">Supprimer le commentaire</a></p>
-                    </div>
+                    <?php
+                    if ($this->session->get('username')) {
+                    ?>
+
+                        <div class="comment-options">
+                            <?php
+                            if ($message->isFlag()) {
+                            ?>
+                                <p>Ce commentaire a déjà été signalé.</p>
+                            <?php
+                            } else {
+                            ?>
+                                <p><a href="../public/index.php?route=flagComment&messageId=<?= $message->getMessageId(); ?>">Signaler le commentaire</a></p>
+                            <?php
+                            }
+                            ?>
+                            <p><a href="../public/index.php?route=editMessage&messageId=<?= $message->getMessageId(); ?>&episodeId=<?= $episode->getEpisodeId(); ?>">Modifier le commentaire</a></p>
+                            <p><a href="../public/index.php?route=deleteMessage&messageId=<?= $message->getMessageId(); ?>">Supprimer le commentaire</a></p>
+                        </div>
+                    <?php
+                    }
+                    ?>
+
                 <?php
                 }
                 ?>
