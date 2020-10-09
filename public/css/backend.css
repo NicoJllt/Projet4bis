@@ -9,8 +9,26 @@
     align-items: center;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.8);
-    width: 50%;
-    padding-bottom: 250px;
+    width: 500px;
+    height: 200px;
+    padding-bottom: 20px;
+}
+
+#link-profile-bloc {
+    display: flex;
+    flex-direction: column;
+    line-height: 2em;
+    margin-top: 55px;
+}
+
+#link-profile-bloc a {
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#link-profile-bloc a:hover {
+    color: black;
 }
 
 /* PAGE ADMINISTRATION */
@@ -63,7 +81,9 @@
 }
 
 #add-episode-button {
-    width: 315px;
+    position: relative;
+    width: 210px;
+    left: 0;
 }
 
 #title-table-admin {
@@ -93,20 +113,40 @@
 
 #form-episode h1 {
     text-align: center;
+    text-transform: uppercase;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 2px solid black;
+    margin: 20px auto;
+    width: 600px;
+    user-select: none;
 }
 
 #form-episode label {
     font-weight: bold;
 }
 
-#content-form-episode {
+#title-episode-form {
+    width: 450px;
+}
+
+#content-episode-form {
     margin: 0 100px;
 }
 
 #submit-form-episode {
-    display: block;
+    text-decoration: none;
+    border: 1px solid black;
+	padding: 6px;
+	border-radius: 2px;
+	box-shadow: 1px 1px 3px #aaa;
+	font: bold 13px Arial;
+    color: #555;
     position: relative;
-    right: 0;
+    left: 1350px;
+}
+
+#submit-form-episode:hover {
+    background-color: lightgray;
 }
 
 /* #create-news-form-bloc {

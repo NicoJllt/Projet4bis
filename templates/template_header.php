@@ -31,11 +31,9 @@
     </section>
 </header>
 
-<section class="row">
-    <div class="col-lg-12">
-        <div class="title-framed">
-            <h1 class="book-title">Billet simple pour l'Alaska</h1>
-            <h2 class="book-author">Par Jean Forteroche</h2>
-        </div>
+<section>
+    <div class="title-framed">
+        <h1 class="book-title">Billet simple pour l'Alaska</h1>
+        <h2 class="book-author">Par Jean Forteroche</h2>
     </div>
 </section>

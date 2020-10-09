@@ -20,12 +20,10 @@
 
 <body>
     <div class="blocpage">
-        <section class="row">
-            <div class="col-lg-12">
+
                 <?php include("template_header.php") ?>
                 <?php include('form_episode.php'); ?>
-            </div>
-        </section>
+
     </div>
 </body>
 

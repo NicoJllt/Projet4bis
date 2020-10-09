@@ -21,17 +21,18 @@ use App\src\DAO\EpisodeDAO;
     <div class="blocpage">
 
         <?php include("template_header.php") ?>
-
-        <?= $this->session->show('add_episode') ?>
-        <?= $this->session->show('edit_episode') ?>
-        <?= $this->session->show('delete_episode'); ?>
-        <?= $this->session->show('add_message'); ?>
-        <?= $this->session->show('flag_comment'); ?>
-        <?= $this->session->show('delete_message'); ?>
-        <?= $this->session->show('register'); ?>
-        <?= $this->session->show('login'); ?>
-        <?= $this->session->show('logout'); ?>
-        <?= $this->session->show('delete_account'); ?>
+        <div id="flash-message-home">
+            <p><?= $this->session->show('add_episode') ?></p>
+            <p><?= $this->session->show('edit_episode') ?></p>
+            <p><?= $this->session->show('delete_episode'); ?></p>
+            <p><?= $this->session->show('add_message'); ?></p>
+            <p><?= $this->session->show('flag_comment'); ?></p>
+            <p><?= $this->session->show('delete_message'); ?></p>
+            <p><?= $this->session->show('register'); ?></p>
+            <p><?= $this->session->show('login'); ?></p>
+            <p><?= $this->session->show('logout'); ?></p>
+            <p><?= $this->session->show('delete_account'); ?></p>
+        </div>
 
         <section class="episode-preview-bloc">
             <section class="row">
@@ -43,8 +44,8 @@ use App\src\DAO\EpisodeDAO;
                             <article class="episode-preview">
                                 <div class="episode-preview-marge">
                                     <h1 class="episode-title-preview"><?= htmlspecialchars($episode->getTitle()) ?></h1>
-                                    <p class="episode-content-preview"><?= htmlspecialchars(substr($episode->getContent(), 0, 250)) . '...' ?></p>
-                                    <p>Créé le : <?= htmlspecialchars($episode->getDateEpisode()); ?></p>
+                                    <p class="episode-content-preview"><?= htmlspecialchars(substr($episode->getContent(), 0, 500)) . '...' ?></p>
+                                    <p class="date-episode-preview">Créé le : <?= htmlspecialchars($episode->getDateEpisode()); ?></p>
                                 </div>
                             </article>
                         </a>
