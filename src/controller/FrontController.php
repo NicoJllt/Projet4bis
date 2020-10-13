@@ -7,21 +7,21 @@ use App\config\Parameter;
 class FrontController extends Controller
 {
 
-    public function home()
+    public function home(int $nb, bool $asc)
     {
-        $episodes = $this->episodeDAO->getEpisodes(10, 0, true);
+        $episodes = $this->episodeDAO->getEpisodes($nb, $asc);
         return $this->view->render('home', [
             'episodes' => $episodes
         ]);
     }
 
-    public function lastEpisodes()
-    {
-        $episodes = $this->episodeDAO->getEpisodes(3, 0, false);
-        return $this->view->render('last_episodes', [
-            'episodes' => $episodes
-        ]);
-    }
+    // public function lastEpisodes(int $nb, bool $asc)
+    // {
+    //     $episodes = $this->episodeDAO->getEpisodes($nb, $asc);
+    //     return $this->view->render('last_episodes', [
+    //         'episodes' => $episodes
+    //     ]);
+    // }
 
     public function synopsis()
     {

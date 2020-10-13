@@ -17,9 +17,9 @@ class EpisodeDAO extends DAO
         return $episode;
     }
 
-    public function getEpisodes()
+    public function getEpisodes($nb, bool $asc)
     {
-        $sql = 'SELECT episode.episodeId, episode.title, episode.content, user.username, episode.dateEpisode FROM episode INNER JOIN user ON episode.idAuthor = user.userId ORDER BY episode.episodeId DESC';
+        $sql = 'SELECT episode.episodeId, episode.title, episode.content, user.username, episode.dateEpisode FROM episode INNER JOIN user ON episode.idAuthor = user.userId ORDER BY episode.episodeId ' . ($asc ? 'ASC' : 'DESC') . ' LIMIT ' . $nb ;
         $result = $this->createQuery($sql);
         $episodes = [];
         foreach ($result as $row) {

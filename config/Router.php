@@ -56,7 +56,7 @@ class Router
                 } elseif ($route === 'synopsis') {
                     $this->frontController->synopsis();
                 } elseif ($route === 'lastEpisodes') {
-                    $this->frontController->lastEpisodes();
+                    $this->frontController->home(2, false);
                 } elseif ($route === 'updatePassword') {
                     $this->backController->updatePassword($this->request->getPost());
                 } elseif ($route === 'logout') {
@@ -71,7 +71,7 @@ class Router
                     $this->errorController->errorNotFound();
                 }
             } else {
-                $this->frontController->home();
+                $this->frontController->home(10, true);
             }
         } catch (Exception $e) {
             $this->errorController->errorServer($e);

@@ -29,11 +29,11 @@
             </nav>
         </div>
     </section>
-</header>
 
-<section>
-    <div class="title-framed">
-        <h1 class="book-title">Billet simple pour l'Alaska</h1>
-        <h2 class="book-author">Par Jean Forteroche</h2>
-    </div>
-</section>
+    <section>
+        <div class="title-framed">
+            <h1 class="book-title">Billet simple pour l'Alaska</h1>
+            <h2 class="book-author">Par Jean Forteroche</h2>
+        </div>
+    </section>
+</header>
