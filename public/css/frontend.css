@@ -1,25 +1,19 @@
-html, body {
-    height: 100%;
-}
-
-.blocpage {
+body {
     background: url("image-fond.jpeg");
-    background-position: center center;
+    background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+
     height: 100%;
-
-
-/* 
-    position: fixed;
-    min-height: 100%;
+    width: 100%;
     min-width: 100%;
-    width: auto;
-    height: auto; */
+    min-height: 100%;
+    top: 0; 
+    left: 0; 
 }
 
 .row {
@@ -452,14 +446,14 @@ html, body {
     display: block;
 }
 
-#comment-form-content {
+#comment-content-form {
     position: relative;
     border: 4px solid #eeeeee;
     margin: 0 auto;
     width: 100%;
 }
 
-#comment-form-submit  {
+#comment-submit-form  {
     display: block;
     position: relative;
     width: 90px;
@@ -477,7 +471,7 @@ html, body {
     font-size: 12px;
 }
 
-#comment-form-submit:hover  {
+#comment-submit-form:hover  {
     background-color: rgba(255, 255, 255, 0.5);
 }
 
@@ -507,6 +501,7 @@ html, body {
 }
 
 .comment-options {
+    align-self: center;
     width: 230px;
     margin-top: 10px;
     line-height: 0.5em;
@@ -541,7 +536,21 @@ html, body {
 }
 
 .submit-form {
+    position: relative;
+    text-align: center;
+    padding: 10px;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 1px 1px 3px #aaa;
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
     margin: 10px;
+}
+
+.submit-form:hover {
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 /* Partie boutons changement d'épisode */

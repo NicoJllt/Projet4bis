@@ -4,10 +4,14 @@
     margin: 0 auto;
     align-items: center;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.8);
     width: 500px;
     height: 200px;
     padding-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid black;
+    overflow: hidden;
+    padding: 20px;
+    line-height: 1.5em;
 }
 
 #link-profile-bloc {
@@ -179,3 +183,39 @@
 #create-form-buttons button:hover {
     background-color: #5f9bd4;
 } */
+
+/* PAGE UPDATE PASSWORD */
+
+#update-password-bloc {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid black;
+    width: 400px;
+    overflow: hidden;
+    padding: 20px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.5em;
+    margin-top: -50px;
+}
+
+#password-submit-form {
+    position: relative;
+    text-align: center;
+    padding: 10px;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 1px 1px 3px #aaa;
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+    margin: 10px;
+}
+
+#password-submit-form:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+#update-password-bloc label, #update-password-bloc p {
+    font-weight: bold;
+}

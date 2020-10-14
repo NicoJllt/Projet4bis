@@ -53,17 +53,17 @@ $this->title = 'Episode';
                     include('form_message.php');
                 } else {
                 ?>
-                    <p>Vous devez vous connecter afin de pouvoir ajouter un commentaire.</p>
+                    <p>Vous devez vous connecter afin de pouvoir interagir.</p>
                 <?php
                 }
                 ?>
             </div>
 
             <h3>Commentaires</h3>
-            <div id="show-comments">
-                <?php
-                foreach ($messages as $message) {
-                ?>
+            <?php
+            foreach ($messages as $message) {
+            ?>
+                <div id="show-comments">
                     <div class="comment-div">
                         <div class="comment-username">Rédigé par : <?= htmlspecialchars($message->getUsername()) ?></div>
                         <div class="comment-date">Le : <?= htmlspecialchars($message->getDateMessage()) ?></div>
@@ -86,17 +86,28 @@ $this->title = 'Episode';
                             <?php
                             }
                             ?>
-                            <p><a href="../public/index.php?route=editMessage&messageId=<?= $message->getMessageId(); ?>&episodeId=<?= $episode->getEpisodeId(); ?>">Modifier le commentaire</a></p>
-                            <p><a href="../public/index.php?route=deleteMessage&messageId=<?= $message->getMessageId(); ?>">Supprimer le commentaire</a></p>
+                            <?php
+                            if ($this->session->get('username') === htmlspecialchars($message->getUsername())) {
+                            ?>
+                                <p><a href="../public/index.php?route=editMessage&messageId=<?= $message->getMessageId(); ?>&episodeId=<?= $episode->getEpisodeId(); ?>">Modifier le commentaire</a></p>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if (($this->session->get('role') === 'admin') || ($this->session->get('username') === htmlspecialchars($message->getUsername()))) {
+                            ?>
+                                <p><a href="../public/index.php?route=deleteMessage&messageId=<?= $message->getMessageId(); ?>">Supprimer le commentaire</a></p>
+                            <?php
+                            }
+                            ?>
                         </div>
                     <?php
                     }
                     ?>
-
-                <?php
-                }
-                ?>
-            </div>
+                </div>
+            <?php
+            }
+            ?>
         </section>
     </div>
 </body>
