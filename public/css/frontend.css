@@ -502,9 +502,13 @@ body {
 
 .comment-options {
     align-self: center;
-    width: 230px;
+    width: 280px;
     margin-top: 10px;
     line-height: 0.5em;
+}
+
+#flagged-comment {
+    font-style: italic;
 }
 
 .comment-options a {

@@ -78,7 +78,7 @@ $this->title = 'Episode';
                             <?php
                             if ($message->isFlag()) {
                             ?>
-                                <p>Ce commentaire a déjà été signalé.</p>
+                                <p id="flagged-comment">Ce commentaire a déjà été signalé.</p>
                             <?php
                             } else {
                             ?>

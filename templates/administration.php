@@ -70,7 +70,7 @@
                 ?>
                     <tr>
                         <td><?= htmlspecialchars($message->getMessageId()); ?></td>
-                        <td><?= htmlspecialchars($message->getIdAuthor()); ?></td>
+                        <td><?= htmlspecialchars($message->getUsername()); ?></td>
                         <td><?= substr(htmlspecialchars($message->getContent()), 0, 150); ?></td>
                         <td>Créé le : <?= htmlspecialchars($message->getDateMessage()); ?></td>
                         <td>En construction</td>
