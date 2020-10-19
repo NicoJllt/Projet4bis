@@ -36,7 +36,10 @@ class MessageDAO extends DAO
 
     public function getMessage($messageId)
     {
-        $sql = 'SELECT message.messageId, message.content, user.username, message.dateMessage, message.flag FROM message INNER JOIN user ON message.idAuthor = user.userId WHERE message.messageId = ?';
+        $sql = 'SELECT message.messageId, message.content, user.username, message.idEpisode, message.dateMessage, message.flag FROM message 
+        INNER JOIN user ON message.idAuthor = user.userId
+        INNER JOIN episode ON episode.episodeId = message.idEpisode
+        WHERE message.messageId = ?';
         $result = $this->createQuery($sql, [$messageId]);
         $message = $result->fetch();
         $result->closeCursor();
@@ -80,7 +83,10 @@ class MessageDAO extends DAO
 
     public function getFlagComments()
     {
-        $sql = 'SELECT messageId, content, dateMessage, flag FROM message WHERE flag = ? ORDER BY dateMessage DESC';
+        $sql = 'SELECT message.messageId, user.username, message.content, message.idEpisode, message.dateMessage, message.flag FROM message 
+        INNER JOIN user ON message.idAuthor = user.userId
+        INNER JOIN episode ON episode.episodeId = message.idEpisode
+        WHERE flag = ? ORDER BY dateMessage DESC';
         $result = $this->createQuery($sql, [1]);
         $messages = [];
         foreach ($result as $row) {

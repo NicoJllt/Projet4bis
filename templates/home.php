@@ -11,8 +11,11 @@ use App\src\DAO\EpisodeDAO;
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="../public/CSS/frontend.css" />
+    <link rel="stylesheet" href="../public/CSS/backend.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
 </head>
 
 <?php $this->title = "Billet simple pour l'Alaska"; ?>
@@ -21,13 +24,10 @@ use App\src\DAO\EpisodeDAO;
     <div class="blocpage">
 
         <?php include("template_header.php") ?>
-        <div id="flash-message-home">
+        <div class="flash-message-home">
             <p><?= $this->session->show('add_episode') ?></p>
             <p><?= $this->session->show('edit_episode') ?></p>
             <p><?= $this->session->show('delete_episode'); ?></p>
-            <p><?= $this->session->show('add_message'); ?></p>
-            <p><?= $this->session->show('flag_comment'); ?></p>
-            <p><?= $this->session->show('delete_message'); ?></p>
             <p><?= $this->session->show('register'); ?></p>
             <p><?= $this->session->show('login'); ?></p>
             <p><?= $this->session->show('logout'); ?></p>
@@ -56,6 +56,9 @@ use App\src\DAO\EpisodeDAO;
             </section>
         </section>
     </div>
+
+    <script src="../public/js/main.js"></script>
+
 </body>
 
 </html>

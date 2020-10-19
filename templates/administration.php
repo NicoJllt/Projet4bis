@@ -17,13 +17,16 @@
 
         <?php include("template_header.php") ?>
 
-        <section id="bloc-admin">
+        <div class="flash-message-home">
             <?= $this->session->show('add_episode'); ?>
             <?= $this->session->show('edit_episode'); ?>
             <?= $this->session->show('delete_episode'); ?>
             <?= $this->session->show('unflag_comment'); ?>
             <?= $this->session->show('delete_comment'); ?>
             <?= $this->session->show('delete_user'); ?>
+        </div>
+
+        <section id="bloc-admin">
 
             <h1>PAGE ADMINISTRATION</h1>
             <h2>Chapitres</h2>
@@ -73,7 +76,6 @@
                         <td><?= htmlspecialchars($message->getUsername()); ?></td>
                         <td><?= substr(htmlspecialchars($message->getContent()), 0, 150); ?></td>
                         <td>Créé le : <?= htmlspecialchars($message->getDateMessage()); ?></td>
-                        <td>En construction</td>
                         <td>
                             <a href="../public/index.php?route=unflagComment&messageId=<?= $message->getMessageId(); ?>">Désignaler le commentaire</a>
                             <a href="../public/index.php?route=deleteMessage&messageId=<?= $message->getMessageId(); ?>">Supprimer le commentaire</a>

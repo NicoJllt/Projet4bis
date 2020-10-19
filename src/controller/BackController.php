@@ -28,10 +28,10 @@ class BackController extends Controller
         }
     }
 
-    public function administration()
+    public function administration(int $nb, bool $asc)
     {
         if ($this->checkAdmin()) {
-            $episodes = $this->episodeDAO->getEpisodes(10, true);
+            $episodes = $this->episodeDAO->getEpisodes($nb, $asc);
             $messages = $this->messageDAO->getFlagComments();
             $users = $this->userDAO->getUsers();
 
@@ -114,7 +114,8 @@ class BackController extends Controller
                 if (!$errors) {
                     $this->messageDAO->addMessage($post, $episodeId, $this->session->get('user_id'));
                     $this->session->set('add_message', 'Le nouveau commentaire a bien été ajouté.');
-                    header('Location: ../public/index.php');
+                    $referer = $_SERVER['HTTP_REFERER'];
+                    header('Location: ' . $referer);
                 }
                 $episode = $this->episodeDAO->getEpisode($episodeId);
                 $messages = $this->messageDAO->getMessagesFromEpisode($episodeId);
@@ -156,10 +157,11 @@ class BackController extends Controller
 
     public function deleteMessage($messageId)
     {
-        if ($this->checkAdmin()) {
+        if ($this->checkAdmin() || $this->checkLoggedIn()) {
             $this->messageDAO->deleteMessage($messageId);
             $this->session->set('delete_message', 'Le commentaire a bien été supprimé.');
-            header('Location: ../public/index.php?route=administration');
+            $referer = $_SERVER['HTTP_REFERER'];
+            header('Location: ' . $referer);
         }
     }
 

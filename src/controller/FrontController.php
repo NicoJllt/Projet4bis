@@ -42,7 +42,8 @@ class FrontController extends Controller
     {
         $this->messageDAO->flagComment($messageId);
         $this->session->set('flag_comment', 'Le commentaire a bien été signalé.');
-        header('Location: ../public/index.php');
+        $referer = $_SERVER['HTTP_REFERER'];
+        header('Location: ' . $referer);
     }
 
     public function register(Parameter $post)

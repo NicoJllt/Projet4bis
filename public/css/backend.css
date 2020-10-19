@@ -1,3 +1,18 @@
+.flash-message-home {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: block;
+    position: fixed;
+    margin: 10px;
+    padding: 10px;
+    z-index: 100;
+    bottom: 0;
+    right: 0;
+}
+
 /* PAGE PROFIL */
 #profile-section {
     display: block;
@@ -135,18 +150,22 @@
 
 #submit-form-episode {
     text-decoration: none;
-    border: 1px solid black;
-	padding: 6px;
-	border-radius: 2px;
-	box-shadow: 1px 1px 3px #aaa;
-	font: bold 13px Arial;
-    color: #555;
     position: relative;
-    left: 1350px;
+    left: 1320px;
+
+    text-align: center;
+    padding: 10px;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 1px 1px 3px #aaa;
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
 }
 
 #submit-form-episode:hover {
-    background-color: lightgray;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* #create-news-form-bloc {
