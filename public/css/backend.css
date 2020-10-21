@@ -1,4 +1,5 @@
-.flash-message-home {
+.flash-messages {
+    visibility: hidden;
     color: white;
     font-weight: bold;
     text-align: center;

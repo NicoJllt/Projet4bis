@@ -24,7 +24,9 @@ use App\src\DAO\EpisodeDAO;
     <div class="blocpage">
 
         <?php include("template_header.php") ?>
-        <div class="flash-message-home">
+
+        <?php if ($this->session->get('login')) { ?>
+        <div class="flash-messages" style="visibility: visible">
             <p><?= $this->session->show('add_episode') ?></p>
             <p><?= $this->session->show('edit_episode') ?></p>
             <p><?= $this->session->show('delete_episode'); ?></p>
@@ -33,6 +35,7 @@ use App\src\DAO\EpisodeDAO;
             <p><?= $this->session->show('logout'); ?></p>
             <p><?= $this->session->show('delete_account'); ?></p>
         </div>
+        <?php } ?>
 
         <section class="episode-preview-bloc">
             <section class="row">

@@ -1,8 +1,10 @@
 
 var flashMessageClass = document.getElementsByClassName('flash-message-home');
 
-setTimeOut(function () {
-    flashMessageClass.close()
-}, 5000);
+function timeOutMessageFlash() {
+    setTimeout(function () {
+        flashMessageClass.style.display = 'none';
+    }, 5000);
+}
 
-setTimeout();
+timeOutMessageFlash();

@@ -25,7 +25,7 @@ use App\src\DAO\UserDAO;
 
         <?php include("template_header.php") ?>
 
-        <div class="flash-message-home">
+        <div class="flash-messages" style="display: block;">
             <p><?= $this->session->show('add_message'); ?></p>
             <p><?= $this->session->show('delete_message'); ?></p>
             <p><?= $this->session->show('flag_comment'); ?></p>
@@ -88,21 +88,21 @@ use App\src\DAO\UserDAO;
                             <?php
                             } else if (($message->isFlag() === false) || ($this->session->get('username') !== htmlspecialchars($message->getUsername()))) {
                             ?>
-                                <p><a href="../public/index.php?route=flagComment&messageId=<?= $message->getMessageId(); ?>" id="flag-comment-icon"><i class="far fa-flag"></i></a></p>
+                                <p><a href="../public/index.php?route=flagComment&messageId=<?= $message->getMessageId(); ?>" id="flag-comment-icon" title="Signaler le commentaire"><i class="far fa-flag"></i></a></p>
                             <?php
                             }
                             ?>
                             <?php
                             if ($this->session->get('username') === htmlspecialchars($message->getUsername())) {
                             ?>
-                                <p><a href="../public/index.php?route=editMessage&messageId=<?= $message->getMessageId(); ?>&episodeId=<?= $episode->getEpisodeId(); ?>" id="edit-comment-icon"><i class="far fa-edit"></i></a></p>
+                                <p><a href="../public/index.php?route=editMessage&messageId=<?= $message->getMessageId(); ?>&episodeId=<?= $episode->getEpisodeId(); ?>" id="edit-comment-icon" title="Modifier le commentaire"><i class="far fa-edit"></i></a></p>
                             <?php
                             }
                             ?>
                             <?php
                             if (($this->session->get('role') === 'admin') || ($this->session->get('username') === htmlspecialchars($message->getUsername()))) {
                             ?>
-                                <p><a href="../public/index.php?route=deleteMessage&messageId=<?= $message->getMessageId(); ?>" id="delete-comment-icon"><i class="fas fa-ban"></i></a></p>
+                                <p><a href="../public/index.php?route=deleteMessage&messageId=<?= $message->getMessageId(); ?>" id="delete-comment-icon" title="Supprimer le commentaire"><i class="fas fa-ban"></i></a></p>
                             <?php
                             }
                             ?>

@@ -17,7 +17,7 @@
 
         <?php include("template_header.php") ?>
 
-        <div class="flash-message-home">
+        <div class="flash-messages" style="display: block;">
             <?= $this->session->show('add_episode'); ?>
             <?= $this->session->show('edit_episode'); ?>
             <?= $this->session->show('delete_episode'); ?>
@@ -122,6 +122,9 @@
             </table>
         </section>
     </div>
+
+    <script src="../public/js/main.js"></script>
+
 </body>
 
 </html>
