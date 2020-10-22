@@ -16,6 +16,12 @@ class Session
         $_SESSION[$name] = $value;
     }
 
+    public function setFlashMessage($name, $value)
+    {
+        $this->set($name, $value);
+        $this->set('flashMessage', true);
+    }
+
     public function get($name)
     {
         if (isset($_SESSION[$name])) {
@@ -28,6 +34,7 @@ class Session
         if (isset($_SESSION[$name])) {
             $key = $this->get($name);
             $this->remove($name);
+            $this->remove('flashMessage');
             return $key;
         }
     }

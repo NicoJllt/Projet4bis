@@ -370,7 +370,6 @@ body {
     background-color: rgba(255, 255, 255, 0.9);
     text-align: right;
     margin: 0 auto;
-    width: 1319px;
     padding: 20px;
 }
 
@@ -451,8 +450,8 @@ body {
 #comment-submit-form  {
     display: block;
     position: relative;
+    left: 94%;
     text-align: center;
-    left: 1205px;
     padding: 10px;
     border: none;
     border-radius: 2px;
@@ -548,6 +547,7 @@ body {
     right: 0;
     margin: 0 80px;
     padding: 20px;
+    font-weight: bold;
 }
 
 #edit-form-comment p {

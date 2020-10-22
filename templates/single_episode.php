@@ -25,27 +25,30 @@ use App\src\DAO\UserDAO;
 
         <?php include("template_header.php") ?>
 
-        <div class="flash-messages" style="display: block;">
-            <p><?= $this->session->show('add_message'); ?></p>
-            <p><?= $this->session->show('delete_message'); ?></p>
-            <p><?= $this->session->show('flag_comment'); ?></p>
-        </div>
+        <?php if ($this->session->get('flashMessage')) { ?>
+            <div class="flash-messages">
+                <p><?= $this->session->show('add_message'); ?></p>
+                <p><?= $this->session->show('delete_message'); ?></p>
+                <p><?= $this->session->show('flag_comment'); ?></p>
+            </div>
+        <?php } ?>
 
         <section class="row">
             <div class="col-lg-12">
-                <article id="episode-page-bloc">
-                    <h1 class="episode-title"><?= htmlspecialchars($episode->getTitle()) ?></h1>
-                    <div class="episode-content"><?= htmlspecialchars($episode->getContent()) ?></div>
-                </article>
+                <section id="episode-page-bloc">
+                    <article id="title-content-episode">
+                        <h1 class="episode-title"><?= htmlspecialchars($episode->getTitle()) ?></h1>
+                        <div class="episode-content"><?= htmlspecialchars($episode->getContent()) ?></div>
+                    </article>
+
+                    <?php if ($this->session->get('role') === 'admin') { ?>
+                        <div id="edit-delete-episode">
+                            <a href="../public/index.php?route=editEpisode&episodeId=<?= $episode->getEpisodeId() ?>">Modifier</a>
+                            <a href="../public/index.php?route=deleteEpisode&episodeId=<?= $episode->getEpisodeId(); ?>">Supprimer</a>
+                        </div>
+                    <?php } ?>
+                </section>
             </div>
-
-            <?php if ($this->session->get('role') === 'admin') { ?>
-                <div id="edit-delete-episode">
-                    <a href="../public/index.php?route=editEpisode&episodeId=<?= $episode->getEpisodeId() ?>">Modifier</a>
-                    <a href="../public/index.php?route=deleteEpisode&episodeId=<?= $episode->getEpisodeId(); ?>">Supprimer</a>
-                </div>
-            <?php } ?>
-
         </section>
 
         <section id="comment-bloc">

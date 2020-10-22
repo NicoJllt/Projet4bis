@@ -25,16 +25,17 @@ use App\src\DAO\EpisodeDAO;
 
         <?php include("template_header.php") ?>
 
-        <?php if ($this->session->get('login')) { ?>
-        <div class="flash-messages" style="visibility: visible">
-            <p><?= $this->session->show('add_episode') ?></p>
-            <p><?= $this->session->show('edit_episode') ?></p>
-            <p><?= $this->session->show('delete_episode'); ?></p>
-            <p><?= $this->session->show('register'); ?></p>
-            <p><?= $this->session->show('login'); ?></p>
-            <p><?= $this->session->show('logout'); ?></p>
-            <p><?= $this->session->show('delete_account'); ?></p>
-        </div>
+        <?php if ($this->session->get('flashMessage')) { ?>
+            <div class="flash-messages">
+                <p><?= $this->session->show('add_episode') ?></p>
+                <p><?= $this->session->show('edit_episode') ?></p>
+                <p><?= $this->session->show('delete_episode'); ?></p>
+                <p><?= $this->session->show('edit_message') ?></p>
+                <p><?= $this->session->show('register'); ?></p>
+                <p><?= $this->session->show('login'); ?></p>
+                <p><?= $this->session->show('logout'); ?></p>
+                <p><?= $this->session->show('delete_account'); ?></p>
+            </div>
         <?php } ?>
 
         <section class="episode-preview-bloc">

@@ -17,14 +17,16 @@
 
         <?php include("template_header.php") ?>
 
-        <div class="flash-messages" style="display: block;">
-            <?= $this->session->show('add_episode'); ?>
-            <?= $this->session->show('edit_episode'); ?>
-            <?= $this->session->show('delete_episode'); ?>
-            <?= $this->session->show('unflag_comment'); ?>
-            <?= $this->session->show('delete_comment'); ?>
-            <?= $this->session->show('delete_user'); ?>
-        </div>
+        <?php if ($this->session->get('flashMessage')) { ?>
+            <div class="flash-messages">
+                <?= $this->session->show('add_episode'); ?>
+                <?= $this->session->show('edit_episode'); ?>
+                <?= $this->session->show('delete_episode'); ?>
+                <?= $this->session->show('unflag_comment'); ?>
+                <?= $this->session->show('delete_comment'); ?>
+                <?= $this->session->show('delete_user'); ?>
+            </div>
+        <?php } ?>
 
         <section id="bloc-admin">
 
