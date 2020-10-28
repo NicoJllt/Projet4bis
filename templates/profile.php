@@ -12,16 +12,25 @@
 
 <?php $this->title = 'Mon profil'; ?>
 
+<?php if ($this->session->get('flashMessage')) { ?>
+    <div class="flash-messages">
+        <?= $this->session->show('update_password'); ?>
+    </div>
+<?php } ?>
+
 <body>
     <div class="blocpage">
         <?php include("template_header.php") ?>
         <div id="profile-section">
-            <?= $this->session->show('update_password'); ?>
-            <h2>Bonjour, <?= $this->session->get('username'); ?></h2>
+            <h2>Bonjour <?= $this->session->get('username'); ?>,</h2>
             <p><?= $this->session->get('userId'); ?></p>
             <div id="link-profile-bloc">
                 <a href="../public/index.php?route=updatePassword" id="edit-password">Modifier mon mot de passe</a>
-                <a href="../public/index.php?route=deleteAccount" id="delete-account">Supprimer mon compte</a>
+                <?php
+                if (!($this->session->get('role') === 'admin')) {
+                ?>
+                    <a href="../public/index.php?route=deleteAccount" id="delete-account">Supprimer mon compte</a>
+                <?php } ?>
             </div>
         </div>
     </div>

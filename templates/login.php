@@ -11,13 +11,14 @@
 
 <?php $this->title = "Connexion"; ?>
 
-<?= $this->session->show('error_login'); ?>
-
 <body>
     <div class="blocpage">
         <?php include("template_header.php") ?>
 
         <form method="post" action="../public/index.php?route=login" id="login-section">
+            <div class="constraint-error">
+                <?= $this->session->show('error_login'); ?><br>
+            </div>
             <label for="username">Pseudo</label><br>
             <input type="text" id="pseudo" name="username" value="<?= isset($post) ? htmlspecialchars($post->get('username')) : ''; ?>"><br>
             <label for="password">Mot de passe</label><br>

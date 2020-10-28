@@ -61,7 +61,7 @@ use App\src\DAO\EpisodeDAO;
         </section>
     </div>
 
-    <script src="../public/js/main.js"></script>
+    <script src="../public/js/timeOutFlashMessage.js"></script>
 
 </body>
 

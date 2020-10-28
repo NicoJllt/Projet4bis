@@ -42,10 +42,10 @@ class MessageValidation extends Validation
     private function checkContent($name, $value)
     {
         if ($this->constraint->notBlank($name, $value)) {
-            return $this->constraint->notBlank('content', $value);
+            return $this->constraint->notBlank('Contenu', $value);
         }
         if ($this->constraint->minLength($name, $value, 2)) {
-            return $this->constraint->minLength('content', $value, 2);
+            return $this->constraint->minLength('Contenu', $value, 2);
         }
     }
 }

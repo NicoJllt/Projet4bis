@@ -48,39 +48,39 @@ class UserValidation extends Validation
     private function checkUsername($name, $value)
     {
         if ($this->constraint->notBlank($name, $value)) {
-            return $this->constraint->notBlank('username', $value);
+            return $this->constraint->notBlank('Pseudo', $value);
         }
         if ($this->constraint->minLength($name, $value, 2)) {
-            return $this->constraint->minLength('username', $value, 2);
+            return $this->constraint->minLength('Pseudo', $value, 2);
         }
         if ($this->constraint->maxLength($name, $value, 255)) {
-            return $this->constraint->maxLength('username', $value, 255);
+            return $this->constraint->maxLength('Pseudo', $value, 255);
         }
     }
 
     private function checkMail($name, $value)
     {
         if ($this->constraint->notBlank($name, $value)) {
-            return $this->constraint->notBlank('mail', $value);
+            return $this->constraint->notBlank('Mail', $value);
         }
         if ($this->constraint->minLength($name, $value, 2)) {
-            return $this->constraint->minLength('mail', $value, 2);
+            return $this->constraint->minLength('Mail', $value, 2);
         }
         if ($this->constraint->maxLength($name, $value, 255)) {
-            return $this->constraint->maxLength('mail', $value, 255);
+            return $this->constraint->maxLength('Mail', $value, 255);
         }
     }
 
     private function checkPassword($name, $value)
     {
         if ($this->constraint->notBlank($name, $value)) {
-            return $this->constraint->notBlank('password', $value);
+            return $this->constraint->notBlank('Mot de passe', $value);
         }
-        if ($this->constraint->minLength($name, $value, 2)) {
-            return $this->constraint->minLength('password', $value, 2);
+        if ($this->constraint->minLength($name, $value, 8)) {
+            return $this->constraint->minLength('Mot de passe', $value, 8);
         }
         if ($this->constraint->maxLength($name, $value, 255)) {
-            return $this->constraint->maxLength('password', $value, 255);
+            return $this->constraint->maxLength('Mot de passe', $value, 255);
         }
     }
 }

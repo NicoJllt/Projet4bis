@@ -23,7 +23,7 @@
                 <?= $this->session->show('edit_episode'); ?>
                 <?= $this->session->show('delete_episode'); ?>
                 <?= $this->session->show('unflag_comment'); ?>
-                <?= $this->session->show('delete_comment'); ?>
+                <?= $this->session->show('delete_message'); ?>
                 <?= $this->session->show('delete_user'); ?>
             </div>
         <?php } ?>
@@ -125,7 +125,7 @@
         </section>
     </div>
 
-    <script src="../public/js/main.js"></script>
+    <script src="../public/js/timeOutFlashMessage.js"></script>
 
 </body>
 

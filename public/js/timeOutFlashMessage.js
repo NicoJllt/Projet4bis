@@ -3,4 +3,4 @@
         if (div && div[0]) {
             div[0].style.display='none';
         }
-    }, 3000)
+    }, 4000)

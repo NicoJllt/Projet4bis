@@ -3,7 +3,7 @@
     font-weight: bold;
     text-align: center;
     border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.5);
     display: block;
     position: fixed;
     margin: 10px;
@@ -11,6 +11,19 @@
     z-index: 100;
     bottom: 0;
     right: 0;
+
+    -webkit-animation: fadeinout 3s linear forwards;
+    animation: fadeinout 3s linear forwards;
+}
+
+@-webkit-keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  50% { opacity: 1; }
 }
 
 /* PAGE PROFIL */
@@ -81,23 +94,38 @@
     user-select: none;
 }
 
+#chapter-table-admin:not(#title-table-admin), #user-table-admin, #flag-table-admin, #add-episode-button {
+    padding: 20px;
+}
+
 #chapter-table-admin a:not(#title-table-admin), #user-table-admin a, #flag-table-admin a, #add-episode-button a {
-    text-decoration: none;
+    /* text-decoration: none;
     border: 1px solid black;
 	padding: 6px;
 	border-radius: 2px;
 	box-shadow: 1px 1px 3px #aaa;
 	font: bold 13px Arial;
-	color: #555;
+    color: #555; */
+    
+    text-decoration: none;
+    text-align: center;
+    padding: 10px;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 1px 1px 3px #aaa;
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
 }
 
 #chapter-table-admin a:hover:not(#title-table-admin), #user-table-admin a:hover, #flag-table-admin a:hover, #add-episode-button a:hover {
-    background-color: lightgray;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 #add-episode-button {
     position: relative;
-    width: 210px;
+    width: 300px;
     left: 0;
 }
 

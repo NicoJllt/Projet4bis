@@ -10,8 +10,8 @@ class BackController extends Controller
     private function checkLoggedIn()
     {
         if (!$this->session->get('username')) {
-            $this->session->setFlashMessage('need_login', 'Vous devez vous connecter pour accéder à cette section.');
-            header('Location: ../public/index.php?route=login');
+            $this->session->setFlashMessage('need_login', 'Vous devez vous connecter pour accéder à cette section');
+            return header('Location: ../public/index.php?route=login');
         } else {
             return true;
         }
@@ -21,8 +21,8 @@ class BackController extends Controller
     {
         $this->checkLoggedIn();
         if (!($this->session->get('role') === 'admin')) {
-            $this->session->setFlashMessage('not_admin', 'Vous n\'êtes pas autorisé à accéder à cette page.');
-            header('Location: ../public/index.php?route=profile');
+            $this->session->setFlashMessage('not_admin', 'Vous n\'êtes pas autorisé à accéder à cette page');
+            return header('Location: ../public/index.php?route=profile');
         } else {
             return true;
         }
@@ -50,8 +50,8 @@ class BackController extends Controller
                 $errors = $this->validation->validate($post, 'Episode');
                 if (!$errors) {
                     $this->episodeDAO->addEpisode($post, $this->session->get('user_id'));
-                    $this->session->setFlashMessage('add_episode', 'Le nouveau chapitre a bien été ajouté.');
-                    header('Location: ../public/index.php?route=administration');
+                    $this->session->setFlashMessage('add_episode', 'Le nouveau chapitre a bien été ajouté');
+                    return header('Location: ../public/index.php?route=administration');
                 }
                 return $this->view->render('add_episode', [
                     'post' => $post,
@@ -70,7 +70,7 @@ class BackController extends Controller
                 if (!$errors) {
                     $this->episodeDAO->editEpisode($post, $episodeId, $this->session->get('user_id'));
                     $this->session->setFlashMessage('edit_episode', 'Le chapitre a bien été mis à jour');
-                    header('Location: ../public/index.php?route=administration');
+                    return header('Location: ../public/index.php?route=administration');
                 }
                 return $this->view->render('edit_episode', [
                     'post' => $post,
@@ -92,7 +92,7 @@ class BackController extends Controller
         if ($this->checkAdmin()) {
             $this->episodeDAO->deleteEpisode($episodeId);
             $this->session->setFlashMessage('delete_episode', 'Le chapitre a bien été supprimé');
-            header('Location: ../public/index.php?route=administration');
+            return header('Location: ../public/index.php?route=administration');
         }
     }
 
@@ -100,8 +100,8 @@ class BackController extends Controller
     {
         if ($this->checkAdmin()) {
             $this->messageDAO->unflagComment($messageId);
-            $this->session->setFlashMessage('unflag_comment', 'Le commentaire a bien été désignalé.');
-            header('Location: ../public/index.php?route=administration');
+            $this->session->setFlashMessage('unflag_comment', 'Le commentaire a bien été désignalé');
+            return header('Location: ../public/index.php?route=administration');
         }
     }
 
@@ -112,9 +112,9 @@ class BackController extends Controller
                 $errors = $this->validation->validate($post, 'Message');
                 if (!$errors) {
                     $this->messageDAO->addMessage($post, $episodeId, $this->session->get('user_id'));
-                    $this->session->setFlashMessage('add_message', 'Le nouveau commentaire a bien été ajouté.');
+                    $this->session->setFlashMessage('add_message', 'Le commentaire a bien été ajouté');
                     $referer = $_SERVER['HTTP_REFERER'];
-                    header('Location: ' . $referer);
+                    return header('Location: ' . $referer);
                 }
                 $episode = $this->episodeDAO->getEpisode($episodeId);
                 $messages = $this->messageDAO->getMessagesFromEpisode($episodeId);
@@ -128,15 +128,15 @@ class BackController extends Controller
         }
     }
 
-    public function editMessage(Parameter $post, $messageId, $idEpisode)
+    public function editMessage(Parameter $post, $messageId, $episodeId)
     {
         if ($this->checkLoggedIn()) {
             if ($post->get('submit')) {
                 $errors = $this->validation->validate($post, 'Message');
                 if (!$errors) {
-                    $this->messageDAO->editMessage($post, $messageId, $idEpisode, $this->session->get('user_id'));
-                    $this->session->setFlashMessage('edit_message', 'Le commentaire a bien été mis à jour.');
-                    header('Location: ../public/index.php');
+                    $this->messageDAO->editMessage($post, $messageId, $episodeId, $this->session->get('user_id'));
+                    $this->session->setFlashMessage('edit_message', 'Le commentaire a bien été mis à jour');
+                    return header('Location: ../public/index.php');
                 }
                 return $this->view->render('edit_message', [
                     'post' => $post,
@@ -159,9 +159,9 @@ class BackController extends Controller
     {
         if ($this->checkAdmin() || $this->checkLoggedIn()) {
             $this->messageDAO->deleteMessage($messageId);
-            $this->session->setFlashMessage('delete_message', 'Le commentaire a bien été supprimé.');
+            $this->session->setFlashMessage('delete_message', 'Le commentaire a bien été supprimé');
             $referer = $_SERVER['HTTP_REFERER'];
-            header('Location: ' . $referer);
+            return header('Location: ' . $referer);
         }
     }
 
@@ -176,9 +176,10 @@ class BackController extends Controller
     {
         if ($this->checkLoggedIn()) {
             if ($post->get('submit')) {
+                // $errors = $this->validation->validate($post, 'User');
                 $this->userDAO->updatePassword($post, $this->session->get('username'));
-                $this->session->setFlashMessage('update_password', 'Le mot de passe a été mis à jour.');
-                header('Location: ../public/index.php?route=profile');
+                $this->session->setFlashMessage('update_password', 'Le mot de passe a été mis à jour');
+                return header('Location: ../public/index.php?route=profile');
             }
             return $this->view->render('update_password');
         }
@@ -203,8 +204,8 @@ class BackController extends Controller
     {
         if ($this->checkAdmin()) {
             $this->userDAO->deleteUser($userId);
-            $this->session->setFlashMessage('delete_user', 'L\'utilisateur a bien été supprimé.');
-            header('Location: ../public/index.php?route=administration');
+            $this->session->setFlashMessage('delete_user', 'L\'utilisateur a bien été supprimé');
+            return header('Location: ../public/index.php?route=administration');
         }
     }
 
@@ -213,10 +214,10 @@ class BackController extends Controller
         $this->session->stop();
         $this->session->start();
         if ($param === 'logout') {
-            $this->session->setFlashMessage($param, 'Vous êtes maintenant déconnecté.');
+            $this->session->setFlashMessage($param, 'Vous êtes maintenant déconnecté');
         } else {
-            $this->session->setFlashMessage($param, 'Votre compte a bien été supprimé.');
+            $this->session->setFlashMessage($param, 'Votre compte a bien été supprimé');
         }
-        header('Location: ../public/index.php');
+        return header('Location: ../public/index.php');
     }
 }

@@ -7,9 +7,13 @@ $submit = ($route === 'addEpisode') ? 'Enregistrer' : 'Mettre à jour';
     <h1>Ajout d'un chapitre</h1>
     <label for="title">Titre</label><br>
     <input type="text" id="title-episode-form" name="title" value="<?= isset($post) ? htmlspecialchars(($post->get('title'))) : '' ?>"><br>
+    <div class="constraint-error">
     <?= isset($errors['title']) ? $errors['title'] : '' ?>
+    </div>
     <label for="content">Contenu</label><br>
     <textarea id="content-episode-form" name="content"><?= isset($post) ? htmlspecialchars(($post->get('content'))) : '' ?></textarea><br>
+    <div class="constraint-error">
     <?= isset($errors['content']) ? $errors['content'] : '' ?>
+    </div>
     <input type="submit" value="<?= $submit; ?>" id="submit-form-episode" name="submit">
 </form>

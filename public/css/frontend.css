@@ -420,7 +420,7 @@ body {
     padding: 20px;
 }
 
-#add-comment p {
+#connect-to-interact {
     text-align: center;
     font-weight: bold;
     font-size: 18px;
@@ -450,7 +450,7 @@ body {
 #comment-submit-form  {
     display: block;
     position: relative;
-    left: 94%;
+    left: 91%;
     text-align: center;
     padding: 10px;
     border: none;
@@ -618,4 +618,10 @@ body {
 .previous-episode-button:hover, .next-episode-button:hover {
     background-color: #212931;
     opacity: 0.8;
+}
+
+/* CONSTRAINT ERRORS */
+.constraint-error {
+    color: red;
+    font-style: italic;
 }
