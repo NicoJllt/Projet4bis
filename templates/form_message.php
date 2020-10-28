@@ -1,6 +1,6 @@
 <?php
-$route = (isset($post) && $post->get('messageId')) ? 'editMessage&messageId=' . $post->get('messageId') : 'addEpisode';
-$submit = $route === 'addMessage' ? 'Valider' : 'Mettre à jour';
+$route = (isset($post) && $post->get('messageId')) ? 'editMessage&messageId=' . $post->get('messageId') : 'addMessage';
+$submit = ($route === 'addMessage') ? 'Valider' : 'Mettre à jour';
 ?>
 
 <form method="post" id="comment-form" action="../public/index.php?route=<?= $route; ?>&episodeId=<?= htmlspecialchars($episode->getEpisodeId()); ?>">
