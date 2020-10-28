@@ -1,5 +1,5 @@
 <?php
-$route = isset($post) && $post->get('messageId') ? 'editMessage' : 'addMessage';
+$route = (isset($post) && $post->get('messageId')) ? 'editMessage&messageId=' . $post->get('messageId') : 'addEpisode';
 $submit = $route === 'addMessage' ? 'Valider' : 'Mettre à jour';
 ?>
 
