@@ -45,7 +45,7 @@ class UserDAO extends DAO
         $result = $this->createQuery($sql, [$post->get('username')]);
         $isUnique = $result->fetchColumn();
         if ($isUnique) {
-            return '<p>Le nom d\'utilisateur existe déjà.</p>';
+            return '<p>Le nom d\'utilisateur existe déjà</p>';
         }
     }
 

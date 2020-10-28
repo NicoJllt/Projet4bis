@@ -176,10 +176,17 @@ class BackController extends Controller
     {
         if ($this->checkLoggedIn()) {
             if ($post->get('submit')) {
-                // $errors = $this->validation->validate($post, 'User');
-                $this->userDAO->updatePassword($post, $this->session->get('username'));
-                $this->session->setFlashMessage('update_password', 'Le mot de passe a été mis à jour');
-                return header('Location: ../public/index.php?route=profile');
+                $errors = $this->validation->validate($post, 'User');
+                if (!$errors) {
+                    $this->userDAO->updatePassword($post, $this->session->get('username'));
+                    $this->session->setFlashMessage('update_password', 'Le mot de passe a été mis à jour');
+                    return header('Location: ../public/index.php?route=profile');
+                }
+                $this->session->setFlashMessage('update_password_failed', 'Le mot de passe doit contenir au minimum 8 caractères');
+                return $this->view->render('update_password', [
+                    'post' => $post,
+                    'errors' => $errors
+                ]);
             }
             return $this->view->render('update_password');
         }

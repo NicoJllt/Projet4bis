@@ -392,27 +392,6 @@ body {
 
 /* PAGE EPISODE - PARTIE COMMENTAIRE */
 
-/* #show-comments-button {
-    font-size: 12px;
-    color: black;
-    font-weight: bold;
-    text-decoration: none;
-    list-style-type: none;
-    background-color: white;
-    border: 1px solid grey;
-    border-radius: 5px;
-    width: 200px;
-    text-align: center;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    text-transform: uppercase;
-} */
-
-/* .show-comments {
-    background-color: rgba(255, 255, 255, 0.5);
-} */
-
 #comment-bloc {
     background-color: rgba(255, 255, 255, 0.9);
     margin: 20px 100px 50px 100px;
