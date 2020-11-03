@@ -98,7 +98,7 @@ body {
 }
 
 .last-episodes-nav {
-    margin-right: 350px;
+    margin-right: 8em;
 }
 
 .site-search-nav {
@@ -603,4 +603,61 @@ body {
 .constraint-error {
     color: red;
     font-style: italic;
+}
+
+/* Dimensions écrans/fenêtres */
+
+@media all and (max-width: 1300px) {
+
+    .site-search-nav {
+        display: none;
+    }
+}
+
+@media all and (max-width: 1250px) {
+    .summary a {
+        font-size: 12px;
+    }
+
+    .episode-preview-bloc {
+        margin: 0 5px;
+        position: unset;
+        display: flex;
+        flex-direction: column;
+        left: unset;
+        transform: unset;
+        width: unset;
+    }
+}
+
+@media all and (max-width: 980px) {
+    .summary a {
+        font-size: 10px;
+    }
+
+    a.add-episode-nav {
+        display: none;
+    }
+
+    .title-framed {
+        width: 400px;
+    }
+}
+
+@media all and (max-width: 650px) {
+    .summary a {
+        font-size: 9px;
+    }
+
+    .last-episodes-nav {
+        margin: 0.2em;
+    }
+
+    #synopsis-bloc {
+        margin: 0 5px;
+    }
+
+    #profile-section {
+        margin: 0 5px;
+    }
 }
