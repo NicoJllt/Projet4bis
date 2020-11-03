@@ -91,10 +91,10 @@
                     <td><?= htmlspecialchars($user->getUserId()); ?></td>
                     <td><?= htmlspecialchars($user->getUsername()); ?></td>
                     <td>Créé le : <?= htmlspecialchars($user->getRegistrationDate()); ?></td>
-                    <td><?= htmlspecialchars($user->getIdRole()); ?></td>
+                    <td><?= htmlspecialchars($user->getRoleName()); ?></td>
                     <td>
                         <?php
-                        if ($user->getIdRole() != 'admin') {
+                        if ($user->getRoleName() != 'admin') {
                         ?>
                             <a href="../public/index.php?route=deleteUser&userId=<?= $user->getUserId(); ?>">Supprimer</a>
                         <?php } else {

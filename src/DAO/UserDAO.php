@@ -15,7 +15,7 @@ class UserDAO extends DAO
         $user->setUsername($row['username']);
         $user->setMail($row['mail']);
         $user->setRegistrationDate($row['registrationDate']);
-        $user->setIdRole($row['name']);
+        $user->setRoleName($row['name']);
         return $user;
     }
 
@@ -30,6 +30,17 @@ class UserDAO extends DAO
         }
         $result->closeCursor();
         return $users;
+    }
+
+    public function getUser($userId)
+    {
+        $sql = 'SELECT user.userId, user.username, user.mail, user.registrationDate, role.name
+        FROM user INNER JOIN role ON user.idRole = role.roleId
+        WHERE user.userId=:userId';
+        $result = $this->createQuery($sql, ['userId' => $userId]);
+        $user = $this->buildObject($result->fetch());
+        $result->closeCursor();
+        return $user;
     }
 
     public function register(Parameter $post)

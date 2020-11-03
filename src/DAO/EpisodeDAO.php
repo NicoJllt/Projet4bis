@@ -17,9 +17,11 @@ class EpisodeDAO extends DAO
         return $episode;
     }
 
-    public function getEpisodes($nb, bool $asc)
+    public function getEpisodes($page, $nb, bool $asc)
     {
-        $sql = 'SELECT episode.episodeId, episode.title, episode.content, user.username, episode.dateEpisode FROM episode INNER JOIN user ON episode.idAuthor = user.userId ORDER BY episode.episodeId ' . ($asc ? 'ASC' : 'DESC') . ' LIMIT ' . $nb ;
+        $sql = 'SELECT episode.episodeId, episode.title, episode.content, user.username, episode.dateEpisode
+        FROM episode INNER JOIN user ON episode.idAuthor = user.userId
+        ORDER BY episode.episodeId ' . ($asc ? 'ASC' : 'DESC') . ' LIMIT ' . ($page - 1) * $nb . ', ' . $nb;
         $result = $this->createQuery($sql);
         $episodes = [];
         foreach ($result as $row) {
@@ -66,5 +68,14 @@ class EpisodeDAO extends DAO
         $this->createQuery($sql, [$episodeId]);
         $sql = 'DELETE FROM episode WHERE episodeId = ?';
         $this->createQuery($sql, [$episodeId]);
+    }
+
+    public function count()
+    {
+        $sql = 'SELECT COUNT(*) AS count FROM episode';
+        $result = $this->createQuery($sql);
+        $count = $result->fetch();
+        $result->closeCursor();
+        return $count['count'];
     }
 }

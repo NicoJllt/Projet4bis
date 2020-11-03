@@ -28,10 +28,10 @@ class BackController extends Controller
         }
     }
 
-    public function administration(int $nb, bool $asc)
+    public function administration(int $nb, int $limit, bool $asc)
     {
         if ($this->checkAdmin()) {
-            $episodes = $this->episodeDAO->getEpisodes($nb, $asc);
+            $episodes = $this->episodeDAO->getEpisodes($nb, $limit, $asc);
             $messages = $this->messageDAO->getFlagComments();
             $users = $this->userDAO->getUsers();
 
@@ -201,6 +201,10 @@ class BackController extends Controller
 
     public function deleteAccount()
     {
+        if ($this->session->get('role') === 'admin') {
+            $this->session->setFlashMessage('no_delete_account', 'Vous n\'avez pas le droit de supprimer un compte administrateur.');
+            return header('Location: ../public/index.php?route=profile');
+        }
         if ($this->checkLoggedIn()) {
             $this->userDAO->deleteAccount($this->session->get('username'));
             $this->logoutOrDelete('delete_account');
@@ -210,9 +214,14 @@ class BackController extends Controller
     public function deleteUser($userId)
     {
         if ($this->checkAdmin()) {
+            $toDelete = $this->userDAO->getUser($userId);
+            if ($toDelete->getRoleName() === 'admin') {
+                $this->session->setFlashMessage('delete_user', 'Vous n\'avez pas le droit de supprimer un administrateur.');
+                return header('Location: ../public/index.php?route=administration');
+            }
             $this->userDAO->deleteUser($userId);
-            $this->session->setFlashMessage('delete_user', 'L\'utilisateur a bien été supprimé');
-            return header('Location: ../public/index.php?route=administration');
+            $this->session->setFlashMessage('delete_user', 'L\'utilisateur a bien été supprimé.');
+            header('Location: ../public/index.php?route=administration');
         }
     }
 

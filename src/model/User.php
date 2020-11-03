@@ -30,9 +30,9 @@ class User
     private $registrationDate;
 
     /**
-     * @var int
+     * @var string
      */
-    private $idRole;
+    private $roleName;
 
 
     /**
@@ -116,18 +116,18 @@ class User
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getIdRole()
+    public function getRoleName()
     {
-        return $this->idRole;
+        return $this->roleName;
     }
 
     /**
-     * @param int $idRole
+     * @param string $roleName
      */
-    public function setIdRole($idRole)
+    public function setRoleName($roleName)
     {
-        $this->idRole = $idRole;
+        $this->roleName = $roleName;
     }
 }

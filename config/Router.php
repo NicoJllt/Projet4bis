@@ -66,12 +66,14 @@ class Router
                 } elseif ($route === 'deleteUser') {
                     $this->backController->deleteUser($this->request->getGet()->get('userId'));
                 } elseif ($route === 'administration') {
-                    $this->backController->administration(10, true);
+                    $this->backController->administration($nb, $limit, $asc);
                 } else {
                     $this->errorController->errorNotFound();
                 }
             } else {
-                $this->frontController->home(10, true);
+                $page = $this->request->getGet()->get('page') ?? 1;
+                $limit = $this->request->getGet()->get('limit') ?? 10;
+                $this->frontController->home($page, $limit);
             }
         } catch (Exception $e) {
             $this->errorController->errorServer($e);

@@ -7,21 +7,33 @@ use App\config\Parameter;
 class FrontController extends Controller
 {
 
-    public function home(int $nb, bool $asc)
+    public function home(int $page, int $limit)
     {
-        $episodes = $this->episodeDAO->getEpisodes($nb, $asc);
-        return $this->view->render('home', [
-            'episodes' => $episodes
+        $total = $this->episodeDAO->count();
+        $pages = ceil($total / $limit);
+        $range = range(
+            max(1, $page - 3),
+            min($pages, $page + 3)
+        );
+        $episodes = $this->episodeDAO->getEpisodes($page, $limit, true);
+        $this->view->render('home', [
+            'episodes' => $episodes,
+            'pages' => $pages,
+            'page' => $page,
+            'range' => $range,
+            'limit' => $limit,
+            'pagination' => true
         ]);
     }
 
-    // public function lastEpisodes(int $nb, bool $asc)
-    // {
-    //     $episodes = $this->episodeDAO->getEpisodes($nb, $asc);
-    //     return $this->view->render('last_episodes', [
-    //         'episodes' => $episodes
-    //     ]);
-    // }
+    public function lastEpisodes(int $limit)
+    {
+        $episodes = $this->episodeDAO->getEpisodes(1, $limit, false);
+        $this->view->render('home', [
+            'episodes' => $episodes,
+            'pagination' => false
+        ]);
+    }
 
     public function synopsis()
     {

@@ -3,6 +3,7 @@
 <?php if ($this->session->get('flashMessage')) { ?>
     <div class="flash-messages">
         <?= $this->session->show('update_password'); ?>
+        <?= $this->session->show('no_delete_account'); ?>
     </div>
 <?php } ?>
 
