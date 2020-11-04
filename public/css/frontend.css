@@ -628,6 +628,14 @@ body {
         transform: unset;
         width: unset;
     }
+
+    #episode-page-bloc, #comment-bloc {
+        margin: 20px 80px 10px 80px;
+    }
+
+    .episode-content {
+        padding: 100px;
+    }
 }
 
 @media all and (max-width: 980px) {
@@ -641,6 +649,18 @@ body {
 
     .title-framed {
         width: 400px;
+    }
+
+    #episode-page-bloc, #comment-bloc {
+        margin: 20px 40px 10px 40px;
+    }
+
+    .episode-content {
+        padding: 50px;
+    }
+
+    #comment-submit-form {
+        left: 85%;
     }
 }
 
@@ -657,7 +677,19 @@ body {
         margin: 0 5px;
     }
 
-    #profile-section {
-        margin: 0 5px;
+    div#profile-section {
+        width: 450px;
+    }
+
+    #episode-page-bloc, #comment-bloc {
+        margin: 5px 10px;
+    }
+
+    .episode-content {
+        padding: 15px;
+    }
+
+    #comment-submit-form {
+        left: 80%;
     }
 }

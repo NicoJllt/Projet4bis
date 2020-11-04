@@ -56,7 +56,7 @@ class Router
                 } elseif ($route === 'synopsis') {
                     $this->frontController->synopsis();
                 } elseif ($route === 'lastEpisodes') {
-                    $this->frontController->home(2, false);
+                    $this->frontController->lastEpisodes(2);
                 } elseif ($route === 'updatePassword') {
                     $this->backController->updatePassword($this->request->getPost());
                 } elseif ($route === 'logout') {
@@ -66,7 +66,7 @@ class Router
                 } elseif ($route === 'deleteUser') {
                     $this->backController->deleteUser($this->request->getGet()->get('userId'));
                 } elseif ($route === 'administration') {
-                    $this->backController->administration($nb, $limit, $asc);
+                    $this->backController->administration($this->request->getGet()->get('nbEpisodes'));
                 } else {
                     $this->errorController->errorNotFound();
                 }

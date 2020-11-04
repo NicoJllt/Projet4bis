@@ -28,17 +28,20 @@ class BackController extends Controller
         }
     }
 
-    public function administration(int $nb, int $limit, bool $asc)
+    public function administration(int $nbEpisodes)
     {
         if ($this->checkAdmin()) {
-            $episodes = $this->episodeDAO->getEpisodes($nb, $limit, $asc);
+            $nbEpisodes = $this->episodeDAO->count();
+            $episodes = $this->episodeDAO->getEpisodes(1, $nbEpisodes, true);
             $messages = $this->messageDAO->getFlagComments();
             $users = $this->userDAO->getUsers();
 
             return $this->view->render('administration', [
                 'episodes' => $episodes,
                 'messages' => $messages,
-                'users' => $users
+                'users' => $users,
+                'nbEpisodes' => $nbEpisodes,
+                'pagination' => false
             ]);
         }
     }
