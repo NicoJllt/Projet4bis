@@ -266,3 +266,67 @@
 #update-password-bloc label, #update-password-bloc p {
     font-weight: bold;
 }
+
+/* MEDIA QUERIES - RESPONSIVE */
+@media all and (max-width: 1280px) {
+    #add-episode-button a {
+        font-size: 10px;
+    }
+    
+    #bloc-admin {
+        margin : 0 15px 15px 15px;
+    }
+
+    #bloc-admin table {
+        line-height: 2em;
+    }
+
+    #bloc-admin td {
+        padding: 0 30px;
+    }
+
+    #user-table-admin a, #chapter-table-admin a:not(#title-table-admin) {
+        padding: 5px;
+        box-shadow: unset;
+    }
+}
+
+@media all and (max-width: 960px) {
+    #bloc-admin h1 {
+        width: 550px;
+        font-size: 2em;
+    }
+
+    #chapter-table-admin {
+        line-height: 1em;
+    }
+
+    #bloc-admin {
+        margin : 0;
+    }
+
+    #bloc-admin table {
+        line-height: 1.5em;
+    }
+
+    #bloc-admin td {
+        padding: 0;
+    }
+
+    #user-table-admin a, #chapter-table-admin a:not(#title-table-admin) {
+        padding: 0;
+        box-shadow: unset;
+    }
+}
+
+@media all and (max-width: 600px) {
+    #bloc-admin h1 {
+        width: 400px;
+        font-size: 1.5em;
+    }
+
+    #bloc-admin h2 {
+        width: 200px;
+        font-size: 1.2em;
+    }
+}

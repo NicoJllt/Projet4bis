@@ -16,7 +16,6 @@
     <?php } ?>
 
     <section id="bloc-admin">
-
         <h1>PAGE ADMINISTRATION</h1>
         <h2>Chapitres</h2>
         <div id="add-episode-button">

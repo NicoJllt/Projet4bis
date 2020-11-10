@@ -28,7 +28,7 @@ class BackController extends Controller
         }
     }
 
-    public function administration(int $nbEpisodes)
+    public function administration()
     {
         if ($this->checkAdmin()) {
             $nbEpisodes = $this->episodeDAO->count();
@@ -39,9 +39,7 @@ class BackController extends Controller
             return $this->view->render('administration', [
                 'episodes' => $episodes,
                 'messages' => $messages,
-                'users' => $users,
-                'nbEpisodes' => $nbEpisodes,
-                'pagination' => false
+                'users' => $users
             ]);
         }
     }

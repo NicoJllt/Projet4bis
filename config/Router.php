@@ -66,7 +66,7 @@ class Router
                 } elseif ($route === 'deleteUser') {
                     $this->backController->deleteUser($this->request->getGet()->get('userId'));
                 } elseif ($route === 'administration') {
-                    $this->backController->administration($this->request->getGet()->get('nbEpisodes'));
+                    $this->backController->administration();
                 } else {
                     $this->errorController->errorNotFound();
                 }

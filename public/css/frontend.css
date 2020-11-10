@@ -21,102 +21,6 @@ body {
     margin-left: -15px;
 }
 
-/* BARRE DE NAVIGATION */
-.summary {
-    display: block;
-    position: fixed;
-    z-index: 100;
-    width: 100%;
-    margin: 0 auto;
-    list-style-type: none;
-}
-
-.summary ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 60px;
-    background-color: rgba(255, 255, 255, 0.9);
-    /* box-shadow: 0 2px 2px rgba(255, 255, 255, 0.8); */
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-
-    transition-property: background-color, height;
-    transition-duration: 1s;
-}
-
-.summary ul:hover {
-    background-color: rgba(255, 255, 255, 1);
-    height: 70px;
-}
-
-.summary li {
-    display: inline-block;
-    position: relative;
-    border: none;
-    list-style-type: none;
-}
-
-.summary a {
-    display: inline-block;
-    position: relative;
-    font-size: 14px;
-    text-transform: uppercase;
-    font-weight: bold;
-    padding: 20px 10px;
-    text-decoration: none;
-    color: #212931;
-    opacity: 0.7;
-}
-
-/* .home-nav:before, .home-nav:after {
-    position: absolute;
-    top: 8px;
-    content: "-";
-}
-
-.home-nav:before {
-    left: -3px;
-}
-
-.home-nav:after {
-    right: -3px;
-} */
-
-.summary a:hover {
-    text-decoration: none;
-    color: #212931;
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-.summary a:active {
-    color: #212931;
-}
-
-.summary a:focus {
-    color: #212931;
-}
-
-.last-episodes-nav {
-    margin-right: 8em;
-}
-
-.site-search-nav {
-    margin-right: 5px;
-    border-radius: 8px;
-} 
-
-.register-nav, .connection-nav, .logout-nav {
-    margin: 5px;
-    border: 1px solid gray;
-    border-radius: 10px;
-    padding: 10px;
-}
-
-.admin-nav, .profil-nav, .add-episode-nav {
-    border: 1px solid gray;
-}
-
 /* HEADER : TITRE ET AUTEUR */
 .title-framed {
     border: 4px solid white;
@@ -605,17 +509,160 @@ body {
     font-style: italic;
 }
 
-/* Dimensions écrans/fenêtres */
-
-@media all and (max-width: 1300px) {
-
-    .site-search-nav {
-        display: none;
-    }
+/* Footer : Pagination */
+#paging {
+    justify-content: center;
+    z-index: 200;
 }
 
-@media all and (max-width: 1250px) {
-    .summary a {
+#paging ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    text-align: center;
+    justify-content: center;
+}
+
+#paging li {
+    margin: 1px;
+}
+
+#paging a {
+    z-index: 200;
+    color: black;
+    background-color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    border: none;
+    border-radius: 10px;
+}
+
+#paging a:hover {
+    border: 1px solid black;
+    background-color: gainsboro;
+}
+
+#paging a:active {
+    border: 1px solid black;
+    background-color: grey;
+}
+
+/* BARRE DE NAVIGATION PLEIN ECRAN */
+
+.topnav {
+    /* display: block;
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    margin: 0 auto;
+    list-style-type: none;
+
+    align-items: center; */
+    background-color: rgba(255, 255, 255, 0.9);
+
+    overflow: hidden;
+}
+
+/* .topnav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+} */
+
+/* .topnav ul:hover {
+    background-color: rgba(255, 255, 255, 1);
+    height: 70px;
+} */
+
+/* .topnav li {
+    display: inline-block;
+    position: relative;
+    border: none;
+    list-style-type: none;
+} */
+
+.topnav a {
+    float: left;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 20px 10px;
+    color: #212931;
+    opacity: 0.7;
+}
+
+.topnav-bis {
+    float: right;
+}
+
+/* .home-nav-small {
+    display: none;
+} */
+
+.topnav a:hover {
+    text-decoration: none;
+    color: #212931;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.topnav a.active {
+    background-color: #212931;
+    color: white;
+}
+
+.topnav .icon {
+    display: none;
+}
+
+/* .summary a {
+    display: inline-block;
+    position: relative;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 20px 10px;
+    text-decoration: none;
+    color: #212931;
+    opacity: 0.7;
+}
+
+.summary a:hover {
+    text-decoration: none;
+    color: #212931;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.summary a:active {
+    color: #212931;
+}
+
+.summary a:focus {
+    color: #212931;
+} */
+
+/* .last-episodes-nav {
+    margin-right: 8em;
+} */
+
+.register-nav, .connection-nav, .logout-nav {
+    margin: 0 5px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.admin-nav, .profil-nav, .add-episode-nav {
+    border: 1px solid gray;
+}
+
+/* Dimensions écrans/fenêtres */
+
+@media all and (max-width: 1280px) {
+    .topnav a {
         font-size: 12px;
     }
 
@@ -638,10 +685,14 @@ body {
     }
 }
 
-@media all and (max-width: 980px) {
-    .summary a {
-        font-size: 10px;
+@media all and (max-width: 960px) {
+    .topnav a {
+        font-size: 15px;
     }
+
+    /* .home-nav-small {
+        display: block;
+    } */
 
     a.add-episode-nav {
         display: none;
@@ -652,11 +703,11 @@ body {
     }
 
     #episode-page-bloc, #comment-bloc {
-        margin: 20px 40px 10px 40px;
+        margin: 20px 10px 10px 10px;
     }
 
     .episode-content {
-        padding: 50px;
+        padding: 20px;
     }
 
     #comment-submit-form {
@@ -664,15 +715,94 @@ body {
     }
 }
 
-@media all and (max-width: 650px) {
-    .summary a {
-        font-size: 9px;
+@media screen and (max-width: 750px) {
+    .topnav a {
+        display: none;
+        border: none;
     }
 
-    .last-episodes-nav {
-        margin: 0.2em;
+    .topnav-bis {
+        float: left;
+        width: 100%;
+    }
+    
+    .topnav a.icon {
+        float: right;
+        display: block;
+        width: 60px;
     }
 
+    /* .topnav a {
+        content: "\276F";
+        font-size: 12px;
+    } */
+
+    .register-nav, .connection-nav, .logout-nav {
+        margin: unset;
+        border-radius: unset;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .topnav.responsive {
+        position: relative;
+    }
+
+    .topnav.responsive a.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 60px;
+        text-align: center;
+    }
+
+    .topnav.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    .animation {
+        animation-name: scrolling-menu;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        -webkit-animation-name: scrolling-menu;
+        -webkit-animation-duration: 1s;
+        -webkit-animation-fill-mode: forwards;
+    }   
+
+    @keyframes scrolling-menu {
+        from {
+            height: 55px;
+        }
+
+        to {
+            height: 100%;
+        }
+    }
+
+    @-webkit-keyframes scrolling-menu {
+        from {
+            height: 55px;
+        }
+
+        to {
+            height: 100%;
+        }
+    }
+
+    @-moz-keyframes scrolling-menu {
+        from {
+            height: 55px;
+        }
+
+        to {
+            height: 100%;
+        }
+    }
+}
+
+@media all and (max-width: 600px) {
     #synopsis-bloc {
         margin: 0 5px;
     }

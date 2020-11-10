@@ -45,45 +45,47 @@ use App\src\DAO\EpisodeDAO;
         </section>
     </section>
 
-    <?php if ($pagination) { ?>
-        <nav>
-            <ul>
-                <?php if ($page > 1) { ?>
-                    <li>
-                        <a href="../public/index.php?page=1&limit=<?= $limit ?>">
-                            Première page
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../public/index.php?page=<?= ($page - 1) ?>&limit=<?= $limit ?>">
-                            Page précédente
-                        </a>
-                    </li>
-                <?php } ?>
-                <?php foreach ($range as $i) { ?>
-                    <li>
-                        <a href="../public/index.php?page=<?= $i ?>&limit=<?= $limit ?>">
-                            <?= $i ?>
-                        </a>
-                    </li>
-                <?php } ?>
-                <?php if ($page < $pages) { ?>
-                    <li>
-                        <a href="../public/index.php?page=<?= ($page + 1) ?>&limit=<?= $limit ?>">
-                            Page suivante
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../public/index.php?page=<?= $pages ?>&limit=<?= $limit ?>">
-                            Dernière page
-                        </a>
-                    </li>
-                <?php } ?>
-                <li>
-            </ul>
-        </nav>
-    <?php } ?>
+    <footer>
+        <div id="paging">
+            <?php if ($pagination) { ?>
+                <nav>
+                    <ul>
+                        <?php if ($page > 1) { ?>
+                            <li>
+                                <a href="../public/index.php?page=1&limit=<?= $limit ?>">
+                                    Première page
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../public/index.php?page=<?= ($page - 1) ?>&limit=<?= $limit ?>">
+                                    Page précédente
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <?php foreach ($range as $i) { ?>
+                            <li>
+                                <a href="../public/index.php?page=<?= $i ?>&limit=<?= $limit ?>">
+                                    <?= $i ?>
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <?php if ($page < $pages) { ?>
+                            <li>
+                                <a href="../public/index.php?page=<?= ($page + 1) ?>&limit=<?= $limit ?>">
+                                    Page suivante
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../public/index.php?page=<?= $pages ?>&limit=<?= $limit ?>">
+                                    Dernière page
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <li>
+                    </ul>
+                </nav>
+            <?php } ?>
+        </div>
+    </footer>
 
 </div>
-
-<script src="../public/js/timeOutFlashMessage.js"></script>
