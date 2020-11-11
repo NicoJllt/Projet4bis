@@ -19,23 +19,21 @@ use App\src\DAO\UserDAO;
         </div>
     <?php } ?>
 
-    <section class="row">
-        <div class="col-lg-12">
-            <section id="episode-page-bloc">
-                <article id="title-content-episode">
-                    <h1 class="episode-title"><?= htmlspecialchars($episode->getTitle()) ?></h1>
-                    <div class="episode-content"><?= htmlspecialchars($episode->getContent()) ?></div>
-                </article>
 
-                <?php if ($this->session->get('role') === 'admin') { ?>
-                    <div id="edit-delete-episode">
-                        <a href="../public/index.php?route=editEpisode&episodeId=<?= $episode->getEpisodeId() ?>">Modifier</a>
-                        <a href="../public/index.php?route=deleteEpisode&episodeId=<?= $episode->getEpisodeId(); ?>">Supprimer</a>
-                    </div>
-                <?php } ?>
-            </section>
-        </div>
+    <section id="episode-page-bloc">
+        <article id="title-content-episode">
+            <h1 class="episode-title"><?= htmlspecialchars($episode->getTitle()) ?></h1>
+            <div class="episode-content"><?= htmlspecialchars($episode->getContent()) ?></div>
+        </article>
+
+        <?php if ($this->session->get('role') === 'admin') { ?>
+            <div id="edit-delete-episode">
+                <a href="../public/index.php?route=editEpisode&episodeId=<?= $episode->getEpisodeId() ?>">Modifier</a>
+                <a href="../public/index.php?route=deleteEpisode&episodeId=<?= $episode->getEpisodeId(); ?>">Supprimer</a>
+            </div>
+        <?php } ?>
     </section>
+
 
     <section id="comment-bloc">
         <div id="add-comment">

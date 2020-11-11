@@ -19,6 +19,7 @@
             <div class="col-lg-12">
                 <div id="synopsis-biography">
                     <h1>Biographie de l'auteur</h1>
+                    <img src="../public/fonts/img/photo-ecrivain.jpg" alt="Photo de l'écrivain" id="writer-image" />
                     <p>Bonjour, je suis Jean Forteroche, écrivain.<br>
                         Mauris accumsan fringilla enim id bibendum. In lectus ex, feugiat eu ligula vel, placerat imperdiet lectus. Sed convallis felis pellentesque, commodo ex et, feugiat dolor. Duis lacinia commodo nunc quis vestibulum. Donec posuere congue odio, at euismod dui vulputate nec. Donec mattis ultrices rutrum. Phasellus aliquet purus aliquam turpis sagittis cursus. Praesent justo lorem, scelerisque et massa egestas, mollis euismod nibh. Mauris a volutpat ex, non varius ipsum. Mauris id odio consequat, cursus libero a, eleifend odio. Donec finibus fringilla sem, fermentum varius diam vehicula ut.
                     </p>

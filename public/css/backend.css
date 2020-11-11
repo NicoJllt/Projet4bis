@@ -37,22 +37,28 @@
     padding-bottom: 20px;
     background-color: rgba(255, 255, 255, 0.5);
     border: 1px solid black;
+    opacity: 80%;
     overflow: hidden;
     padding: 20px;
     line-height: 1.5em;
 }
 
 #link-profile-bloc {
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     line-height: 2em;
-    margin-top: 55px;
+    margin-top: 5px;
 }
 
 #link-profile-bloc a {
     color: rgba(0, 0, 0, 0.8);
     font-weight: bold;
     text-decoration: none;
+    padding: 2px 10px;
+    box-shadow: 1px 1px 3px black;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 5px 0;
 }
 
 #link-profile-bloc a:hover {
@@ -152,6 +158,7 @@
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
     margin: 0 20px 20px 20px;
+    border: 2px solid red;
 }
 
 #form-episode h1 {

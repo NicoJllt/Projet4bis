@@ -1,5 +1,5 @@
 body {
-    background: url("image-fond.jpeg");
+    background: url("../fonts/img/image-fond.jpeg");
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -19,6 +19,126 @@ body {
 .row {
     margin-right: -15px;
     margin-left: -15px;
+}
+
+/* BARRE DE NAVIGATION */
+
+.topnav {
+    /* display: block;
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    margin: 0 auto;
+    list-style-type: none;
+
+    align-items: center; */
+    background-color: rgba(255, 255, 255, 0.9);
+
+    overflow: hidden;
+}
+
+/* .topnav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+} */
+
+/* .topnav ul:hover {
+    background-color: rgba(255, 255, 255, 1);
+    height: 70px;
+} */
+
+/* .topnav li {
+    display: inline-block;
+    position: relative;
+    border: none;
+    list-style-type: none;
+} */
+
+.topnav a {
+    float: left;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 20px 10px;
+    color: #212931;
+    opacity: 0.7;
+}
+
+.topnav-bis {
+    float: right;
+}
+
+/* .home-nav-small {
+    display: none;
+} */
+
+.topnav a:hover {
+    text-decoration: none;
+    color: #212931;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.topnav a.active {
+    background-color: #212931;
+    color: white;
+}
+
+.topnav .icon {
+    display: none;
+}
+
+/* .summary a {
+    display: inline-block;
+    position: relative;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 20px 10px;
+    text-decoration: none;
+    color: #212931;
+    opacity: 0.7;
+}
+
+.summary a:hover {
+    text-decoration: none;
+    color: #212931;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.summary a:active {
+    color: #212931;
+}
+
+.summary a:focus {
+    color: #212931;
+} */
+
+/* .last-episodes-nav {
+    margin-right: 8em;
+} */
+
+.register-nav, .connection-nav, .logout-nav {
+    margin: 0 5px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.admin-nav, .profil-nav, .add-episode-nav {
+    border: 1px solid gray;
+}
+
+.profil-nav {
+    display: none;
+}
+
+.profil-nav-logo {
+    font-size: 15px;
 }
 
 /* HEADER : TITRE ET AUTEUR */
@@ -95,12 +215,19 @@ body {
     }
 }
 
+#synopsis-bloc h1 {
+    text-transform: uppercase;
+    margin: 10px;
+    font-size: 30px;
+}
+
 #synopsis-content {
     background-color: white;
     opacity: 80%;
     border-radius: 10px;
     margin-bottom: 30px;
     padding: 10px;
+    box-shadow: 5px 5px 10px black;
 }
 
 #synopsis-biography {
@@ -109,6 +236,14 @@ body {
     border-radius: 10px;
     margin-bottom: 30px;
     padding: 10px;
+    box-shadow: 5px 5px 10px black;
+}
+
+#writer-image {
+    width: 18em;
+    height: 12em;
+    border: 1px solid black;
+    margin: 10px;
 }
 
 /* PAGE APERCU DES PREMIERS EPISODES - ACCUEIL */
@@ -175,6 +310,7 @@ body {
     height: 400px;
     overflow: hidden;
     margin-bottom: 30px;
+    box-shadow: 5px 5px 10px black;
 }
 
 .episode-preview:hover {
@@ -187,6 +323,7 @@ body {
     color: #212931;
     text-align: center;
     overflow: hidden;
+    margin-top: 10px;
 }
 
 .episode-content-preview {
@@ -262,6 +399,7 @@ body {
 .episode-content {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 200px;
+    box-shadow: 5px 5px 10px black;
 }
 
 .episode-content p {
@@ -275,6 +413,8 @@ body {
     text-align: right;
     margin: 0 auto;
     padding: 20px;
+    box-shadow: 5px 5px 10px black;
+
 }
 
 #edit-delete-episode a {
@@ -301,6 +441,7 @@ body {
     margin: 20px 100px 50px 100px;
     border-radius: 20px;
     padding: 20px;
+    box-shadow: 5px 5px 10px black;
 }
 
 #connect-to-interact {
@@ -538,125 +679,12 @@ body {
 }
 
 #paging a:hover {
-    border: 1px solid black;
     background-color: gainsboro;
 }
 
 #paging a:active {
     border: 1px solid black;
     background-color: grey;
-}
-
-/* BARRE DE NAVIGATION PLEIN ECRAN */
-
-.topnav {
-    /* display: block;
-    position: fixed;
-    z-index: 100;
-    width: 100%;
-    margin: 0 auto;
-    list-style-type: none;
-
-    align-items: center; */
-    background-color: rgba(255, 255, 255, 0.9);
-
-    overflow: hidden;
-}
-
-/* .topnav ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-} */
-
-/* .topnav ul:hover {
-    background-color: rgba(255, 255, 255, 1);
-    height: 70px;
-} */
-
-/* .topnav li {
-    display: inline-block;
-    position: relative;
-    border: none;
-    list-style-type: none;
-} */
-
-.topnav a {
-    float: left;
-    display: block;
-    text-align: center;
-    text-decoration: none;
-
-    font-size: 14px;
-    text-transform: uppercase;
-    font-weight: bold;
-    padding: 20px 10px;
-    color: #212931;
-    opacity: 0.7;
-}
-
-.topnav-bis {
-    float: right;
-}
-
-/* .home-nav-small {
-    display: none;
-} */
-
-.topnav a:hover {
-    text-decoration: none;
-    color: #212931;
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-.topnav a.active {
-    background-color: #212931;
-    color: white;
-}
-
-.topnav .icon {
-    display: none;
-}
-
-/* .summary a {
-    display: inline-block;
-    position: relative;
-    font-size: 14px;
-    text-transform: uppercase;
-    font-weight: bold;
-    padding: 20px 10px;
-    text-decoration: none;
-    color: #212931;
-    opacity: 0.7;
-}
-
-.summary a:hover {
-    text-decoration: none;
-    color: #212931;
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-.summary a:active {
-    color: #212931;
-}
-
-.summary a:focus {
-    color: #212931;
-} */
-
-/* .last-episodes-nav {
-    margin-right: 8em;
-} */
-
-.register-nav, .connection-nav, .logout-nav {
-    margin: 0 5px;
-    border: 1px solid gray;
-    border-radius: 10px;
-    padding: 10px;
-}
-
-.admin-nav, .profil-nav, .add-episode-nav {
-    border: 1px solid gray;
 }
 
 /* Dimensions écrans/fenêtres */
@@ -740,6 +768,14 @@ body {
     .register-nav, .connection-nav, .logout-nav {
         margin: unset;
         border-radius: unset;
+    }
+
+    .profil-nav {
+        visibility: visible;
+    }
+    
+    .profil-nav-logo {
+        display: none;
     }
 }
 
