@@ -7,7 +7,8 @@ use App\src\model\User;
 
 class UserDAO extends DAO
 {
-
+    // Création d'un objet modèle sur la base des données reçues de la BDD
+    // On aurait pu utiliser un constructeur avec paramètre dans le modèle
     private function buildObject($row)
     {
         $user = new User();

@@ -2,6 +2,7 @@
 
 namespace App\config;
 
+// Gestion du contenu en mémoire de la session
 class Session
 {
     private $session;

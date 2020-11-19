@@ -6,7 +6,7 @@ use App\config\Parameter;
 
 class BackController extends Controller
 {
-
+// Vérification connexion session
     private function checkLoggedIn()
     {
         if (!$this->session->get('username')) {
@@ -16,7 +16,7 @@ class BackController extends Controller
             return true;
         }
     }
-
+// Vérification Admin
     private function checkAdmin()
     {
         $this->checkLoggedIn();
@@ -199,7 +199,7 @@ class BackController extends Controller
             $this->logoutOrDelete('logout');
         }
     }
-
+// Suppression d'un compte par un Admin
     public function deleteAccount()
     {
         if ($this->session->get('role') === 'admin') {
@@ -211,7 +211,7 @@ class BackController extends Controller
             $this->logoutOrDelete('delete_account');
         }
     }
-
+// Suppression de son propre compte par un utilisateur
     public function deleteUser($userId)
     {
         if ($this->checkAdmin()) {
@@ -225,7 +225,7 @@ class BackController extends Controller
             header('Location: ../public/index.php?route=administration');
         }
     }
-
+// Déconnexion et/ou suppression de compte
     private function logoutOrDelete($param)
     {
         $this->session->stop();

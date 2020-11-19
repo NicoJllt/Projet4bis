@@ -2,6 +2,7 @@
 
 namespace App\src\constraint;
 
+// Routage des validations des formulaires
 class Validation
 {
     public function validate($data, $name)

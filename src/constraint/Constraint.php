@@ -2,6 +2,7 @@
 
 namespace App\src\constraint;
 
+// Classe qui met à disposition les différentes fonctions de validation des formulaires
 class Constraint
 {
     public function notBlank($name, $value)

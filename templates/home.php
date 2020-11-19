@@ -6,6 +6,12 @@ use App\src\DAO\EpisodeDAO;
 
 <?php $this->title = "Billet simple pour l'Alaska"; ?>
 
+<?php if ($this->request->getGet()->get('route') === 'lastEpisodes') {
+    $pendingNav = 'lastEpisodes';
+} else {
+    $pendingNav = 'home';
+} ?>
+
 <div class="blocpage">
 
     <?php include("template_header.php") ?>

@@ -7,6 +7,8 @@ use App\config\Parameter;
 
 class EpisodeDAO extends DAO
 {
+    // Création d'un objet modèle sur la base des données reçues de la BDD
+    // On aurait pu utiliser un constructeur avec paramètre dans le modèle
     private function buildObject($row)
     {
         $episode = new Episode();
@@ -16,7 +18,7 @@ class EpisodeDAO extends DAO
         $episode->setDateEpisode($row['dateEpisode']);
         return $episode;
     }
-
+    // Récupération des épisodes paginés
     public function getEpisodes($page, $nb, bool $asc)
     {
         $sql = 'SELECT episode.episodeId, episode.title, episode.content, user.username, episode.dateEpisode
@@ -32,6 +34,7 @@ class EpisodeDAO extends DAO
         return $episodes;
     }
 
+    // Récupération d'un épisode en fonction de son ID
     public function getEpisode($episodeId)
     {
         $sql = 'SELECT episode.episodeId, episode.title, episode.content, user.username, episode.dateEpisode FROM episode INNER JOIN user ON episode.idAuthor = user.userId WHERE episode.episodeId = ?';
@@ -69,7 +72,8 @@ class EpisodeDAO extends DAO
         $sql = 'DELETE FROM episode WHERE episodeId = ?';
         $this->createQuery($sql, [$episodeId]);
     }
-
+    
+    // Retourne le nombre d'épisodes
     public function count()
     {
         $sql = 'SELECT COUNT(*) AS count FROM episode';

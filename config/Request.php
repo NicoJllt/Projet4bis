@@ -2,6 +2,7 @@
 
 namespace App\config;
 
+// Gestion des données de la requête HTTP
 class Request
 {
     private $get;

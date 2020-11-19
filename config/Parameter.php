@@ -2,6 +2,7 @@
 
 namespace App\config;
 
+// Gestion des paires clés/valeurs
 class Parameter
 {
     private $parameter;

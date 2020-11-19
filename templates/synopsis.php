@@ -1,4 +1,5 @@
 <?php $this->title = "Synopsis & Biographie"; ?>
+<?php $pendingNav = 'synopsis'; ?>
 
 <div class="blocpage">
 

@@ -29,7 +29,7 @@
 /* PAGE PROFIL */
 #profile-section {
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
     align-items: center;
     text-align: center;
     width: 500px;
@@ -173,6 +173,7 @@
 
 #form-episode label {
     font-weight: bold;
+    text-transform: uppercase;
 }
 
 #title-episode-form {
@@ -184,10 +185,11 @@
 }
 
 #submit-form-episode {
-    text-decoration: none;
     position: relative;
-    left: 1320px;
-
+    display: block;
+    margin: auto;
+    margin-right: 0;
+    text-decoration: none;
     text-align: center;
     padding: 10px;
     border: none;
@@ -335,5 +337,18 @@
     #bloc-admin h2 {
         width: 200px;
         font-size: 1.2em;
+    }
+}
+
+/* Dimensions écrans/fenêtres */
+
+@media screen and (max-width: 750px) {
+    #form-episode h1 {
+        width: 400px;
+        font-size: 2em;
+    }
+
+    #title-episode-form {
+        width: 300px;
     }
 }

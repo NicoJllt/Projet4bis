@@ -5,6 +5,7 @@ namespace App\src\DAO;
 use PDO;
 use Exception;
 
+// Gestion de la connexion à la BDD
 abstract class DAO
 {
 
@@ -36,6 +37,7 @@ abstract class DAO
         }
     }
 
+// Gère tous types de requêtes vers la BDD pour unifier les requêtes avec ou sans paramètre
     protected function createQuery($sql, $parameters = null)
     {
         if ($parameters) {
