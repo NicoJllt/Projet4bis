@@ -1,8 +1,4 @@
-<?php
-
-use App\src\DAO\EpisodeDAO;
-
-?>
+<!-- VALIDATION OK -->
 
 <?php $this->title = "Billet simple pour l'Alaska"; ?>
 

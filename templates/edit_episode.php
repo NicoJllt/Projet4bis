@@ -1,3 +1,5 @@
+<!-- VALIDATION OK -->
+
 <?php $this->title = "Modifier l'article"; ?>
 
 <div class="blocpage">

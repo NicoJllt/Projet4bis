@@ -1,3 +1,5 @@
+<!-- VALIDATION OK -->
+
 <?php $this->title = 'Administration'; ?>
 
 <div class="blocpage">

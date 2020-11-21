@@ -1,9 +1,4 @@
-<?php
-
-use App\src\DAO\EpisodeDAO;
-use App\src\DAO\MessageDAO;
-use App\src\DAO\UserDAO;
-?>
+<!-- VALIDATION OK -->
 
 <?php $this->title = "L'épisode"; ?>
 

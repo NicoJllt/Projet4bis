@@ -1,3 +1,5 @@
+<!-- VALIDATION OK -->
+
 <?php $this->title = "Synopsis & Biographie"; ?>
 <?php $pendingNav = 'synopsis'; ?>
 

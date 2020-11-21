@@ -1,3 +1,5 @@
+<!-- VALIDATION OK -->
+
 <?php $this->title = "Connexion"; ?>
 
 <div class="blocpage">
@@ -7,7 +9,7 @@
         <div class="constraint-error">
             <?= $this->session->show('error_login'); ?><br>
         </div>
-        <label for="username">Pseudo</label><br>
+        <label for="pseudo">Pseudo</label><br>
         <input type="text" id="pseudo" name="username" value="<?= isset($post) ? htmlspecialchars($post->get('username')) : ''; ?>"><br>
         <label for="password">Mot de passe</label><br>
         <input type="password" id="password" name="password"><br>

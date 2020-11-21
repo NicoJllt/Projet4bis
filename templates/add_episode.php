@@ -1,3 +1,5 @@
+<!-- VALIDATION OK -->
+
 <?php $this->title = "Nouvel épisode"; ?>
 
 <div class="blocpage">

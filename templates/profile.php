@@ -1,3 +1,5 @@
+<!-- VALIDATION OK -->
+
 <?php $this->title = 'Mon profil'; ?>
 
 <?php if ($this->session->get('flashMessage')) { ?>

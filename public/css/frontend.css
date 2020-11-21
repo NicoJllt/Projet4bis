@@ -1,3 +1,5 @@
+/* VALIDATION OK */
+
 body {
     background: url("../fonts/img/image-fond.jpeg");
     background-position: center;
@@ -724,14 +726,18 @@ body {
         text-align: center;
     }
 
-    /* .topnav a {
-        content: "\276F";
-        font-size: 12px;
-    } */
+    #pending {
+        border: none;
+    }
 
     .register-nav, .connection-nav, .logout-nav {
         margin: unset;
         border-radius: unset;
+    }
+
+    .topnav-bis .admin-nav, .topnav-bis .add-episode-nav {
+        border: none;
+        color: red;
     }
 
     .topnav.responsive {

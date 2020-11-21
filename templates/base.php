@@ -1,3 +1,5 @@
+<!-- VALIDATION OK -->
+
 <!DOCTYPE html>
 <html lang="fr">
 

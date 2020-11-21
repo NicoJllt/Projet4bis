@@ -1,3 +1,5 @@
+<!-- VALIDATION OK -->
+
 <div class="topnav" id="myTopnav">
     <a href="../public/index.php" class="home-nav" <?php if (isset($pendingNav) && ($pendingNav == 'home')) {echo ' id="pending" ';} ?>>Accueil</a>
     <a href="../public/index.php?route=synopsis" class="synopsis-nav" <?php if (isset($pendingNav) && ($pendingNav == 'synopsis')) {echo ' id="pending" ';} ?>>Synopsis</a>

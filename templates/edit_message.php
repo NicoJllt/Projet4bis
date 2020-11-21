@@ -1,3 +1,5 @@
+<!-- VALIDATION OK -->
+
 <?php $this->title = "Modifier le commentaire"; ?>
 
 <div class="blocpage">

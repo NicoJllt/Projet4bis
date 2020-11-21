@@ -1,3 +1,5 @@
+<!-- VALIDATION OK -->
+
 <?php $this->title = "Inscription"; ?>
 
 <div class="blocpage">
@@ -7,7 +9,7 @@
         <div class="constraint-error">
             <?= isset($errors['username']) ? $errors['username'] : ''; ?>
         </div>
-        <label for="username">Pseudo</label><br>
+        <label for="pseudo">Pseudo</label><br>
         <input type="text" id="pseudo" name="username" value="<?= isset($post) ? htmlspecialchars($post->get('username')) : ''; ?>"><br>
         <label for="mail">Adresse Mail</label><br>
         <input type="text" id="mail" name="mail" value="<?= isset($post) ? htmlspecialchars($post->get('mail')) : ''; ?>"><br>

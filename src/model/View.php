@@ -17,6 +17,9 @@ class View
         $this->session = $this->request->getSession();
     }
 
+    // Va prendre en premier paramètre le gabarit selon lequel la page sera construite
+    // En second paramètre facultatif un tableau des données à afficher, tableau associatif bien sûr (paires clé = valeur)
+    // Cette méthode sert à afficher la vue, comme on le voit dans sa dernière ligne
     public function render($template, $data = [])
     {
         $this->file = '../templates/' . $template . '.php';
@@ -29,6 +32,7 @@ class View
         echo $view;
     }
 
+    // Va injecter les données dans le gabarit et retourner le tout sous forme de texte
     private function renderFile($file, $data)
     {
         if (file_exists($file)) {
