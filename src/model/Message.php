@@ -2,6 +2,7 @@
 
 namespace App\src\model;
 
+// Eléments qui se chargent des échanges avec la base de données
 class Message
 {
     /**

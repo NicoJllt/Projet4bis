@@ -61,6 +61,16 @@ class UserDAO extends DAO
         }
     }
 
+    public function checkMail(Parameter $post)
+    {
+        $sql = 'SELECT COUNT(mail) FROM user WHERE mail = ?';
+        $result = $this->createQuery($sql, [$post->get('mail')]);
+        $isUnique = $result->fetchColumn();
+        if ($isUnique) {
+            return '<p>L\'adresse mail existe déjà</p>';
+        }
+    }
+
     public function login(Parameter $post)
     {
         $sql = 'SELECT user.*, role.name

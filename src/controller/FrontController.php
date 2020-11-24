@@ -65,6 +65,9 @@ class FrontController extends Controller
             if ($this->userDAO->checkUser($post)) {
                 $errors['username'] = $this->userDAO->checkUser($post);
             }
+            if ($this->userDAO->checkMail($post)) {
+                $errors['mail'] = $this->userDAO->checkMail($post);
+            }
             if (!$errors) {
                 $this->userDAO->register($post);
                 $this->session->setFlashMessage('register', 'Votre inscription a bien été effectuée');

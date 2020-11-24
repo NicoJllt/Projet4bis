@@ -6,13 +6,16 @@
     <?php include("template_header.php") ?>
 
     <form method="post" action="../public/index.php?route=register" id="register-section">
+        <label for="pseudo">Pseudo</label><br>
+        <input type="text" id="pseudo" name="username" value="<?= isset($post) ? htmlspecialchars($post->get('username')) : ''; ?>"><br>
         <div class="constraint-error">
             <?= isset($errors['username']) ? $errors['username'] : ''; ?>
         </div>
-        <label for="pseudo">Pseudo</label><br>
-        <input type="text" id="pseudo" name="username" value="<?= isset($post) ? htmlspecialchars($post->get('username')) : ''; ?>"><br>
         <label for="mail">Adresse Mail</label><br>
         <input type="text" id="mail" name="mail" value="<?= isset($post) ? htmlspecialchars($post->get('mail')) : ''; ?>"><br>
+        <div class="constraint-error">
+            <?= isset($errors['mail']) ? $errors['mail'] : ''; ?>
+        </div>
         <label for="password">Mot de passe</label><br>
         <input type="password" id="password" name="password"><br>
         <div class="constraint-error">
